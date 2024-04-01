@@ -15,6 +15,8 @@ public class CameraManager : MonoBehaviour
         if(Player == null) return;
         
         transform.position = 
-            Vector3.SmoothDamp(transform.position, new Vector3(Player.transform.position.x, 0, Player.transform.position.z) + offSet, ref currentVelocity, smoothTime);
+            Vector3.SmoothDamp(transform.position, 
+                new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z) + offSet, 
+                ref currentVelocity, smoothTime);
     }
 }

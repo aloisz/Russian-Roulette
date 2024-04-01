@@ -21,6 +21,12 @@ public class ConsoleUI : MonoBehaviour
         Application.logMessageReceived -= Log;
     }
 
+    public void ClearConsole()
+    {
+        text.text = "";
+        myLog = "";
+    }
+
     private void Log(string logString, string stackTrace, LogType type)
     {
         switch (type)
