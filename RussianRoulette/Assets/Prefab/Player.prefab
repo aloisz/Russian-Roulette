@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3060070284671052753}
   - component: {fileID: -1344873071506182770}
-  - component: {fileID: 1469838233779426277}
+  - component: {fileID: 7921632100334511275}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3919780153
+  GlobalObjectIdHash: 1366946100
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &1469838233779426277
+--- !u!114 &7921632100334511275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,6 +171,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3238137519935680502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7896479795d140f45bf5791d11e669d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 622149576236d24428fe3317d44f9169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  mouseDirection: {x: 0, y: 0, z: 0}
