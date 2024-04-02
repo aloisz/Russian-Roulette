@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Gun : MyObject
 {
-
-    
     
 
     protected override void Select()

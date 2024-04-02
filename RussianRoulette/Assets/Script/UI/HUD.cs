@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Unity.Netcode;
 
 public class HUD : MonoBehaviour
 {
@@ -56,13 +57,20 @@ public class HUD : MonoBehaviour
 
     public void PressBtn(Button btn)
     {
-        Debug.Log($"btn name {btn} ", this);
         DisplayBtns(false, null);
         selectedObject.ChangeIsSelectedValue();
+        Effect();
     }
 
     private void Effect()
     {
-        
+        switch (selectedObject.ObjEffect)
+        {
+            case ObjEffect.Normal:
+                break;
+            case ObjEffect.EndingRound:
+                GameManager.Instance.RoundEndedRpc();
+                break;
+        }
     }
 }

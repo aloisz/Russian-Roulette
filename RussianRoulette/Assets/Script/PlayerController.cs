@@ -23,6 +23,7 @@ namespace Player
         
         public override void OnNetworkSpawn()
         {
+            GameManager.Instance.PlayerControllers.Add(this);
             switch (OwnerClientId)
             {
                 case 0:
@@ -36,7 +37,6 @@ namespace Player
             }
             
             if(!IsOwner) return;
-            
             switch (OwnerClientId)
             {
                 case 0:

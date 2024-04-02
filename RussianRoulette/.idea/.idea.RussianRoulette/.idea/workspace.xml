@@ -6,10 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Gun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Gun.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/Gun.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/MyObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/MyObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UI/HUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/HUD.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UI/ObjectBtn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/ObjectBtn.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +118,7 @@
       <updated>1711967990761</updated>
       <workItem from="1711967993282" duration="717000" />
       <workItem from="1711969192528" duration="24000" />
-      <workItem from="1712046880457" duration="21604000" />
+      <workItem from="1712046880457" duration="23410000" />
     </task>
     <servers />
   </component>

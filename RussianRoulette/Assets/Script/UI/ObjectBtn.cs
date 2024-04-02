@@ -20,10 +20,6 @@ public class ObjectBtn : MonoBehaviour
         text = transform.GetComponentInChildren<TextMeshProUGUI>();
         
         btn.onClick.AddListener((() => HUD.Instance.PressBtn(btn)));
-        
-        //HUD.Instance.ObjectBtns.Add(this);
-        //HUD.Instance.Buttons.Add(btn);
-        //HUD.Instance.btnCanvasGroup.Add(canvasGroup);
     }
 
     private void OnDestroy()

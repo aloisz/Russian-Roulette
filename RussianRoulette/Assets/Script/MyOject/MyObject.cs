@@ -12,13 +12,13 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     protected Vector3 basePosition;
     protected Quaternion baseRotation;
-    
+
     [Header("HUD INFO")] 
+    public ObjEffect ObjEffect;
     public List<HUD_OBJ> HUD_OBJ;
     
     public override void OnNetworkSpawn()
     {
-        isSelected =  new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         isSelected.OnValueChanged += OnIsSelectedChanged;
         
         basePosition = transform.position;
@@ -74,5 +74,11 @@ public class HUD_OBJ
     public MyObject MyObject;
     public string actionName;
     public Transform transform;
+}
+
+public enum ObjEffect
+{
+    Normal,
+    EndingRound
 }
 

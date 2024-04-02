@@ -1880,6 +1880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766448f76c2e8864d9b3b447522a5ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerControllers: []
   playersPositions:
   - {fileID: 1588960007}
   - {fileID: 1331276210}
@@ -2143,26 +2144,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUDActions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].MyObject
-      value: 
-      objectReference: {fileID: 2019969338}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUD_OBJ.Array.data[1].MyObject
-      value: 
-      objectReference: {fileID: 2019969338}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
       propertyPath: HUD_OBJ.Array.data[0].transform
       value: 
       objectReference: {fileID: 64427063}
@@ -2171,21 +2152,6 @@ PrefabInstance:
       propertyPath: HUD_OBJ.Array.data[1].transform
       value: 
       objectReference: {fileID: 933684497}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].actionName
-      value: Him
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUD_OBJ.Array.data[1].actionName
-      value: You
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUDActions.Array.data[0].HUDActions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3399,18 +3365,6 @@ MonoBehaviour:
   Buttons: []
   btnCanvasGroup: []
   selectedObject: {fileID: 0}
---- !u!114 &2019969338 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 834822069}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8a58e831f46df438fb044104867a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

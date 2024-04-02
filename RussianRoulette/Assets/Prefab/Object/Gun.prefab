@@ -73,8 +73,14 @@ MonoBehaviour:
     m_InternalValue: 0
   OwnedByClientId:
     m_InternalValue: 0
-  HUDActions:
-    text: 
+  ObjEffect: 1
+  HUD_OBJ:
+  - MyObject: {fileID: 8188022981942155198}
+    actionName: Him
+    transform: {fileID: 0}
+  - MyObject: {fileID: 8188022981942155198}
+    actionName: You
+    transform: {fileID: 0}
 --- !u!114 &9193280970270474253
 MonoBehaviour:
   m_ObjectHideFlags: 0
