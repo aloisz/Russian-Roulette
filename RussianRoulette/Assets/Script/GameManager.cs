@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public CameraManager CameraManager;
     public List<Transform> playersPositions;
     
     public static GameManager Instance;
@@ -15,13 +14,5 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
     
-    public void SetCameraTarget(Transform transform)
-    {
-        CameraManager.Player = transform;
-    }
-
-    public void SetCameraYAngle(float YAngle)
-    {
-        CameraManager.transform.rotation = Quaternion.Euler(0,YAngle, 0);
-    }
+    
 }
