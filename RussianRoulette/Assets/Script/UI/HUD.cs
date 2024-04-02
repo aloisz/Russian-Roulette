@@ -9,7 +9,10 @@ using DG.Tweening;
 public class HUD : MonoBehaviour
 {
     public GameObject btnGO;
+    [SerializeField] private Transform poolOfBtn;
     
+    [Space]
+    public List<ObjectBtn> ObjectBtns;
     public List<Button> Buttons;
     public List<CanvasGroup> btnCanvasGroup;
 
@@ -18,21 +21,6 @@ public class HUD : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-
-    private IEnumerator Start()
-    {
-        foreach (var Button in Buttons)
-        {
-            Button.enabled = false;
-            Button.onClick.AddListener((() => PressBtn(Button)));
-        }
-
-        yield return null;
-        foreach (var btn in btnCanvasGroup)
-        {
-            btn.DOFade(0, 0);
-        }
     }
 
     public MyObject GetTheSelectedObj(MyObject myObject)
@@ -46,25 +34,22 @@ public class HUD : MonoBehaviour
         {
             for (int i = 0; i < hudObj.Count; i++)
             {
-                Buttons[i].enabled = true;
-                Buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = hudObj[i].actionName;
-            }
-
-            foreach (var btn in btnCanvasGroup)
-            {
-                btn.DOFade(1, 1);
+                GameObject btn = Instantiate(btnGO, hudObj[i].transform.position, hudObj[i].transform.rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
+                btn.name = hudObj[i].actionName;
+                ObjectBtns.Add(btn.GetComponent<ObjectBtn>()); 
+                Buttons.Add(btn.GetComponent<Button>());
+                btnCanvasGroup.Add(btn.GetComponent<CanvasGroup>());
+                
+                ObjectBtns[i].EnableButton(1);
+                ObjectBtns[i].text.text = hudObj[i].actionName;
+                
             }
         }
         else
         {
-            foreach (var Button in Buttons)
+            foreach (var ObjectBtns in ObjectBtns)
             {
-                Button.enabled = false;
-            }
-
-            foreach (var btn in btnCanvasGroup)
-            {
-                btn.DOFade(0, 1);
+                ObjectBtns.DisableButton(1);
             }
         }
     }

@@ -73,5 +73,6 @@ public class HUD_OBJ
 {
     public MyObject MyObject;
     public string actionName;
+    public Transform transform;
 }
 
