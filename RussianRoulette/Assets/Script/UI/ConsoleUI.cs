@@ -24,7 +24,6 @@ public class ConsoleUI : MonoBehaviour
     public void ClearConsole()
     {
         text.text = "";
-        myLog = "";
     }
 
     private void Log(string logString, string stackTrace, LogType type)

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3496054892989747147}
   - component: {fileID: 2154237361618382986}
-  - component: {fileID: 7957696730594354386}
+  - component: {fileID: 8188022981942155198}
   - component: {fileID: 9193280970270474253}
   - component: {fileID: 7308535077480888233}
   m_Layer: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &7957696730594354386
+--- !u!114 &8188022981942155198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,13 +66,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5816060109864898295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac26eace40fc9443ac0898b5ed9be59, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b8a58e831f46df438fb044104867a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected:
     m_InternalValue: 0
   OwnedByClientId:
     m_InternalValue: 0
+  HUDActions:
+    text: 
 --- !u!114 &9193280970270474253
 MonoBehaviour:
   m_ObjectHideFlags: 0

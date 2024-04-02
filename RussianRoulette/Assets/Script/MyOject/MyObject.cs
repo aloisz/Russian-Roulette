@@ -10,10 +10,15 @@ public class MyObject : NetworkBehaviour, IInteractable
     [SerializeField] protected NetworkVariable<bool> isSelected = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [SerializeField] protected NetworkVariable<ulong>  OwnedByClientId = new NetworkVariable<ulong>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     
+    protected Vector3 basePosition;
+    protected Quaternion baseRotation;
+    
     public override void OnNetworkSpawn()
     {
         isSelected =  new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         isSelected.OnValueChanged += OnIsSelectedChanged;
+        basePosition = transform.position;
+        baseRotation = transform.rotation;
     }
 
     public override void OnNetworkDespawn()
@@ -21,30 +26,30 @@ public class MyObject : NetworkBehaviour, IInteractable
         isSelected.OnValueChanged -= OnIsSelectedChanged;
     }
 
-    public void OnIsSelectedChanged(bool previous, bool current)
+    public virtual void OnIsSelectedChanged(bool previous, bool current)
     {
         Debug.Log("OnIsSelectedChanged");
-        // note: `State.Value` will be equal to `current` here
+        
         if (isSelected.Value)
         {
-            transform.DOMove(new Vector3(0,1.1f,0), .3f);
-            // door is open:
-            //  - rotate door transform
-            //  - play animations, sound etc.
+            //Selected Logic
         }
         else
         {
-            transform.DOMove(Vector3.zero, .3f);
-            // door is closed:
-            //  - rotate door transform
-            //  - play animations, sound etc.
+            //DeSelected Logic
         }
     }
     
     public void Interact(ulong OwnerClientId)
     {
         this.OwnedByClientId.Value = OwnerClientId; 
-        isSelected.Value = true;
+        isSelected.Value = !isSelected.Value;
     }
-    
 }
+
+[System.Serializable]
+public class HUD_OBJ
+{
+    public string actionName;
+}
+

@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : MyObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    [Header("HUD INFO")] 
+    public List<HUD_OBJ> HUD_OBJ;
+    
+    public override void OnIsSelectedChanged(bool previous, bool current)
     {
+        Debug.Log("OnIsSelectedChanged");
         
+        if (isSelected.Value)
+        {
+            transform.DOMove(CameraManager.Instance.objPosition.transform.position, .3f);
+            transform.DORotate(Vector3.forward, .3f);
+        }
+        else
+        {
+            transform.DOMove(basePosition, .3f);
+            transform.rotation = baseRotation;
+        }
     }
 }

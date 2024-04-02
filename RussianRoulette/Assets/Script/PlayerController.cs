@@ -46,13 +46,13 @@ namespace Player
                     playerTurn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone,
                         NetworkVariableWritePermission.Owner);
                     transform.rotation *= Quaternion.Euler(0,180,0);
-                    CameraManager.Instance.SetCameraYAngle(new Vector3(15,180,0));
+                    CameraManager.Instance.SetCameraYAngle(new Vector3(0,180,0));
                     break;
             }
             
             Debug.Log($"Players turn is {playerTurn.Value}");
             
-            CameraManager.Instance.SetCameraTarget(cameraPos);
+            CameraManager.Instance.SetCameraTarget(CameraManager.Instance.cameraPlayerPosition);
         }
 
         public void Update()
