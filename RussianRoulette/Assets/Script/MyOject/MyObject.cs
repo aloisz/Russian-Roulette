@@ -13,10 +13,14 @@ public class MyObject : NetworkBehaviour, IInteractable
     protected Vector3 basePosition;
     protected Quaternion baseRotation;
     
+    [Header("HUD INFO")] 
+    public List<HUD_OBJ> HUD_OBJ;
+    
     public override void OnNetworkSpawn()
     {
         isSelected =  new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         isSelected.OnValueChanged += OnIsSelectedChanged;
+        
         basePosition = transform.position;
         baseRotation = transform.rotation;
     }
@@ -26,23 +30,40 @@ public class MyObject : NetworkBehaviour, IInteractable
         isSelected.OnValueChanged -= OnIsSelectedChanged;
     }
 
-    public virtual void OnIsSelectedChanged(bool previous, bool current)
+    public void OnIsSelectedChanged(bool previous, bool current)
     {
-        Debug.Log("OnIsSelectedChanged");
         
         if (isSelected.Value)
         {
             //Selected Logic
+            Select();
         }
         else
         {
             //DeSelected Logic
+            DeSelect();
         }
+    }
+
+    protected virtual void Select()
+    {
+        HUD.Instance.GetTheSelectedObj(this);
+        HUD.Instance.DisplayBtns(true, HUD_OBJ);
+    }
+
+    protected virtual void DeSelect()
+    {
+        HUD.Instance.DisplayBtns(false, null);
     }
     
     public void Interact(ulong OwnerClientId)
     {
-        this.OwnedByClientId.Value = OwnerClientId; 
+        this.OwnedByClientId.Value = OwnerClientId;
+        ChangeIsSelectedValue();
+    }
+
+    public void ChangeIsSelectedValue()
+    {
         isSelected.Value = !isSelected.Value;
     }
 }
@@ -50,6 +71,7 @@ public class MyObject : NetworkBehaviour, IInteractable
 [System.Serializable]
 public class HUD_OBJ
 {
+    public MyObject MyObject;
     public string actionName;
 }
 

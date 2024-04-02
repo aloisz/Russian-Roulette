@@ -18,6 +18,7 @@ namespace Player
             NetworkVariableWritePermission.Owner);
 
         [Header("Player Config")] 
+        public MyObject objInHand;
         [SerializeField] internal Transform cameraPos;
         
         public override void OnNetworkSpawn()
@@ -75,7 +76,7 @@ namespace Player
                 if (hit.transform.GetComponent<IInteractable>() != null)
                 {
                     hit.transform.GetComponent<IInteractable>().Interact(OwnerClientId);
-                    Debug.Log($"Touch Object : {hit.transform.name}  OwnerClientId :{OwnerClientId}");
+                    //Debug.Log($"Touch Object : {hit.transform.name}  OwnerClientId :{OwnerClientId}");
                 }
             }
         }

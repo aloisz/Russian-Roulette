@@ -6,22 +6,23 @@ using UnityEngine;
 public class Gun : MyObject
 {
 
-    [Header("HUD INFO")] 
-    public List<HUD_OBJ> HUD_OBJ;
     
-    public override void OnIsSelectedChanged(bool previous, bool current)
+    
+
+    protected override void Select()
     {
-        Debug.Log("OnIsSelectedChanged");
+        base.Select();
+        transform.DOMove(CameraManager.Instance.objPosition.transform.position, .3f);
+        transform.DORotate(Vector3.forward, .3f);
         
-        if (isSelected.Value)
-        {
-            transform.DOMove(CameraManager.Instance.objPosition.transform.position, .3f);
-            transform.DORotate(Vector3.forward, .3f);
-        }
-        else
-        {
-            transform.DOMove(basePosition, .3f);
-            transform.rotation = baseRotation;
-        }
+        
+    }
+    
+    protected override void DeSelect()
+    {
+        base.DeSelect();
+        transform.DOMove(basePosition, .3f);
+        transform.rotation = baseRotation;
+        
     }
 }
