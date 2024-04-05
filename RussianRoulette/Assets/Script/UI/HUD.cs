@@ -22,13 +22,19 @@ public class HUD : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        gameObject.SetActive(false);
     }
 
     public MyObject GetTheSelectedObj(MyObject myObject)
     {
         return selectedObject = myObject;
     }
-    
+
+    public void EnableHUD(bool verif)
+    {
+        gameObject.SetActive(verif);
+    }
+
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
     {
         if (verif)

@@ -47,6 +47,7 @@ public class MyObject : NetworkBehaviour, IInteractable
 
     protected virtual void Select()
     {
+        HUD.Instance.EnableHUD(true);
         HUD.Instance.GetTheSelectedObj(this);
         HUD.Instance.DisplayBtns(true, HUD_OBJ);
     }
@@ -54,6 +55,7 @@ public class MyObject : NetworkBehaviour, IInteractable
     protected virtual void DeSelect()
     {
         HUD.Instance.DisplayBtns(false, null);
+        HUD.Instance.EnableHUD(false);
     }
     
     public void Interact(ulong OwnerClientId)
