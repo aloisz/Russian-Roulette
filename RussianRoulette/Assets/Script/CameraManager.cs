@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,13 +20,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Vector3 offSet;
     [SerializeField] private  float smoothTime = 2;
     private Vector3 currentVelocity;
-    
-    
-    public static CameraManager Instance;
-
     private void Awake()
     {
-        Instance = this;
         StateCamera = StateCamera.OnBeginPlay;
     }
 

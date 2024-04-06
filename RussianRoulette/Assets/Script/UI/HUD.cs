@@ -43,11 +43,13 @@ public class HUD : MonoBehaviour
             {
                 GameObject btn = Instantiate(btnGO, hudObj[i].transform.position, hudObj[i].transform.rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
                 btn.name = hudObj[i].actionName;
+                btn.transform.rotation *= Quaternion.Euler(new Vector3(90,0,0));
+                
                 ObjectBtns.Add(btn.GetComponent<ObjectBtn>()); 
                 Buttons.Add(btn.GetComponent<Button>());
                 btnCanvasGroup.Add(btn.GetComponent<CanvasGroup>());
                 
-                ObjectBtns[i].EnableButton(1);
+                ObjectBtns[i].EnableButton(0);
                 ObjectBtns[i].text.text = hudObj[i].actionName;
                 
             }
@@ -56,7 +58,7 @@ public class HUD : MonoBehaviour
         {
             foreach (var ObjectBtns in ObjectBtns)
             {
-                ObjectBtns.DisableButton(1);
+                ObjectBtns.DisableButton(0);
             }
         }
     }
@@ -70,11 +72,11 @@ public class HUD : MonoBehaviour
 
     private void Effect()
     {
-        switch (selectedObject.ObjEffect)
+        switch (selectedObject.objAction)
         {
-            case ObjEffect.Normal:
+            case ObjAction.Normal:
                 break;
-            case ObjEffect.EndingRound:
+            case ObjAction.EndingRound:
                 GameManager.Instance.RoundEndedRpc();
                 break;
         }

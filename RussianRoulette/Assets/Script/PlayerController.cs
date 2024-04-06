@@ -12,18 +12,20 @@ namespace Player
     public class PlayerController : NetworkBehaviour
     {
         [SerializeField] internal NetworkVariable<bool> playerTurn = new NetworkVariable<bool>(false,NetworkVariableReadPermission.Everyone,
-            NetworkVariableWritePermission.Owner);
+            NetworkVariableWritePermission.Server);
         
         [SerializeField] internal NetworkVariable<int> playerHealth = new NetworkVariable<int>(7,NetworkVariableReadPermission.Everyone,
             NetworkVariableWritePermission.Owner);
 
         [Header("Player Config")] 
         public MyObject objInHand;
+        public CameraManager CameraManager;
         [SerializeField] internal Transform cameraPos;
         
         public override void OnNetworkSpawn()
         {
             GameManager.Instance.PlayerControllers.Add(this);
+            CameraManager = GameManager.Instance.CameraManager;
             switch (OwnerClientId)
             {
                 case 0:
@@ -37,23 +39,25 @@ namespace Player
             }
             
             if(!IsOwner) return;
+            playerTurn.OnValueChanged += OnPlayerTurnChanged;
             switch (OwnerClientId)
             {
                 case 0:
-                    playerTurn = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone,
-                        NetworkVariableWritePermission.Owner);
+                    playerTurn.Value = true; 
                     break;
                 case 1:
-                    playerTurn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone,
-                        NetworkVariableWritePermission.Owner);
+                    playerTurn.Value = false; 
                     transform.rotation *= Quaternion.Euler(0,180,0);
-                    CameraManager.Instance.SetCameraYAngle(new Vector3(0,180,0));
+                    CameraManager.SetCameraYAngle(new Vector3(0,180,0));
                     break;
             }
             
-            Debug.Log($"Players turn is {playerTurn.Value}");
-            
-            CameraManager.Instance.SetCameraTarget(CameraManager.Instance.cameraPlayerPosition);
+            CameraManager.SetCameraTarget(CameraManager.cameraPlayerPosition);
+        }
+        
+        public override void OnNetworkDespawn()
+        {
+            playerTurn.OnValueChanged -= OnPlayerTurnChanged;;
         }
 
         public void Update()
@@ -64,7 +68,7 @@ namespace Player
                 ShootRaycast(OwnerClientId);
             }
         }
-
+        
         private void ShootRaycast(ulong OwnerClientId)
         {
             RaycastHit hit;
@@ -80,11 +84,23 @@ namespace Player
                 }
             }
         }
+        
+        public void OnPlayerTurnChanged(bool previous, bool current)
+        {
+            Debug.Log($"Player turn {playerTurn.Value}");
+            if (playerTurn.Value)
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
 
         [Rpc(SendTo.Server)]
         void TestServerRpc(ulong sourceNetworkObjectId)
         {
-            ShootRaycast(sourceNetworkObjectId);
             TestClientRpc(sourceNetworkObjectId); 
         }   
         
