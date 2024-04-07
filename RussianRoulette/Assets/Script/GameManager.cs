@@ -5,10 +5,11 @@ using Player;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
     public List<PlayerController> PlayerControllers;
     public CameraManager CameraManager;
+    public PlayerHUD PlayerHUD;
     
     public List<Transform> playersPositions;
     public static GameManager Instance;
@@ -27,7 +28,6 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Everyone)]
     private void RoundEndedClientRpc()
     {
-        if(!IsOwner) return;
         RoundEnded();
     }
 

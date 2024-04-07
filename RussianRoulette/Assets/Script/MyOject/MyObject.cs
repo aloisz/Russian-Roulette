@@ -50,15 +50,21 @@ public class MyObject : NetworkBehaviour, IInteractable
 
     protected virtual void Select()
     {
-        HUD.Instance.EnableHUD(true);
-        HUD.Instance.GetTheSelectedObj(this);
-        HUD.Instance.DisplayBtns(true, HUD_OBJ);
+        /*PlayerHUD.Instance.EnableHUD(true);
+        PlayerHUD.Instance.GetTheSelectedObj(this);
+        PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);*/
+        
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(true);
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.GetTheSelectedObj(this);
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
 
     protected virtual void DeSelect()
     {
-        HUD.Instance.DisplayBtns(false, null);
-        HUD.Instance.EnableHUD(false);
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(false,null);
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(false);
+       /* PlayerHUD.Instance.DisplayBtns(false, null);
+        PlayerHUD.Instance.EnableHUD(false);*/
     }
     
     public void Interact(ulong OwnerClientId)
@@ -71,16 +77,14 @@ public class MyObject : NetworkBehaviour, IInteractable
     [Rpc(SendTo.Server)]
     void TestServerRpc(ulong OwnerClientId)
     {
-        this.OwnedByClientId.Value = OwnerClientId;
-        ChangeIsSelectedValue();
-        //TestClientRpc(OwnerClientId); 
+        TestClientRpc(OwnerClientId);
     }   
         
     [Rpc(SendTo.Everyone)]
     void TestClientRpc(ulong OwnerClientId)
     {
-        this.OwnedByClientId.Value = OwnerClientId;
         ChangeIsSelectedValue();
+        this.OwnedByClientId.Value = OwnerClientId;
     }
 
     public void ChangeIsSelectedValue()

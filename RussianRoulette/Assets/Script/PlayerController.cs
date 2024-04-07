@@ -20,12 +20,12 @@ namespace Player
         [Header("Player Config")] 
         public MyObject objInHand;
         public CameraManager CameraManager;
+        public PlayerHUD PlayerHUD;
         [SerializeField] internal Transform cameraPos;
         
         public override void OnNetworkSpawn()
         {
             GameManager.Instance.PlayerControllers.Add(this);
-            CameraManager = GameManager.Instance.CameraManager;
             switch (OwnerClientId)
             {
                 case 0:
@@ -40,6 +40,12 @@ namespace Player
             
             if(!IsOwner) return;
             playerTurn.OnValueChanged += OnPlayerTurnChanged;
+            
+            CameraManager = GameManager.Instance.CameraManager;
+            PlayerHUD = GameManager.Instance.PlayerHUD;
+            PlayerHUD.ownedByClientID = (int)OwnerClientId;
+            
+            
             switch (OwnerClientId)
             {
                 case 0:
@@ -65,7 +71,7 @@ namespace Player
             if(!IsOwner) return;
             if (Input.GetKeyDown(KeyCode.Mouse0) && IsClient && playerTurn.Value)
             {
-                ShootRaycast(OwnerClientId);
+                TestServerRpc(OwnerClientId);
             }
         }
         
@@ -80,7 +86,7 @@ namespace Player
                 if (hit.transform.GetComponent<IInteractable>() != null)
                 {
                     hit.transform.GetComponent<IInteractable>().Interact(OwnerClientId);
-                    //Debug.Log($"Touch Object : {hit.transform.name}  OwnerClientId :{OwnerClientId}");
+                    Debug.Log($"Touch Object : {hit.transform.name}  OwnerClientId :{OwnerClientId}");
                 }
             }
         }

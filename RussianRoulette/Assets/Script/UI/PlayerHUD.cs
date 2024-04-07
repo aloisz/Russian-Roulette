@@ -7,10 +7,11 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Unity.Netcode;
 
-public class HUD : MonoBehaviour
+public class PlayerHUD : MonoBehaviour
 {
     public GameObject btnGO;
     [SerializeField] private Transform poolOfBtn;
+    public int ownedByClientID; 
     
     [Space]
     public List<ObjectBtn> ObjectBtns;
@@ -18,10 +19,8 @@ public class HUD : MonoBehaviour
     public List<CanvasGroup> btnCanvasGroup;
 
     public MyObject selectedObject;
-    public static HUD Instance;
     private void Awake()
     {
-        Instance = this;
         gameObject.SetActive(false);
     }
 
@@ -51,7 +50,8 @@ public class HUD : MonoBehaviour
                 
                 ObjectBtns[i].EnableButton(0);
                 ObjectBtns[i].text.text = hudObj[i].actionName;
-                
+                ObjectBtns[i].OwnedByClientID = ownedByClientID;
+
             }
         }
         else

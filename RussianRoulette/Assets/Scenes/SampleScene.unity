@@ -1845,7 +1845,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 688391166}
-  - component: {fileID: 688391168}
   - component: {fileID: 688391167}
   m_Layer: 0
   m_Name: GameManager
@@ -1883,30 +1882,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerControllers: []
   CameraManager: {fileID: 235414428}
+  PlayerHUD: {fileID: 1880830355}
   playersPositions:
   - {fileID: 1588960007}
   - {fileID: 1331276210}
---- !u!114 &688391168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688391165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1013319962
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &762889309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,7 +3292,7 @@ GameObject:
   - component: {fileID: 1880830352}
   - component: {fileID: 1880830351}
   m_Layer: 5
-  m_Name: HUD
+  m_Name: PlayerHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3416,6 +3395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnGO: {fileID: 623004494114684652, guid: 51af44505ccdfa849af3c90c85606945, type: 3}
   poolOfBtn: {fileID: 423564506}
+  ownedByClientID: 0
   ObjectBtns: []
   Buttons: []
   btnCanvasGroup: []

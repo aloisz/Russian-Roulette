@@ -9,10 +9,11 @@ using UnityEngine.UI;
 
 public class ObjectBtn : MonoBehaviour
 {
-
+    
     private Button btn;
     private CanvasGroup canvasGroup;
     public TextMeshProUGUI text;
+    public int OwnedByClientID;
     
     void Awake()
     {
@@ -20,14 +21,14 @@ public class ObjectBtn : MonoBehaviour
         canvasGroup = transform.GetComponent<CanvasGroup>();
         text = transform.GetComponentInChildren<TextMeshProUGUI>();
         
-        btn.onClick.AddListener((() => HUD.Instance.PressBtn(btn)));
+        btn.onClick.AddListener((() => GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.PressBtn(btn)));
     }
 
     private void OnDestroy()
     {
-        HUD.Instance.ObjectBtns.Remove(this);
-        HUD.Instance.Buttons.Remove(btn);
-        HUD.Instance.btnCanvasGroup.Remove(canvasGroup);
+        GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.ObjectBtns.Remove(this);
+        GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.Buttons.Remove(btn);
+        GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.btnCanvasGroup.Remove(canvasGroup);
     }
 
     public void EnableButton(float time)
