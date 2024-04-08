@@ -69,7 +69,7 @@ namespace Player
         public void Update()
         {
             if(!IsOwner) return;
-            if (Input.GetKeyDown(KeyCode.Mouse0) && IsClient && playerTurn.Value)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value)
             {
                 TestServerRpc(OwnerClientId);
             }

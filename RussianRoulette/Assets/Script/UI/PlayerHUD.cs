@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Unity.Netcode;
 
-public class PlayerHUD : MonoBehaviour
+public class PlayerHUD : NetworkBehaviour
 {
     public GameObject btnGO;
     [SerializeField] private Transform poolOfBtn;
@@ -19,8 +19,11 @@ public class PlayerHUD : MonoBehaviour
     public List<CanvasGroup> btnCanvasGroup;
 
     public MyObject selectedObject;
+
+    public static PlayerHUD Instance;
     private void Awake()
     {
+        Instance = this;
         gameObject.SetActive(false);
     }
 
@@ -66,7 +69,7 @@ public class PlayerHUD : MonoBehaviour
     public void PressBtn(Button btn)
     {
         DisplayBtns(false, null);
-        selectedObject.ChangeIsSelectedValue();
+        selectedObject.ChangeIsSelectedValueServerRpc();
         Effect();
     }
 

@@ -35,7 +35,7 @@ public class MyObject : NetworkBehaviour, IInteractable
 
     public void OnIsSelectedChanged(bool previous, bool current)
     {
-        
+        if(!IsOwner) return;
         if (isSelected.Value)
         {
             //Selected Logic
@@ -50,21 +50,21 @@ public class MyObject : NetworkBehaviour, IInteractable
 
     protected virtual void Select()
     {
-        /*PlayerHUD.Instance.EnableHUD(true);
+        PlayerHUD.Instance.EnableHUD(true);
         PlayerHUD.Instance.GetTheSelectedObj(this);
-        PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);*/
+        PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);
         
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(true);
+        /*GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(true);
         GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.GetTheSelectedObj(this);
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(true, HUD_OBJ);
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(true, HUD_OBJ);*/
     }
 
     protected virtual void DeSelect()
     {
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(false,null);
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(false);
-       /* PlayerHUD.Instance.DisplayBtns(false, null);
-        PlayerHUD.Instance.EnableHUD(false);*/
+        /*GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(false,null);
+        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(false);*/
+        PlayerHUD.Instance.DisplayBtns(false, null);
+        PlayerHUD.Instance.EnableHUD(false);
     }
     
     public void Interact(ulong OwnerClientId)
@@ -83,11 +83,18 @@ public class MyObject : NetworkBehaviour, IInteractable
     [Rpc(SendTo.Everyone)]
     void TestClientRpc(ulong OwnerClientId)
     {
-        ChangeIsSelectedValue();
+        ChangeIsSelectedValueServerRpc();
         this.OwnedByClientId.Value = OwnerClientId;
     }
 
-    public void ChangeIsSelectedValue()
+    [Rpc(SendTo.Server)]
+    public void ChangeIsSelectedValueServerRpc()
+    {
+        ChangeIsSelectedValueClientRpc();
+    }
+    
+    [Rpc(SendTo.Everyone)]
+    private void ChangeIsSelectedValueClientRpc()
     {
         isSelected.Value = !isSelected.Value;
     }
