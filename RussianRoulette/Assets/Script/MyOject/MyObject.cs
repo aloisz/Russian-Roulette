@@ -32,71 +32,74 @@ public class MyObject : NetworkBehaviour, IInteractable
     {
         isSelected.OnValueChanged -= OnIsSelectedChanged;
     }
-
-    public void OnIsSelectedChanged(bool previous, bool current)
+    
+    private void OnIsSelectedChanged(bool previous, bool current)
     {
-        if(!IsOwner) return;
+        if(!IsOwner ) return;
         if (isSelected.Value)
         {
-            //Selected Logic
-            Select();
+            Select(OwnedByClientId.Value);
         }
         else
         {
-            //DeSelected Logic
-            DeSelect();
+            DeSelect(OwnedByClientId.Value);
         }
     }
 
-    protected virtual void Select()
+    protected virtual void Select(ulong OwnerClientId)
     {
+        if(!IsOwner) return;
         PlayerHUD.Instance.EnableHUD(true);
         PlayerHUD.Instance.GetTheSelectedObj(this);
         PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);
-        
-        /*GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(true);
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.GetTheSelectedObj(this);
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(true, HUD_OBJ);*/
     }
 
-    protected virtual void DeSelect()
+    protected virtual void DeSelect(ulong OwnerClientId)
     {
-        /*GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.DisplayBtns(false,null);
-        GameManager.Instance.PlayerControllers[(int)OwnedByClientId.Value].PlayerHUD.EnableHUD(false);*/
+        if(!IsOwner) return;
         PlayerHUD.Instance.DisplayBtns(false, null);
         PlayerHUD.Instance.EnableHUD(false);
     }
     
     public void Interact(ulong OwnerClientId)
     {
-        /*this.OwnedByClientId.Value = OwnerClientId;
-        ChangeIsSelectedValue();*/
-        TestServerRpc(OwnerClientId);
-    }
-    
-    [Rpc(SendTo.Server)]
-    void TestServerRpc(ulong OwnerClientId)
-    {
-        TestClientRpc(OwnerClientId);
-    }   
-        
-    [Rpc(SendTo.Everyone)]
-    void TestClientRpc(ulong OwnerClientId)
-    {
-        ChangeIsSelectedValueServerRpc();
-        this.OwnedByClientId.Value = OwnerClientId;
+        if(!IsOwner) return;
+        ChangeIsSelectedValue();
+        ClientIdServerRpc(OwnerClientId);
     }
 
+    // isSelected
     [Rpc(SendTo.Server)]
     public void ChangeIsSelectedValueServerRpc()
     {
+        if(!IsOwner) return;
         ChangeIsSelectedValueClientRpc();
     }
-    
     [Rpc(SendTo.Everyone)]
     private void ChangeIsSelectedValueClientRpc()
     {
+        ChangeIsSelectedValue();
+    }
+    private void ChangeIsSelectedValue()
+    {
+        Debug.Log($"ShootRaycast : OwnerClientId :{OwnerClientId}");
         isSelected.Value = !isSelected.Value;
+    }
+    
+    // Client ID
+    [Rpc(SendTo.Server)]
+    private void ClientIdServerRpc(ulong OwnerClientId)
+    {
+        ClientIdClientRpc(OwnerClientId);
+    }
+    [Rpc(SendTo.Everyone)]
+    private void ClientIdClientRpc(ulong OwnerClientId)
+    {
+        ClientId(OwnerClientId);
+    }
+    private void ClientId(ulong OwnerClientId)
+    {
+        this.OwnedByClientId.Value = OwnerClientId;
     }
     
 }

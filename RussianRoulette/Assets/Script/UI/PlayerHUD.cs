@@ -21,7 +21,8 @@ public class PlayerHUD : NetworkBehaviour
     public MyObject selectedObject;
 
     public static PlayerHUD Instance;
-    private void Awake()
+    
+    public override void OnNetworkSpawn()
     {
         Instance = this;
         gameObject.SetActive(false);
@@ -34,11 +35,13 @@ public class PlayerHUD : NetworkBehaviour
 
     public void EnableHUD(bool verif)
     {
+        if(!IsOwner) return;
         gameObject.SetActive(verif);
     }
 
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
     {
+        if(!IsOwner) return;
         if (verif)
         {
             for (int i = 0; i < hudObj.Count; i++)
@@ -68,6 +71,7 @@ public class PlayerHUD : NetworkBehaviour
 
     public void PressBtn(Button btn)
     {
+        if(!IsOwner) return;
         DisplayBtns(false, null);
         selectedObject.ChangeIsSelectedValueServerRpc();
         Effect();

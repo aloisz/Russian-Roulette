@@ -71,8 +71,20 @@ namespace Player
             if(!IsOwner) return;
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value)
             {
-                TestServerRpc(OwnerClientId);
+                ShootRaycast(OwnerClientId);
             }
+        }
+        
+        [Rpc(SendTo.Server)]
+        void InteractServerRpc(ulong sourceNetworkObjectId)
+        {
+            InteractClientRpc(sourceNetworkObjectId); 
+        }   
+        
+        [Rpc(SendTo.Everyone)]
+        void InteractClientRpc(ulong sourceNetworkObjectId)
+        {
+            ShootRaycast(sourceNetworkObjectId);
         }
         
         private void ShootRaycast(ulong OwnerClientId)
@@ -86,7 +98,6 @@ namespace Player
                 if (hit.transform.GetComponent<IInteractable>() != null)
                 {
                     hit.transform.GetComponent<IInteractable>().Interact(OwnerClientId);
-                    Debug.Log($"Touch Object : {hit.transform.name}  OwnerClientId :{OwnerClientId}");
                 }
             }
         }
@@ -103,18 +114,5 @@ namespace Player
                 
             }
         }
-
-        [Rpc(SendTo.Server)]
-        void TestServerRpc(ulong sourceNetworkObjectId)
-        {
-            TestClientRpc(sourceNetworkObjectId); 
-        }   
-        
-        [Rpc(SendTo.Everyone)]
-        void TestClientRpc(ulong sourceNetworkObjectId)
-        {
-            ShootRaycast(sourceNetworkObjectId);
-        }
-        
     }
 }

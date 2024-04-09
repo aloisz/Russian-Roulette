@@ -6,21 +6,19 @@ using UnityEngine;
 
 public class Gun : MyObject
 {
-
-    private int count = 0;
-    protected override void Select()
+    [SerializeField] private Transform desiredPos;
+    protected override void Select(ulong OwnerClientId)
     {
-        base.Select();
-        transform.DOMove(GameManager.Instance.PlayerControllers[count].CameraManager.objPosition.position, .3f);
+        base.Select(OwnerClientId);
+        transform.DOMove(GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.objPosition.position, .3f);
+        desiredPos = GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.objPosition;
         transform.DORotate(Vector3.forward, .3f);
     }
     
-    protected override void DeSelect()
+    protected override void DeSelect(ulong OwnerClientId)
     {
-        base.DeSelect();
+        base.DeSelect(OwnerClientId);
         transform.DOMove(basePosition, .3f);
         transform.rotation = baseRotation;
-        count++;
-
     }
 }
