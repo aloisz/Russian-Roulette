@@ -22,6 +22,7 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     public override void OnNetworkSpawn()
     {
+        OwnedByClientId.OnValueChanged += (value, newValue) => OwnedByClientId.Value = newValue; 
         isSelected.OnValueChanged += OnIsSelectedChanged;
         
         basePosition = transform.position;
@@ -35,7 +36,7 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     private void OnIsSelectedChanged(bool previous, bool current)
     {
-        if(!IsOwner ) return;
+        //if(!IsOwner ) return;
         if (isSelected.Value)
         {
             Select(OwnedByClientId.Value);
@@ -48,58 +49,37 @@ public class MyObject : NetworkBehaviour, IInteractable
 
     protected virtual void Select(ulong OwnerClientId)
     {
-        if(!IsOwner) return;
+        //if(!IsOwner) return;
         PlayerHUD.Instance.EnableHUD(true);
+        PlayerHUD.Instance.SetPlayerId((int)OwnerClientId);
         PlayerHUD.Instance.GetTheSelectedObj(this);
         PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);
     }
 
     protected virtual void DeSelect(ulong OwnerClientId)
     {
-        if(!IsOwner) return;
+        //if(!IsOwner) return;
         PlayerHUD.Instance.DisplayBtns(false, null);
         PlayerHUD.Instance.EnableHUD(false);
     }
     
     public void Interact(ulong OwnerClientId)
     {
-        if(!IsOwner) return;
-        ChangeIsSelectedValue();
-        ClientIdServerRpc(OwnerClientId);
+        //if(!IsOwner) return;
+        ClientId_Rpc(OwnerClientId);
     }
-
-    // isSelected
+    
     [Rpc(SendTo.Server)]
-    public void ChangeIsSelectedValueServerRpc()
+    public void ChangeIsSelectedValue_Rpc()
     {
-        if(!IsOwner) return;
-        ChangeIsSelectedValueClientRpc();
-    }
-    [Rpc(SendTo.Everyone)]
-    private void ChangeIsSelectedValueClientRpc()
-    {
-        ChangeIsSelectedValue();
-    }
-    private void ChangeIsSelectedValue()
-    {
-        Debug.Log($"ShootRaycast : OwnerClientId :{OwnerClientId}");
         isSelected.Value = !isSelected.Value;
     }
     
-    // Client ID
     [Rpc(SendTo.Server)]
-    private void ClientIdServerRpc(ulong OwnerClientId)
-    {
-        ClientIdClientRpc(OwnerClientId);
-    }
-    [Rpc(SendTo.Everyone)]
-    private void ClientIdClientRpc(ulong OwnerClientId)
-    {
-        ClientId(OwnerClientId);
-    }
-    private void ClientId(ulong OwnerClientId)
+    private void ClientId_Rpc(ulong OwnerClientId)
     {
         this.OwnedByClientId.Value = OwnerClientId;
+        ChangeIsSelectedValue_Rpc();
     }
     
 }

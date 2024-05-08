@@ -18,20 +18,9 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
-
-    [Rpc(SendTo.Server)]
-    public void RoundEndedRpc()
-    {
-        RoundEndedClientRpc();
-    }
     
-    [Rpc(SendTo.Everyone)]
-    private void RoundEndedClientRpc()
-    {
-        RoundEnded();
-    }
-
-    private void RoundEnded()
+    [Rpc(SendTo.Server)]
+    public void RoundEnded_Rpc()
     {
         foreach (var player in PlayerControllers)
         {

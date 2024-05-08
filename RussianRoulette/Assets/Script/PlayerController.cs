@@ -71,7 +71,7 @@ namespace Player
             if(!IsOwner) return;
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value)
             {
-                ShootRaycast(OwnerClientId);
+                InteractServerRpc(OwnerClientId);
             }
         }
         
