@@ -49,18 +49,16 @@ public class MyObject : NetworkBehaviour, IInteractable
 
     protected virtual void Select(ulong OwnerClientId)
     {
-        //if(!IsOwner) return;
-        PlayerHUD.Instance.EnableHUD(true);
         PlayerHUD.Instance.SetPlayerId((int)OwnerClientId);
+        PlayerHUD.Instance.EnableHUD_Rpc(true);
         PlayerHUD.Instance.GetTheSelectedObj(this);
         PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);
     }
 
     protected virtual void DeSelect(ulong OwnerClientId)
     {
-        //if(!IsOwner) return;
         PlayerHUD.Instance.DisplayBtns(false, null);
-        PlayerHUD.Instance.EnableHUD(false);
+        PlayerHUD.Instance.EnableHUD_Rpc(false);
     }
     
     public void Interact(ulong OwnerClientId)

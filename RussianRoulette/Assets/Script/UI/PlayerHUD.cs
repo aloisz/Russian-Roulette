@@ -35,8 +35,8 @@ public class PlayerHUD : NetworkBehaviour
 
     public int SetPlayerId(int Id)
     {
-        if(Id == 0) transform.rotation *= Quaternion.Euler(new Vector3(90,0,0));
-        else transform.rotation *= Quaternion.Euler(new Vector3(90,180,0));
+        if(Id == 0) transform.rotation *= Quaternion.Euler(new Vector3(0,0,0));
+        else transform.rotation *= Quaternion.Euler(new Vector3(0,180,0));
         return ownedByClientID = Id;
     }
 
@@ -45,15 +45,17 @@ public class PlayerHUD : NetworkBehaviour
         return ownedByClientID;
     }
 
-    public void EnableHUD(bool verif)
+    [Rpc(SendTo.Server)]
+    public void EnableHUD_Rpc(bool verif)
     {
-        if(!IsOwner) return;
-        gameObject.SetActive(verif);
+        //if(!IsOwner) return;
+        GameManager.Instance.PlayerControllers[GetPlayerID()].PlayerHUD.gameObject.SetActive(true);
+        //gameObject.SetActive(verif);
     }
 
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
     {
-        if(!IsOwner) return;
+        //if(!IsOwner) return;
         if (verif)
         {
             for (int i = 0; i < hudObj.Count; i++)
@@ -83,7 +85,7 @@ public class PlayerHUD : NetworkBehaviour
 
     public void PressBtn(Button btn)
     {
-        if(!IsOwner) return;
+        //if(!IsOwner) return;
         DisplayBtns(false, null);
         selectedObject.ChangeIsSelectedValue_Rpc();
         Effect();
