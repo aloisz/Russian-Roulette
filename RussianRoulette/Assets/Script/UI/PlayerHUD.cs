@@ -22,7 +22,7 @@ public class PlayerHUD : MonoBehaviour
     
     private void Start()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     public MyObject GetTheSelectedObj(MyObject myObject)
@@ -30,16 +30,22 @@ public class PlayerHUD : MonoBehaviour
         return selectedObject = myObject;
     }
 
-    public int SetPlayerId(int Id)
+    public void SetPlayerId(int Id)
     {
         if(Id == 0) transform.rotation *= Quaternion.Euler(new Vector3(0,0,0));
         else transform.rotation *= Quaternion.Euler(new Vector3(0,180,0));
-        return ownedByClientID = Id;
     }
 
     private int GetPlayerID()
     {
         return ownedByClientID;
+    }
+
+    private int BtnsRotation()
+    {
+        var result = 0;
+        result = GetPlayerID() == 0 ? 0 : 180;
+        return result;
     }
     
     public void EnableHUD(bool verif)
@@ -55,7 +61,7 @@ public class PlayerHUD : MonoBehaviour
             {
                 GameObject btn = Instantiate(btnGO, hudObj[i].transform.position, hudObj[i].transform.rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
                 btn.name = hudObj[i].actionName;
-                btn.transform.rotation *= Quaternion.Euler(new Vector3(90,0,0));
+                btn.transform.rotation *= Quaternion.Euler(new Vector3(90,BtnsRotation(),0));
                 
                 ObjectBtns.Add(btn.GetComponent<ObjectBtn>()); 
                 Buttons.Add(btn.GetComponent<Button>());

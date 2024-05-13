@@ -50,11 +50,15 @@ namespace Player
             {
                 case 0:
                     playerTurn.Value = true; 
+                    PlayerHUD.SetPlayerId(0);
+                    PlayerHUD.gameObject.SetActive(false);
                     break;
                 case 1:
                     playerTurn.Value = false; 
                     transform.rotation *= Quaternion.Euler(0,180,0);
                     CameraManager.SetCameraYAngle(new Vector3(0,180,0));
+                    PlayerHUD.SetPlayerId(1);
+                    PlayerHUD.gameObject.SetActive(false);
                     break;
             }
             

@@ -47,16 +47,15 @@ public class MyObject : NetworkBehaviour, IInteractable
         }
     }
 
-    [Rpc(SendTo.Everyone)]
+    [Rpc(SendTo.ClientsAndHost)]
     protected virtual void Select_Rpc(ulong OwnerClientId)
     {
-        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.SetPlayerId((int)OwnerClientId);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(true);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.GetTheSelectedObj(this);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
 
-    [Rpc(SendTo.Everyone)]
+    [Rpc(SendTo.ClientsAndHost)]
     protected virtual void DeSelect_Rpc(ulong OwnerClientId)
     {   
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
