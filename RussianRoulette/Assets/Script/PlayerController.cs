@@ -74,11 +74,11 @@ namespace Player
             if(!IsOwner) return;
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value) //  && playerTurn.Value
             {
-                InteractServerRpc(OwnerClientId);
+                ShootRaycast(OwnerClientId);
             }
         }
         
-        [Rpc(SendTo.Server)]
+       /* [Rpc(SendTo.Server)]
         void InteractServerRpc(ulong sourceNetworkObjectId)
         {
             InteractClientRpc(sourceNetworkObjectId); 
@@ -88,7 +88,7 @@ namespace Player
         void InteractClientRpc(ulong sourceNetworkObjectId)
         {
             ShootRaycast(sourceNetworkObjectId);
-        }
+        }*/
         
         private void ShootRaycast(ulong OwnerClientId)
         {
