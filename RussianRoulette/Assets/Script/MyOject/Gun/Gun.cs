@@ -10,17 +10,18 @@ public class Gun : MyObject
     [SerializeField] private Transform desiredPos;
     [SerializeField] private List<Bullet> bulletInChamber = new List<Bullet>();
     [SerializeField] private int bulletIndex;
-    
-    public void ReloadGun()
+
+    public int AddIndex()
+    {
+        return bulletIndex++;
+    }
+
+    public void FillChamber(List<Bullet> bullets)
     {
         bulletInChamber.Clear();
-        for (int i = 0; i < 5; i++)
+        foreach (var bullet in bullets)
         {
-            Bullet bullet = Instantiate(GameManager.Instance.bullet, Vector3.zero, Quaternion.identity);
-            int value = Random.Range(0, 2);
-            bullet.bulletType = (BulletType)value;
             bulletInChamber.Add(bullet);
-            bulletIndex++;
         }
     }
 
