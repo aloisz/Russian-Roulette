@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Bullet : NetworkBehaviour
+[System.Serializable]
+public struct Bullet : INetworkSerializeByMemcpy
 {
     public BulletType bulletType;
+    
+    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    {
+        serializer.SerializeValue(ref bulletType);
+    }
 }
 
+[System.Serializable]
 public enum BulletType
 {
     Blank,

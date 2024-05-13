@@ -15,7 +15,7 @@ public class GameManager : NetworkBehaviour
     [Header("Gun")] 
     public Gun gun;
     public Bullet bullet;
-    public List<Bullet> bullets = new List<Bullet>();
+    public NetworkVariable<List<Bullet>> bullets = new NetworkVariable<List<Bullet>>(new List<Bullet>(), NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     
     [Space]
     public List<Transform> playersPositions;
@@ -43,16 +43,26 @@ public class GameManager : NetworkBehaviour
     
     private void ReloadGun()
     {
-        bullets.Clear();
+        if(!IsServer) return;
+        bullets.Value.Clear();
+        /*if (bullets.Value.Count != 0)
+        {
+            foreach (var bullet in bullets.Value)
+            {
+                bullet.GetComponent<NetworkObject>().Despawn();
+            }
+        }*/
+        
         for (int i = 0; i < 5; i++)
         {
-            Bullet bullet = Instantiate(this.bullet, Vector3.zero, Quaternion.identity);
+            //Bullet bullet = Instantiate(this.bullet, Vector3.zero, Quaternion.identity);
+            //var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
+            //bulletNetworkObject.Spawn();
             int value = Random.Range(0, 2);
             bullet.bulletType = (BulletType)value;
-            bullets.Add(bullet);
+            bullets.Value.Add(bullet);
             gun.AddIndex();
         }
-        gun.FillChamber(bullets);
     }
     
     public void RoundEnded()
