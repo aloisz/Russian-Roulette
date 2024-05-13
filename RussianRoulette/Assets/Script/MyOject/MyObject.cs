@@ -11,7 +11,6 @@ public class MyObject : NetworkBehaviour, IInteractable
 {
     [Header("Obj Info")]
     [SerializeField] protected NetworkVariable<bool> isSelected = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    //[SerializeField] protected NetworkVariable<ulong>  OwnedByClientId = new NetworkVariable<ulong>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     
     protected Vector3 basePosition;
     protected Quaternion baseRotation;
@@ -22,7 +21,6 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     public override void OnNetworkSpawn()
     {
-        //OwnedByClientId.OnValueChanged += (value, newValue) => OwnedByClientId.Value = newValue; 
         isSelected.OnValueChanged += OnIsSelectedChanged;
         
         basePosition = transform.position;
@@ -47,7 +45,6 @@ public class MyObject : NetworkBehaviour, IInteractable
         }
     }
     
-    //[Rpc(SendTo.Server)]
     protected virtual void Select(ulong OwnerClientId)
     {
         Debug.Log(GameManager.Instance, this);
@@ -60,7 +57,6 @@ public class MyObject : NetworkBehaviour, IInteractable
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
     
-    //[Rpc(SendTo.Server)]
     protected virtual void DeSelect(ulong OwnerClientId)
     {
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
@@ -81,8 +77,7 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     [Rpc(SendTo.Server)]
     private void ClientId_Rpc(ulong OwnerClientId)
-    {
-        //this.OwnedByClientId.Value = OwnerClientId;
+    { 
         NetworkObject.ChangeOwnership(OwnerClientId);
     }
     

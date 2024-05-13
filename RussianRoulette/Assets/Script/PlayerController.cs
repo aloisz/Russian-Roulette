@@ -78,18 +78,6 @@ namespace Player
             }
         }
         
-       /* [Rpc(SendTo.Server)]
-        void InteractServerRpc(ulong sourceNetworkObjectId)
-        {
-            InteractClientRpc(sourceNetworkObjectId); 
-        }   
-        
-        [Rpc(SendTo.Everyone)]
-        void InteractClientRpc(ulong sourceNetworkObjectId)
-        {
-            ShootRaycast(sourceNetworkObjectId);
-        }*/
-        
         private void ShootRaycast(ulong OwnerClientId)
         {
             RaycastHit hit;
