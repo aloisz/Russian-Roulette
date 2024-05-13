@@ -39,25 +39,50 @@ public class MyObject : NetworkBehaviour, IInteractable
         if(!IsOwner) return;
         if (isSelected.Value)
         {
-            Select_Rpc(OwnedByClientId.Value);
+            Select(OwnedByClientId.Value);
         }
         else
         {
-            DeSelect_Rpc(OwnedByClientId.Value);
+            DeSelect(OwnedByClientId.Value);
         }
     }
+
+    [ServerRpc]
+    private void Select_ServerRpc(ulong OwnerClientId)
+    {
+        if(!IsServer) Select(OwnerClientId);
+        else Select_ClientRpc(OwnerClientId);
+    }
     
-    [Rpc(SendTo.Everyone)]
-    protected virtual void Select_Rpc(ulong OwnerClientId)
+    [ServerRpc]
+    private void DeSelect_ServerRpc(ulong OwnerClientId)
+    {   
+        if(!IsServer) DeSelect(OwnerClientId);
+        else DeSelect_ClientRpc(OwnerClientId);
+    }
+    
+    
+    [ClientRpc]
+    private void Select_ClientRpc(ulong OwnerClientId)
+    {
+        Select(OwnerClientId);
+    }
+    
+    [ClientRpc]
+    private void DeSelect_ClientRpc(ulong OwnerClientId)
+    {
+        DeSelect(OwnerClientId);
+    }
+
+    protected virtual void Select(ulong OwnerClientId)
     {
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(true);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.GetTheSelectedObj(this);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
-    
-    [Rpc(SendTo.Everyone)]
-    protected virtual void DeSelect_Rpc(ulong OwnerClientId)
-    {   
+
+    protected virtual void DeSelect(ulong OwnerClientId)
+    {
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(false);
     }

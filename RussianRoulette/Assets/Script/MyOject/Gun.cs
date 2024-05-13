@@ -10,9 +10,9 @@ public class Gun : MyObject
     [SerializeField] private Transform desiredPos;
     [SerializeField] private List<int> bulletInChamber;
     
-    protected override void Select_Rpc(ulong OwnerClientId)
+    protected override void Select(ulong OwnerClientId)
     {
-        base.Select_Rpc(OwnerClientId);
+        base.Select(OwnerClientId);
         /*transform.position = GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.objPosition
             .position;
         //transform.DOMove(, .3f);
@@ -20,9 +20,9 @@ public class Gun : MyObject
         transform.DORotate(Vector3.forward, .3f);*/
     }
     
-    protected override void DeSelect_Rpc(ulong OwnerClientId)
+    protected override void DeSelect(ulong OwnerClientId)
     {
-        base.DeSelect_Rpc(OwnerClientId);
+        base.DeSelect(OwnerClientId);
         /*transform.DOMove(basePosition, .3f);
         transform.rotation = baseRotation;*/
     }
