@@ -9,6 +9,24 @@ public class Gun : MyObject
 {
     [SerializeField] private Transform desiredPos;
     [SerializeField] private List<Bullet> bulletInChamber = new List<Bullet>();
+
+    
+    public void ReloadGun()
+    {
+        bulletInChamber.Clear();
+        for (int i = 0; i < 5; i++)
+        {
+            Bullet bullet = Instantiate(GameManager.Instance.bullet, Vector3.zero, Quaternion.identity);
+            int value = Random.Range(0, 2);
+            bullet.bulletType = (BulletType)value;
+            bulletInChamber.Add(bullet);
+        }
+    }
+
+    public Bullet ShootBullet()
+    {
+        return bulletInChamber[^1];
+    }
     
     protected override void Select(ulong OwnerClientId)
     {

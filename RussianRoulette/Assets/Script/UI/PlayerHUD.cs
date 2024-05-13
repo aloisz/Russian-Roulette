@@ -96,7 +96,7 @@ public class PlayerHUD : MonoBehaviour
             case ObjAction.Normal:
                 break;
             case ObjAction.EndingRound:
-                GameManager.Instance.RoundEnded_Rpc();
+                GameManager.Instance.NextPlayerTurn_Rpc();
                 break;
         }
     }
