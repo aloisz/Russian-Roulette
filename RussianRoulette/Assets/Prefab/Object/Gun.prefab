@@ -73,14 +73,26 @@ MonoBehaviour:
     m_InternalValue: 0
   OwnedByClientId:
     m_InternalValue: 0
-  ObjEffect: 1
+  objAction: 1
   HUD_OBJ:
   - MyObject: {fileID: 8188022981942155198}
     actionName: Him
-    transform: {fileID: 0}
+    transforms:
+    - {fileID: 0}
+    - {fileID: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
   - MyObject: {fileID: 8188022981942155198}
     actionName: You
-    transform: {fileID: 0}
+    transforms:
+    - {fileID: 0}
+    - {fileID: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
+  desiredPos: {fileID: 0}
+  bulletInChamber: 
 --- !u!114 &9193280970270474253
 MonoBehaviour:
   m_ObjectHideFlags: 0

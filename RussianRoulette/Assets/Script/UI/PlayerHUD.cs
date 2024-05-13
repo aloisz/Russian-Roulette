@@ -50,7 +50,7 @@ public class PlayerHUD : MonoBehaviour
     
     public void EnableHUD(bool verif)
     {
-        GameManager.Instance.PlayerControllers[GetPlayerID()].PlayerHUD.gameObject.SetActive(verif);
+        //GameManager.Instance.PlayerControllers[GetPlayerID()].PlayerHUD.gameObject.SetActive(verif);
     }
 
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
@@ -59,7 +59,7 @@ public class PlayerHUD : MonoBehaviour
         {
             for (int i = 0; i < hudObj.Count; i++)
             {
-                GameObject btn = Instantiate(btnGO, hudObj[i].transform.position, hudObj[i].transform.rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
+                GameObject btn = Instantiate(btnGO, hudObj[i].transforms[GetPlayerID()].position, hudObj[i].transforms[GetPlayerID()].rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
                 btn.name = hudObj[i].actionName;
                 btn.transform.rotation *= Quaternion.Euler(new Vector3(90,BtnsRotation(),0));
                 
@@ -67,7 +67,7 @@ public class PlayerHUD : MonoBehaviour
                 Buttons.Add(btn.GetComponent<Button>());
                 btnCanvasGroup.Add(btn.GetComponent<CanvasGroup>());
                 
-                ObjectBtns[i].EnableButton(0);
+                ObjectBtns[i].EnableButton(1);
                 ObjectBtns[i].text.text = hudObj[i].actionName;
                 ObjectBtns[i].OwnedByClientID = ownedByClientID;
 
@@ -77,7 +77,7 @@ public class PlayerHUD : MonoBehaviour
         {
             foreach (var ObjectBtns in ObjectBtns)
             {
-                ObjectBtns.DisableButton(0);
+                ObjectBtns.DisableButton(1);
             }
         }
     }

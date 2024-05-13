@@ -46,16 +46,16 @@ public class MyObject : NetworkBehaviour, IInteractable
             DeSelect_Rpc(OwnedByClientId.Value);
         }
     }
-
-    [Rpc(SendTo.ClientsAndHost)]
+    
+    [Rpc(SendTo.Everyone)]
     protected virtual void Select_Rpc(ulong OwnerClientId)
     {
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(true);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.GetTheSelectedObj(this);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
-
-    [Rpc(SendTo.ClientsAndHost)]
+    
+    [Rpc(SendTo.Everyone)]
     protected virtual void DeSelect_Rpc(ulong OwnerClientId)
     {   
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
@@ -70,7 +70,7 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     [Rpc(SendTo.Server)]
     public void ChangeIsSelectedValue_Rpc()
-    {
+    { 
         isSelected.Value = !isSelected.Value;
     }
     
@@ -78,7 +78,6 @@ public class MyObject : NetworkBehaviour, IInteractable
     private void ClientId_Rpc(ulong OwnerClientId)
     {
         this.OwnedByClientId.Value = OwnerClientId;
-        Debug.Log(OwnedByClientId.Value);
     }
     
 }
@@ -88,7 +87,7 @@ public class HUD_OBJ
 {
     public MyObject MyObject;
     public string actionName;
-    public Transform transform;
+    public List<Transform> transforms;
     public UnityEvent Event;
 }
 

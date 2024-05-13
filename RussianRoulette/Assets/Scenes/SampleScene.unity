@@ -1942,18 +1942,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771401678}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &772191691 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 834822069}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8a58e831f46df438fb044104867a40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,34 +2061,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].transform
+      propertyPath: HUD_OBJ.Array.data[0].transforms.Array.data[0]
       value: 
       objectReference: {fileID: 64427063}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[1].transform
+      propertyPath: HUD_OBJ.Array.data[0].transforms.Array.data[1]
       value: 
       objectReference: {fileID: 933684497}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].Event.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
-        type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].Event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: HUD_OBJ.Array.data[1].transforms.Array.data[0]
       value: 
-      objectReference: {fileID: 772191691}
+      objectReference: {fileID: 933684497}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].Event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: HUD_OBJ.Array.data[1].transforms.Array.data[1]
+      value: 
+      objectReference: {fileID: 64427063}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
