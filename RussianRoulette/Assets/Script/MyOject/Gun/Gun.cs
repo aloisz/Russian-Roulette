@@ -9,7 +9,7 @@ public class Gun : MyObject
 {
     [SerializeField] private Transform desiredPos;
     [SerializeField] private List<Bullet> bulletInChamber = new List<Bullet>();
-
+    [SerializeField] private int bulletIndex;
     
     public void ReloadGun()
     {
@@ -20,12 +20,16 @@ public class Gun : MyObject
             int value = Random.Range(0, 2);
             bullet.bulletType = (BulletType)value;
             bulletInChamber.Add(bullet);
+            bulletIndex++;
         }
     }
 
     public Bullet ShootBullet()
     {
-        return bulletInChamber[^1];
+        var lastBullet = bulletInChamber[bulletIndex];
+        bulletInChamber.RemoveAt(bulletIndex);
+        bulletIndex--;
+        return lastBullet;
     }
     
     protected override void Select(ulong OwnerClientId)
