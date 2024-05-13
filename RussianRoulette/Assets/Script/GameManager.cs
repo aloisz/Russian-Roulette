@@ -5,7 +5,7 @@ using Player;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public List<PlayerController> PlayerControllers;
     public CameraManager CameraManager;

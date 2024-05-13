@@ -35,13 +35,13 @@ public class ObjectBtn : MonoBehaviour
     public void EnableButton(float time)
     {
         btn.enabled = true;
-        canvasGroup.DOFade(1, time);
+        //canvasGroup.DOFade(1, time);
     }
 
     public void DisableButton(float time)
     {
-        btn.enabled = false;
-        canvasGroup.DOFade(0, time).OnComplete((() => Destroy(gameObject)));
+        Destroy(gameObject);
+        //canvasGroup.DOFade(0, time).OnComplete((() => Destroy(gameObject)));
     }
     
 }

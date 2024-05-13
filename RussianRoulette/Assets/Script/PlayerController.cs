@@ -42,7 +42,7 @@ namespace Player
             playerTurn.OnValueChanged += OnPlayerTurnChanged;
             
             CameraManager = GameManager.Instance.CameraManager;
-            PlayerHUD = GameManager.Instance.PlayerHUD;
+            PlayerHUD = Instantiate(GameManager.Instance.PlayerHUD, Vector3.zero, Quaternion.identity);
             PlayerHUD.ownedByClientID = (int)OwnerClientId;
             
             
@@ -69,7 +69,7 @@ namespace Player
         public void Update()
         {
             if(!IsOwner) return;
-            if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value) //  && playerTurn.Value
             {
                 InteractServerRpc(OwnerClientId);
             }

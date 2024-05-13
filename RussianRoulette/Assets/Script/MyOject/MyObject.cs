@@ -36,35 +36,37 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     private void OnIsSelectedChanged(bool previous, bool current)
     {
-        //if(!IsOwner ) return;
+        if(!IsOwner) return;
         if (isSelected.Value)
         {
-            Select(OwnedByClientId.Value);
+            Select_Rpc(OwnedByClientId.Value);
         }
         else
         {
-            DeSelect(OwnedByClientId.Value);
+            DeSelect_Rpc(OwnedByClientId.Value);
         }
     }
 
-    protected virtual void Select(ulong OwnerClientId)
+    [Rpc(SendTo.Everyone)]
+    protected virtual void Select_Rpc(ulong OwnerClientId)
     {
-        PlayerHUD.Instance.SetPlayerId((int)OwnerClientId);
-        PlayerHUD.Instance.EnableHUD_Rpc(true);
-        PlayerHUD.Instance.GetTheSelectedObj(this);
-        PlayerHUD.Instance.DisplayBtns(true, HUD_OBJ);
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.SetPlayerId((int)OwnerClientId);
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(true);
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.GetTheSelectedObj(this);
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
 
-    protected virtual void DeSelect(ulong OwnerClientId)
-    {
-        PlayerHUD.Instance.DisplayBtns(false, null);
-        PlayerHUD.Instance.EnableHUD_Rpc(false);
+    [Rpc(SendTo.Everyone)]
+    protected virtual void DeSelect_Rpc(ulong OwnerClientId)
+    {   
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(false);
     }
     
     public void Interact(ulong OwnerClientId)
     {
-        //if(!IsOwner) return;
         ClientId_Rpc(OwnerClientId);
+        ChangeIsSelectedValue_Rpc();
     }
     
     [Rpc(SendTo.Server)]
@@ -77,7 +79,7 @@ public class MyObject : NetworkBehaviour, IInteractable
     private void ClientId_Rpc(ulong OwnerClientId)
     {
         this.OwnedByClientId.Value = OwnerClientId;
-        ChangeIsSelectedValue_Rpc();
+        Debug.Log(OwnedByClientId.Value);
     }
     
 }

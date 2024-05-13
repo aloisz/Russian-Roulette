@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Unity.Netcode;
 
-public class PlayerHUD : NetworkBehaviour
+public class PlayerHUD : MonoBehaviour
 {
     public GameObject btnGO;
     [SerializeField] private Transform poolOfBtn;
@@ -19,12 +19,9 @@ public class PlayerHUD : NetworkBehaviour
     public List<CanvasGroup> btnCanvasGroup;
 
     public MyObject selectedObject;
-
-    public static PlayerHUD Instance;
     
-    public override void OnNetworkSpawn()
+    private void Start()
     {
-        Instance = this;
         gameObject.SetActive(false);
     }
 
@@ -40,22 +37,18 @@ public class PlayerHUD : NetworkBehaviour
         return ownedByClientID = Id;
     }
 
-    public int GetPlayerID()
+    private int GetPlayerID()
     {
         return ownedByClientID;
     }
-
-    [Rpc(SendTo.Server)]
-    public void EnableHUD_Rpc(bool verif)
+    
+    public void EnableHUD(bool verif)
     {
-        //if(!IsOwner) return;
-        GameManager.Instance.PlayerControllers[GetPlayerID()].PlayerHUD.gameObject.SetActive(true);
-        //gameObject.SetActive(verif);
+        GameManager.Instance.PlayerControllers[GetPlayerID()].PlayerHUD.gameObject.SetActive(verif);
     }
 
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
     {
-        //if(!IsOwner) return;
         if (verif)
         {
             for (int i = 0; i < hudObj.Count; i++)
@@ -85,7 +78,6 @@ public class PlayerHUD : NetworkBehaviour
 
     public void PressBtn(Button btn)
     {
-        //if(!IsOwner) return;
         DisplayBtns(false, null);
         selectedObject.ChangeIsSelectedValue_Rpc();
         Effect();
