@@ -47,11 +47,6 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     protected virtual void Select(ulong OwnerClientId)
     {
-        Debug.Log(GameManager.Instance, this);
-        Debug.Log(GameManager.Instance.PlayerControllers, this);
-        Debug.Log(GameManager.Instance.PlayerControllers[(int)OwnerClientId], this);
-        Debug.Log(GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD, this);
-        
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(true);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.GetTheSelectedObj(this);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);

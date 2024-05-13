@@ -10,7 +10,11 @@ public class GameManager : NetworkBehaviour
     public List<PlayerController> PlayerControllers;
     public CameraManager CameraManager;
     public PlayerHUD PlayerHUD;
+
+    [Header("Gun")] 
+    public Gun gun;
     
+    [Space]
     public List<Transform> playersPositions;
     public static GameManager Instance;
 

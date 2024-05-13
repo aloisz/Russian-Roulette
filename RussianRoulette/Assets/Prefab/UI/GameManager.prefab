@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1013319962
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3664080912
+  InScenePlacedSourceGlobalObjectIdHash: 1579403013
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   CameraManager: {fileID: 0}
   PlayerHUD: {fileID: 5911849507614101583, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
     type: 3}
+  gun: {fileID: 0}
   playersPositions:
   - {fileID: 0}
   - {fileID: 0}

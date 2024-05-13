@@ -2253,6 +2253,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 762889310}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1144949055 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 834822069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8a58e831f46df438fb044104867a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1151572332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,11 +3196,6 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3664080912
       objectReference: {fileID: 0}
-    - target: {fileID: 2001310920051893647, guid: 7384e8b837a988d47b9bcbe744725404,
-        type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 1579403013
-      objectReference: {fileID: 0}
     - target: {fileID: 7403841324986700115, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
       propertyPath: m_Name
@@ -3244,6 +3251,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
+        type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 1144949055}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
       propertyPath: CameraManager
