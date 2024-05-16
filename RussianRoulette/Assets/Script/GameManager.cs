@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Player;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GameManager : NetworkBehaviour
@@ -12,10 +13,11 @@ public class GameManager : NetworkBehaviour
     public CameraManager CameraManager;
     public PlayerHUD PlayerHUD;
 
-    [Header("Gun")] 
+    [Header("Gun")]     
     public Gun gun;
-    public Bullet bullet;
-    public NetworkVariable<List<Bullet>> bullets = new NetworkVariable<List<Bullet>>(new List<Bullet>(), NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    [SerializeField] private Bullet bullet;
+    [FormerlySerializedAs("bulletsInChamber")] public List<Bullet> presentedBullets = new List<Bullet>();
     
     [Space]
     public List<Transform> playersPositions;
@@ -25,10 +27,26 @@ public class GameManager : NetworkBehaviour
     {
         Instance = this;
     }
+    public override void OnNetworkDespawn()
+    {       
+       // bulletsInChamber?.Dispose();
+       //NetworkObject.ChangeOwnership(0);
+    }
 
     public override void OnNetworkSpawn()
     {
+        //bulletsInChamber.OnListChanged += BulletsInChamberOnOnListChanged; 
         ReloadGun();
+        foreach (var bullet in presentedBullets)
+        {
+            Debug.Log(bullet.name);
+        }
+    }
+
+    private void BulletsInChamberOnOnListChanged(NetworkListEvent<int> changeevent)
+    {
+        //bulletsInChamber.Clear();
+        Debug.Log(changeevent);
     }
 
     [Rpc(SendTo.Server)]
@@ -40,30 +58,40 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    
+    [ContextMenu("Reload")]
     private void ReloadGun()
     {
         if(!IsServer) return;
-        bullets.Value.Clear();
-        /*if (bullets.Value.Count != 0)
-        {
-            foreach (var bullet in bullets.Value)
-            {
-                bullet.GetComponent<NetworkObject>().Despawn();
-            }
-        }*/
-        
         for (int i = 0; i < 5; i++)
         {
-            //Bullet bullet = Instantiate(this.bullet, Vector3.zero, Quaternion.identity);
-            //var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
-            //bulletNetworkObject.Spawn();
+            Bullet bullet = Instantiate(this.bullet, Vector3.zero, Quaternion.identity);
+            var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
+            bulletNetworkObject.Spawn();
             int value = Random.Range(0, 2);
-            bullet.bulletType = (BulletType)value;
-            bullets.Value.Add(bullet);
-            gun.AddIndex();
-        }
+            bullet.transform.name = i.ToString();
+            bullet.bulletType.Value = (BulletType)value;
+        }   
+
+        //StartCoroutine(wait());
     }
+    
+    /*private void ShuffleBullet(List<Bullet> bullets)
+    {
+        System.Random rng = new System.Random();
+        int n = bullets.Count;
+        while (n > 1)
+        {   
+            n--;
+            int k = rng.Next(n + 1);
+            (bullets[k], bullets[n]) = (bullets[n], bullets[k]);    
+        }
+    }*/
+
+    /*private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(2);
+        ShuffleBullet(presentedBullets);
+    }*/
     
     public void RoundEnded()
     {

@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1362648047}
-  maxLineCount: 10
+  maxLineCount: 25
 --- !u!1 &1404035335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,7 +3260,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 2101199960207309472, guid: 9674de6adc05df648ae8e2d5e5f52503,
+      objectReference: {fileID: 7493942498446937378, guid: 9674de6adc05df648ae8e2d5e5f52503,
         type: 3}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}

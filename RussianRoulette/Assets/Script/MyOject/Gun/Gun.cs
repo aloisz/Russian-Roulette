@@ -8,28 +8,18 @@ using UnityEngine;
 public class Gun : MyObject
 {
     [SerializeField] private Transform desiredPos;
-    //[SerializeField] private List<Bullet> bulletInChamber = new List<Bullet>();
-    [SerializeField] private NetworkVariable<int> bulletIndex = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    [SerializeField] private int bulletIndex;
 
     public int AddIndex()
     {
-        return bulletIndex.Value++;
+        return bulletIndex++;
     }
-
-    /*public void FillChamber(List<Bullet> bullets)
-    {
-        bulletInChamber.Clear();
-        foreach (var bullet in bullets)
-        {
-            bulletInChamber.Add(bullet);
-        }
-    }*/
 
     public Bullet ShootBullet()
     {
-        var lastBullet = GameManager.Instance.bullets.Value[bulletIndex.Value];
-        GameManager.Instance.bullets.Value.RemoveAt(bulletIndex.Value);
-        bulletIndex.Value--;
+        var lastBullet = GameManager.Instance.presentedBullets[bulletIndex];
+        GameManager.Instance.presentedBullets.RemoveAt(bulletIndex);
+        bulletIndex--;
         return lastBullet;
     }
     

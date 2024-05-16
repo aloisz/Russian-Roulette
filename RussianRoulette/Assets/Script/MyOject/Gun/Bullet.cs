@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-[System.Serializable]
-public struct Bullet : INetworkSerializeByMemcpy
+
+public class Bullet : NetworkBehaviour
 {
-    public BulletType bulletType;
-    
-    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    public NetworkVariable<BulletType> bulletType = new NetworkVariable<BulletType>
+        (0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
+    public override void OnNetworkSpawn()
     {
-        serializer.SerializeValue(ref bulletType);
+        base.OnNetworkSpawn();
+        
+        GameManager.Instance.presentedBullets.Add(this);
     }
 }
 
-[System.Serializable]
 public enum BulletType
 {
     Blank,
