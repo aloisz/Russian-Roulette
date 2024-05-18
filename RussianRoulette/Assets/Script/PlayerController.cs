@@ -51,8 +51,6 @@ namespace Player
             {
                 case 0:
                     playerTurn.Value = true; 
-                    //PlayerHUD.SetPlayerId(0);
-                    //PlayerHUD.gameObject.SetActive(false);
                     break;
                 case 1:
                     playerTurn.Value = false; 
@@ -96,7 +94,7 @@ namespace Player
         
         public void OnPlayerTurnChanged(bool previous, bool current)
         {
-            Debug.Log($"Player turn {playerTurn.Value}");
+            Debug.Log($"<color=green>___Player turn {playerTurn.Value}___</color>");
             if (playerTurn.Value)
             {
                 

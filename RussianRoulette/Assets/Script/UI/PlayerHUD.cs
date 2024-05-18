@@ -88,8 +88,7 @@ public class PlayerHUD : MonoBehaviour
             case ObjAction.Normal:
                 break;
             case ObjAction.EndingRound:
-                GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
-                GameManager.Instance.RoundEnded();
+                GameManager.Instance.RoundEnded(targetClientID, damage);
                 break;
         }
     }

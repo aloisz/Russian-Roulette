@@ -16,7 +16,7 @@ public class GameManager : NetworkBehaviour
     public Gun gun;
 
     [SerializeField] private Bullet bullet;
-    [SerializeField] private NetworkVariable<int> bulletIndex = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    [SerializeField] private NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public List<Bullet> presentedBullets = new List<Bullet>();
     
     [Space]
@@ -31,7 +31,7 @@ public class GameManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        bulletIndex.OnValueChanged += (value, newValue) => bulletIndex.Value = newValue;
+        bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
         ReloadGun();
     }
 
@@ -54,11 +54,12 @@ public class GameManager : NetworkBehaviour
             var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
             bulletNetworkObject.Spawn();
             int value = Random.Range(0, 2);
-            bullet.transform.name = i.ToString();
+
+            bulletNumber.Value++;
+            bullet.transform.name = bulletNumber.Value.ToString();
+            bullet.bulletID.Value = bulletNumber.Value;
             bullet.bulletType.Value = (BulletType)value;
         }
-
-        bulletIndex.Value = presentedBullets.Count;
     }
 
     [Rpc(SendTo.Server)]
@@ -69,7 +70,7 @@ public class GameManager : NetworkBehaviour
             if (targetClientID == (int)player.OwnerClientId)
             {
                 player.playerHealth.Value -= damage;
-                Debug.Log(player.playerHealth.Value);
+                Debug.Log($"___PlayerID {player.OwnerClientId} Health of value {player.playerHealth.Value}___");
             }
         }
     }
@@ -77,12 +78,45 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void ShootBullet_Rpc(int targetClientID, int damage)
     {
-        bulletIndex.Value--;
-        RemoveLife_Rpc(targetClientID, damage);
+        int randomBullet = Random.Range(0, bulletNumber.Value - 1);
+        int randomBulletID = presentedBullets[randomBullet].bulletID.Value;
+        BulletType randomBulletValue = presentedBullets[randomBullet].bulletType.Value;
+
+        if (randomBulletValue == BulletType.Live)
+        {
+            Debug.Log($"<color=blue>Shoot bulletID {randomBulletID} of value {randomBulletValue}</color>");
+            RemoveLife_Rpc(targetClientID, damage);
+            NextPlayerTurn_Rpc();
+        }
+        else
+        {
+            Debug.Log($"<color=blue>Shoot bulletID {randomBulletID} of value {randomBulletValue}</color>");
+            foreach (var player in PlayerControllers)
+            {
+                if (targetClientID == (int)player.OwnerClientId)
+                {
+                    StillYourTurn();
+                }
+                else NextPlayerTurn_Rpc();
+            }
+        }
+
+        presentedBullets[randomBullet].GetComponent<NetworkObject>().Despawn();
+        //Destroy(presentedBullets[randomBullet]);
+        bulletNumber.Value--;
     }
-    
-    public void RoundEnded()
+
+    /// <summary>
+    /// Bullet was blank so you can still play 
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    private void StillYourTurn()
     {
-        NextPlayerTurn_Rpc();
+        //throw new NotImplementedException();
+    }
+
+    public void RoundEnded(int targetClientID, int damage)
+    {
+        GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
     }
 }
