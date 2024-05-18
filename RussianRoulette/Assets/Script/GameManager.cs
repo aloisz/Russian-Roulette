@@ -50,10 +50,10 @@ public class GameManager : NetworkBehaviour
         if(!IsServer) return;
         for (int i = 0; i < 5; i++)
         {
-            Bullet bullet = Instantiate(this.bullet, Vector3.zero, Quaternion.identity);
+            Bullet bullet = Instantiate(this.bullet, Vector3.up * 2, Quaternion.identity);
             var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
             bulletNetworkObject.Spawn();
-            int value = Random.Range(0, 2);
+            int value = Random.Range(1, 3);
 
             bulletNumber.Value++;
             bullet.transform.name = bulletNumber.Value.ToString();
