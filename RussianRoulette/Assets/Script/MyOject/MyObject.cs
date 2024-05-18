@@ -47,7 +47,6 @@ public class MyObject : NetworkBehaviour, IInteractable
     
     protected virtual void Select(ulong OwnerClientId)
     {
-        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(true);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.GetTheSelectedObj(this);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(true, HUD_OBJ);
     }
@@ -55,7 +54,6 @@ public class MyObject : NetworkBehaviour, IInteractable
     protected virtual void DeSelect(ulong OwnerClientId)
     {
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
-        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.EnableHUD(false);
     }
     
     public void Interact(ulong OwnerClientId)
@@ -83,8 +81,15 @@ public class HUD_OBJ
 {
     public MyObject MyObject;
     public string actionName;
-    public List<Transform> transforms;
+    public List<HUD_OBJ_Spec> HUDObjSpecs;
     public UnityEvent Event;
+}
+
+[System.Serializable]
+public class HUD_OBJ_Spec
+{
+    public Transform Transforms;
+    public int targetClientID;
 }
 
 public enum ObjAction

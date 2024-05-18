@@ -20,11 +20,7 @@ public class PlayerHUD : MonoBehaviour
 
     public MyObject selectedObject;
     
-    private void Start()
-    {
-        //gameObject.SetActive(false);
-    }
-
+    
     public MyObject GetTheSelectedObj(MyObject myObject)
     {
         return selectedObject = myObject;
@@ -48,18 +44,13 @@ public class PlayerHUD : MonoBehaviour
         return result;
     }
     
-    public void EnableHUD(bool verif)
-    {
-        //GameManager.Instance.PlayerControllers[GetPlayerID()].PlayerHUD.gameObject.SetActive(verif);
-    }
-
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
     {
         if (verif)
         {
             for (int i = 0; i < hudObj.Count; i++)
             {
-                GameObject btn = Instantiate(btnGO, hudObj[i].transforms[GetPlayerID()].position, hudObj[i].transforms[GetPlayerID()].rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
+                GameObject btn = Instantiate(btnGO, hudObj[i].HUDObjSpecs[GetPlayerID()].Transforms.position, hudObj[i].HUDObjSpecs[GetPlayerID()].Transforms.rotation * Quaternion.Euler(Vector3.up), poolOfBtn);
                 btn.name = hudObj[i].actionName;
                 btn.transform.rotation *= Quaternion.Euler(new Vector3(90,BtnsRotation(),0));
                 
@@ -71,6 +62,7 @@ public class PlayerHUD : MonoBehaviour
                 ObjectBtns[i].text.text = hudObj[i].actionName;
                 ObjectBtns[i].OwnedByClientID = ownedByClientID;
 
+                ObjectBtns[i].TargetClientID = hudObj[i].HUDObjSpecs[GetPlayerID()].targetClientID;
             }
         }
         else
@@ -82,21 +74,22 @@ public class PlayerHUD : MonoBehaviour
         }
     }
 
-    public void PressBtn(Button btn)
+    public void PressBtn(Button btn, int targetClientID, int damage)
     {
         DisplayBtns(false, null);
         selectedObject.ChangeIsSelectedValue_Rpc();
-        Effect();
+        Effect(targetClientID,  damage);
     }
 
-    private void Effect()
+    private void Effect(int targetClientID, int damage)
     {
         switch (selectedObject.objAction)
         {
             case ObjAction.Normal:
                 break;
             case ObjAction.EndingRound:
-                GameManager.Instance.NextPlayerTurn_Rpc();
+                GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
+                GameManager.Instance.RoundEnded();
                 break;
         }
     }

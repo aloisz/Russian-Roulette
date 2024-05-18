@@ -8,20 +8,7 @@ using UnityEngine;
 public class Gun : MyObject
 {
     [SerializeField] private Transform desiredPos;
-    [SerializeField] private int bulletIndex;
-
-    public int AddIndex()
-    {
-        return bulletIndex++;
-    }
-
-    public Bullet ShootBullet()
-    {
-        var lastBullet = GameManager.Instance.presentedBullets[bulletIndex];
-        GameManager.Instance.presentedBullets.RemoveAt(bulletIndex);
-        bulletIndex--;
-        return lastBullet;
-    }
+    
     
     protected override void Select(ulong OwnerClientId)
     {

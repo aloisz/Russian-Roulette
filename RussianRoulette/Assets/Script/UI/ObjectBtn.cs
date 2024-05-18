@@ -15,14 +15,15 @@ public class ObjectBtn : MonoBehaviour
     private CanvasGroup canvasGroup;
     public TextMeshProUGUI text;
     public int OwnedByClientID;
-    
+
+    public int TargetClientID;
     void Awake()
     {
         btn = transform.GetComponent<Button>();
         canvasGroup = transform.GetComponent<CanvasGroup>();
         text = transform.GetComponentInChildren<TextMeshProUGUI>();
         
-        btn.onClick.AddListener((() => GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.PressBtn(btn)));
+        btn.onClick.AddListener((() => GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.PressBtn(btn, TargetClientID, 1)));
     }
 
     private void OnDestroy()

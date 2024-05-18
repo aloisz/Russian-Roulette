@@ -15,7 +15,7 @@ namespace Player
             NetworkVariableWritePermission.Server);
         
         [SerializeField] internal NetworkVariable<int> playerHealth = new NetworkVariable<int>(7,NetworkVariableReadPermission.Everyone,
-            NetworkVariableWritePermission.Owner);
+            NetworkVariableWritePermission.Server);
 
         [Header("Player Config")] 
         public MyObject objInHand;
@@ -40,6 +40,7 @@ namespace Player
             
             if(!IsOwner) return;
             playerTurn.OnValueChanged += OnPlayerTurnChanged;
+            playerHealth.OnValueChanged += (value, newValue) => playerHealth.Value = newValue;
             
             CameraManager = GameManager.Instance.CameraManager;
             PlayerHUD = Instantiate(GameManager.Instance.PlayerHUD, Vector3.zero, Quaternion.identity);
@@ -66,7 +67,7 @@ namespace Player
         
         public override void OnNetworkDespawn()
         {
-            playerTurn.OnValueChanged -= OnPlayerTurnChanged;;
+            playerTurn.OnValueChanged -= OnPlayerTurnChanged;
         }
 
         public void Update()

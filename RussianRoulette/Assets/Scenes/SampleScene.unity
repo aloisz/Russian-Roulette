@@ -2061,22 +2061,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].transforms.Array.data[0]
+      propertyPath: HUD_OBJ.Array.data[0].HUDObjSpecs.Array.data[0].Transforms
       value: 
       objectReference: {fileID: 64427063}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[0].transforms.Array.data[1]
+      propertyPath: HUD_OBJ.Array.data[0].HUDObjSpecs.Array.data[1].Transforms
       value: 
       objectReference: {fileID: 933684497}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[1].transforms.Array.data[0]
+      propertyPath: HUD_OBJ.Array.data[1].HUDObjSpecs.Array.data[0].Transforms
       value: 
       objectReference: {fileID: 933684497}
     - target: {fileID: 8188022981942155198, guid: 34bdd1d3eaf40124e9a761d130e926e2,
         type: 3}
-      propertyPath: HUD_OBJ.Array.data[1].transforms.Array.data[1]
+      propertyPath: HUD_OBJ.Array.data[1].HUDObjSpecs.Array.data[1].Transforms
       value: 
       objectReference: {fileID: 64427063}
     m_RemovedComponents: []

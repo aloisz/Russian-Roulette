@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Player;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GameManager : NetworkBehaviour
@@ -17,7 +16,8 @@ public class GameManager : NetworkBehaviour
     public Gun gun;
 
     [SerializeField] private Bullet bullet;
-    [FormerlySerializedAs("bulletsInChamber")] public List<Bullet> presentedBullets = new List<Bullet>();
+    [SerializeField] private NetworkVariable<int> bulletIndex = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    public List<Bullet> presentedBullets = new List<Bullet>();
     
     [Space]
     public List<Transform> playersPositions;
@@ -27,30 +27,16 @@ public class GameManager : NetworkBehaviour
     {
         Instance = this;
     }
-    public override void OnNetworkDespawn()
-    {       
-       // bulletsInChamber?.Dispose();
-       //NetworkObject.ChangeOwnership(0);
-    }
 
     public override void OnNetworkSpawn()
     {
-        //bulletsInChamber.OnListChanged += BulletsInChamberOnOnListChanged; 
+        base.OnNetworkSpawn();
+        bulletIndex.OnValueChanged += (value, newValue) => bulletIndex.Value = newValue;
         ReloadGun();
-        foreach (var bullet in presentedBullets)
-        {
-            Debug.Log(bullet.name);
-        }
-    }
-
-    private void BulletsInChamberOnOnListChanged(NetworkListEvent<int> changeevent)
-    {
-        //bulletsInChamber.Clear();
-        Debug.Log(changeevent);
     }
 
     [Rpc(SendTo.Server)]
-    public void NextPlayerTurn_Rpc()
+    private void NextPlayerTurn_Rpc()
     {
         foreach (var player in PlayerControllers)
         {
@@ -70,31 +56,33 @@ public class GameManager : NetworkBehaviour
             int value = Random.Range(0, 2);
             bullet.transform.name = i.ToString();
             bullet.bulletType.Value = (BulletType)value;
-        }   
+        }
 
-        //StartCoroutine(wait());
+        bulletIndex.Value = presentedBullets.Count;
+    }
+
+    [Rpc(SendTo.Server)]
+    private void RemoveLife_Rpc(int targetClientID, int damage)
+    {
+        foreach (var player in PlayerControllers)
+        {
+            if (targetClientID == (int)player.OwnerClientId)
+            {
+                player.playerHealth.Value -= damage;
+                Debug.Log(player.playerHealth.Value);
+            }
+        }
     }
     
-    /*private void ShuffleBullet(List<Bullet> bullets)
+    [Rpc(SendTo.Server)]
+    public void ShootBullet_Rpc(int targetClientID, int damage)
     {
-        System.Random rng = new System.Random();
-        int n = bullets.Count;
-        while (n > 1)
-        {   
-            n--;
-            int k = rng.Next(n + 1);
-            (bullets[k], bullets[n]) = (bullets[n], bullets[k]);    
-        }
-    }*/
-
-    /*private IEnumerator wait()
-    {
-        yield return new WaitForSeconds(2);
-        ShuffleBullet(presentedBullets);
-    }*/
+        bulletIndex.Value--;
+        RemoveLife_Rpc(targetClientID, damage);
+    }
     
     public void RoundEnded()
     {
-        ReloadGun();
+        NextPlayerTurn_Rpc();
     }
 }

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 328123997
+  GlobalObjectIdHash: 1985769353
   InScenePlacedSourceGlobalObjectIdHash: 328123997
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -75,22 +75,25 @@ MonoBehaviour:
   HUD_OBJ:
   - MyObject: {fileID: 8188022981942155198}
     actionName: Him
-    transforms:
-    - {fileID: 0}
-    - {fileID: 0}
+    HUDObjSpecs:
+    - Transforms: {fileID: 0}
+      targetClientID: 1
+    - Transforms: {fileID: 0}
+      targetClientID: 0
     Event:
       m_PersistentCalls:
         m_Calls: []
   - MyObject: {fileID: 8188022981942155198}
     actionName: You
-    transforms:
-    - {fileID: 0}
-    - {fileID: 0}
+    HUDObjSpecs:
+    - Transforms: {fileID: 0}
+      targetClientID: 0
+    - Transforms: {fileID: 0}
+      targetClientID: 1
     Event:
       m_PersistentCalls:
         m_Calls: []
   desiredPos: {fileID: 0}
-  bulletIndex: 0
 --- !u!114 &9193280970270474253
 MonoBehaviour:
   m_ObjectHideFlags: 0
