@@ -76,7 +76,7 @@ public class GameManager : NetworkBehaviour
     }
     
     [Rpc(SendTo.Server)]
-    public void ShootBullet_Rpc(int targetClientID, int damage)
+    private void ShootBullet_Rpc(int targetClientID, int damage)
     {
         int randomBullet = Random.Range(0, bulletNumber.Value - 1);
         int randomBulletID = presentedBullets[randomBullet].bulletID.Value;
@@ -102,7 +102,6 @@ public class GameManager : NetworkBehaviour
         }
 
         presentedBullets[randomBullet].GetComponent<NetworkObject>().Despawn();
-        //Destroy(presentedBullets[randomBullet]);
         bulletNumber.Value--;
     }
 
