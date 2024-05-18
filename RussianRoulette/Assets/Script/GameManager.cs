@@ -57,8 +57,11 @@ public class GameManager : NetworkBehaviour
 
             bulletNumber.Value++;
             bullet.transform.name = bulletNumber.Value.ToString();
+            bullet.transform.rotation *= Quaternion.Euler(Random.Range(-180,180), Random.Range(-180,180), Random.Range(-180,180));
             bullet.bulletID.Value = bulletNumber.Value;
             bullet.bulletType.Value = (BulletType)value;
+
+            //yield return new WaitForSeconds(.1f);
         }
     }
 
