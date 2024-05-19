@@ -32,7 +32,7 @@ public class GameManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
-        ReloadGun();
+        StartCoroutine(ReloadGun());
     }
 
     [Rpc(SendTo.Server)]
@@ -45,9 +45,27 @@ public class GameManager : NetworkBehaviour
     }
 
     [ContextMenu("Reload")]
-    private void ReloadGun()
+    private void StartCoroutine()
     {
-        if(!IsServer) return;
+        StartCoroutine(ReloadGun());
+    }
+
+    
+    private IEnumerator ReloadGun()
+    {
+        if(!IsServer) yield return null;
+
+        if (bulletNumber.Value != 0)
+        {
+            var bullets = GameObject.FindGameObjectsWithTag("Bullet");
+            foreach (var bullet in bullets)
+            {
+                bullet.GetComponent<NetworkObject>().Despawn();
+            }
+        }
+        
+        yield return new WaitForSeconds(1f);
+        bulletNumber.Value = 0;
         for (int i = 0; i < 5; i++)
         {
             Bullet bullet = Instantiate(this.bullet, Vector3.up * 2, Quaternion.identity);
@@ -61,7 +79,7 @@ public class GameManager : NetworkBehaviour
             bullet.bulletID.Value = bulletNumber.Value;
             bullet.bulletType.Value = (BulletType)value;
 
-            //yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.1f);
         }
     }
 

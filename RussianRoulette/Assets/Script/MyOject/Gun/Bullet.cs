@@ -17,33 +17,29 @@ public class Bullet : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        
-        foreach (var buck in bucks)
-        {
-            buck.SetActive(false);
-        }
 
         bulletID.OnValueChanged += (value, newValue) => bulletID.Value = newValue;
-        bulletType.OnValueChanged += OnIsBulletType;
+        bulletType.OnValueChanged += OnIsBulletType_Rpc;
         
         
         GameManager.Instance.presentedBullets.Add(this);
+        
     }
 
-    private void OnIsBulletType(BulletType previousvalue, BulletType newvalue)
+    [Rpc(SendTo.Everyone)]
+    private void OnIsBulletType_Rpc(BulletType previousvalue, BulletType newvalue)
     {
         Debug.Log(bulletType.Value);
         switch (bulletType.Value)
         {
             case BulletType.Live:
-                bucks[0].SetActive(true);
+                bucks[1].SetActive(false);
                 break;
             case BulletType.Blank:
-                bucks[1].SetActive(true);
+                bucks[0].SetActive(false);
                 break;
         }
     }
-    
 
     public override void OnNetworkDespawn()
     {
