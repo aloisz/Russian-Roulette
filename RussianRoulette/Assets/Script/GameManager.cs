@@ -14,7 +14,7 @@ public class GameManager : NetworkBehaviour
 
     [Header("Gun")]     
     public Gun gun;
-
+    //[SerializeField] private NetworkVariable<int> clientIDGunPosses = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     [SerializeField] private Bullet bullet;
     [SerializeField] private NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public List<Bullet> presentedBullets = new List<Bullet>();
@@ -32,6 +32,7 @@ public class GameManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
+        //clientIDGunPosses.OnValueChanged += (value, newValue) => clientIDGunPosses.Value = newValue;
         
         if (!IsHost) return;
         StartCoroutine(ReloadGun());        
@@ -113,14 +114,12 @@ public class GameManager : NetworkBehaviour
         else
         {
             Debug.Log($"<color=blue>Shoot bulletID {randomBulletID} of value {randomBulletValue}</color>");
-            foreach (var player in PlayerControllers)
+            
+            if (targetClientID == (int)gun.OwnerClientId)
             {
-                if (targetClientID == (int)player.OwnerClientId)
-                {
-                    StillYourTurn();
-                }
-                else NextPlayerTurn_Rpc();
+                StillYourTurn();
             }
+            else NextPlayerTurn_Rpc();
         }
 
         presentedBullets[randomBullet].GetComponent<NetworkObject>().Despawn();

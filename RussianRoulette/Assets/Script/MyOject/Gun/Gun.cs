@@ -18,6 +18,8 @@ public class Gun : MyObject
         desiredPos = GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.objPosition;
 
         transform.DORotate((int)OwnerClientId == 0 ? Vector3.forward : new Vector3(0, 180, 0), .3f);
+
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.ChangeState(StateCamera.PlayerPos);
     }
     
     protected override void DeSelect(ulong OwnerClientId)

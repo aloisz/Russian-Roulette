@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     
     [Header("Camera pos")]
     public Transform cameraPlayerPosition;
+    [SerializeField] private Transform tableVision;
 
     [Header("Obj pos")] 
     public Transform objPosition; 
@@ -19,7 +20,9 @@ public class CameraManager : MonoBehaviour
     [Header("Camera Setings")]
     [SerializeField] private Vector3 offSet;
     [SerializeField] private  float smoothTime = 2;
+    [SerializeField] private  float rotInterpolation = 2;
     private Vector3 currentVelocity;
+    
     private void Awake()
     {
         StateCamera = StateCamera.OnBeginPlay;
@@ -44,6 +47,7 @@ public class CameraManager : MonoBehaviour
     public void LateUpdate()
     {
         if(cameraPlayerPosition == null) return;
+        CheckInput();
         
         switch (StateCamera)
         {
@@ -54,8 +58,38 @@ public class CameraManager : MonoBehaviour
                     Vector3.SmoothDamp(camera.transform.position, 
                         new Vector3(cameraPlayerPosition.transform.position.x, cameraPlayerPosition.transform.position.y, cameraPlayerPosition.transform.position.z) + offSet, 
                         ref currentVelocity, smoothTime);
+                
+                camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, cameraPlayerPosition.rotation, Time.deltaTime * rotInterpolation);
                 break;
+            case StateCamera.TableVision:
+                TableVision();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            ChangeState(StateCamera.TableVision);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ChangeState(StateCamera.PlayerPos);
+        }
+    }
+
+
+    private void TableVision()
+    {
+        camera.transform.position = 
+            Vector3.SmoothDamp(camera.transform.position, 
+                new Vector3(tableVision.position.x, tableVision.position.y, tableVision.position.z) + offSet, 
+                ref currentVelocity, smoothTime);
+        
+        camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, tableVision.rotation, Time.deltaTime * rotInterpolation);
     }
 }
 
@@ -63,5 +97,5 @@ public enum StateCamera
 {
     OnBeginPlay,
     PlayerPos,
-    
+    TableVision
 }
