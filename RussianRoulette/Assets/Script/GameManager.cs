@@ -14,7 +14,6 @@ public class GameManager : NetworkBehaviour
 
     [Header("Gun")]     
     public Gun gun;
-    //[SerializeField] private NetworkVariable<int> clientIDGunPosses = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     [SerializeField] private Bullet bullet;
     [SerializeField] private NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     public List<Bullet> presentedBullets = new List<Bullet>();
@@ -32,7 +31,6 @@ public class GameManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
-        //clientIDGunPosses.OnValueChanged += (value, newValue) => clientIDGunPosses.Value = newValue;
         
         if (!IsHost) return;
         StartCoroutine(ReloadGun());        
@@ -132,7 +130,7 @@ public class GameManager : NetworkBehaviour
     /// <exception cref="NotImplementedException"></exception>
     private void StillYourTurn()
     {
-        //throw new NotImplementedException();
+        
     }
 
     public void RoundEnded(int targetClientID, int damage)
