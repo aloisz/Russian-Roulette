@@ -32,7 +32,9 @@ public class GameManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
-        StartCoroutine(ReloadGun());
+        
+        if (!IsHost) return;
+        StartCoroutine(ReloadGun());        
     }
 
     [Rpc(SendTo.Server)]
@@ -47,14 +49,13 @@ public class GameManager : NetworkBehaviour
     [ContextMenu("Reload")]
     private void StartCoroutine()
     {
+        if (!IsHost) return;
         StartCoroutine(ReloadGun());
     }
 
     
     private IEnumerator ReloadGun()
     {
-        if(!IsServer) yield return null;
-
         if (bulletNumber.Value != 0)
         {
             var bullets = GameObject.FindGameObjectsWithTag("Bullet");
