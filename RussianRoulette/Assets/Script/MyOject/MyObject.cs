@@ -56,12 +56,6 @@ public class MyObject : NetworkBehaviour, IInteractable
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayBtns(false, null);
     }
     
-    public void Interact(ulong OwnerClientId)
-    {
-        ClientId_Rpc(OwnerClientId);
-        ChangeIsSelectedValue_Rpc();
-    }
-    
     [Rpc(SendTo.Server)]
     public void ChangeIsSelectedValue_Rpc()
     { 
@@ -72,6 +66,12 @@ public class MyObject : NetworkBehaviour, IInteractable
     private void ClientId_Rpc(ulong OwnerClientId)
     { 
         NetworkObject.ChangeOwnership(OwnerClientId);
+    }
+    
+    public void Interact(ulong OwnerClientId)
+    {
+        ClientId_Rpc(OwnerClientId);
+        ChangeIsSelectedValue_Rpc();
     }
     
 }

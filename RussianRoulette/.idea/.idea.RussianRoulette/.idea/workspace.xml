@@ -14,11 +14,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7237cf7abef49bfbb552d7eb076e422174200/fc/805567d0/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ClientNetworkTransform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MyOject/Gun/Bullet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MyOject/MyObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/ObjectBtn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/PlayerHUD.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/interface/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -124,7 +124,7 @@
       <workItem from="1716043089005" duration="10015000" />
       <workItem from="1716129162825" duration="3279000" />
       <workItem from="1716303270711" duration="543000" />
-      <workItem from="1716310391493" duration="2436000" />
+      <workItem from="1716310391493" duration="3859000" />
     </task>
     <servers />
   </component>

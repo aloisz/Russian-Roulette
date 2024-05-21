@@ -71,6 +71,8 @@ namespace Player
         public void Update()
         {
             if(!IsOwner) return;
+            ShootRaycastInContinue(OwnerClientId);
+            
             if (Input.GetKeyDown(KeyCode.Mouse0) && playerTurn.Value) //  && playerTurn.Value
             {
                 ShootRaycast(OwnerClientId);
@@ -88,6 +90,21 @@ namespace Player
                 if (hit.transform.GetComponent<IInteractable>() != null)
                 {
                     hit.transform.GetComponent<IInteractable>().Interact(OwnerClientId);
+                }
+            }
+        }
+        
+        private void ShootRaycastInContinue(ulong OwnerClientId)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 1000))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 1000, OwnerClientId == 0 ? Color.green : Color.red, 1);
+                
+                if (hit.transform.GetComponent<IInteractOnContinue>() != null)
+                {
+                    hit.transform.GetComponent<IInteractOnContinue>().InteractInContinue();
                 }
             }
         }
