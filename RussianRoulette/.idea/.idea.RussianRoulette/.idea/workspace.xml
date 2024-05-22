@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/DefaultNetworkPrefabs.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/DefaultNetworkPrefabs.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/ObjOnTable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/ObjOnTable.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Table.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Table.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/MyObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/MyObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +29,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MyOject/Saw.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/RelayManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/ObjectBtn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/PlayerHUD.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/interface/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -139,7 +136,7 @@
       <workItem from="1716129162825" duration="3279000" />
       <workItem from="1716303270711" duration="543000" />
       <workItem from="1716310391493" duration="3859000" />
-      <workItem from="1716365272320" duration="9350000" />
+      <workItem from="1716365272320" duration="11558000" />
     </task>
     <servers />
   </component>
