@@ -7,5 +7,6 @@ public class Liquor : ObjectOnTable
     protected override void Select(ulong OwnerClientId)
     {
         Debug.Log("Liquor");
+        GameManager.Instance.ReloadGun_Rpc();
     }
 }
