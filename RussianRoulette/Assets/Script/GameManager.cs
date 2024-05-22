@@ -122,7 +122,7 @@ public class GameManager : NetworkBehaviour
         int lastBulletInChamber = 0;
         int randomBulletID = presentedBullets[lastBulletInChamber].bulletID.Value;
         BulletType randomBulletValue = presentedBullets[lastBulletInChamber].bulletType.Value;
-
+        
         if (randomBulletValue == BulletType.Live)
         {
             Debug.Log($"<color=blue>Shoot bulletID {randomBulletID} of value {randomBulletValue}</color>");
@@ -140,6 +140,7 @@ public class GameManager : NetworkBehaviour
             else NextPlayerTurn_Rpc();
         }
 
+        gun.ResetDamage();
         presentedBullets[lastBulletInChamber].GetComponent<NetworkObject>().Despawn();
         bulletNumber.Value--;
     }
@@ -156,5 +157,6 @@ public class GameManager : NetworkBehaviour
     public void RoundEnded(int targetClientID, int damage)
     {
         GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
+        Debug.Log("Damage GameManager " + damage);
     }
 }

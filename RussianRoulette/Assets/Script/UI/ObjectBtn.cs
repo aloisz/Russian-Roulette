@@ -15,6 +15,7 @@ public class ObjectBtn : MonoBehaviour
     private CanvasGroup canvasGroup;
     public TextMeshProUGUI text;
     public int OwnedByClientID;
+    public int damageApplied;
 
     public int TargetClientID;
     void Awake()
@@ -23,7 +24,12 @@ public class ObjectBtn : MonoBehaviour
         canvasGroup = transform.GetComponent<CanvasGroup>();
         text = transform.GetComponentInChildren<TextMeshProUGUI>();
         
-        btn.onClick.AddListener((() => GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.PressBtn(btn, TargetClientID, 1)));
+        btn.onClick.AddListener((() => GameManager.Instance.PlayerControllers[OwnedByClientID].PlayerHUD.PressBtn(btn, TargetClientID, damageApplied)));
+    }
+
+    public void SetDamage(int damageAdded)
+    {
+        damageApplied = damageAdded;
     }
 
     private void OnDestroy()

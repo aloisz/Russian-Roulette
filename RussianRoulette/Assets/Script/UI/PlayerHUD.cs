@@ -11,7 +11,8 @@ public class PlayerHUD : MonoBehaviour
 {
     public GameObject btnGO;
     [SerializeField] private Transform poolOfBtn;
-    public int ownedByClientID; 
+    public int ownedByClientID;
+    [SerializeField]private int gunDamage;
     
     [Space]
     public List<ObjectBtn> ObjectBtns;
@@ -43,6 +44,16 @@ public class PlayerHUD : MonoBehaviour
         result = GetPlayerID() == 0 ? 0 : 180;
         return result;
     }
+
+
+    public int SetGunDamage(int value)
+    {
+        return gunDamage = value;
+    }
+    private int GetGunDamage()
+    {
+        return gunDamage;
+    }
     
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
     {
@@ -61,6 +72,8 @@ public class PlayerHUD : MonoBehaviour
                 ObjectBtns[i].EnableButton(1);
                 ObjectBtns[i].text.text = hudObj[i].actionName;
                 ObjectBtns[i].OwnedByClientID = ownedByClientID;
+                
+                ObjectBtns[i].SetDamage(GetGunDamage());
 
                 ObjectBtns[i].TargetClientID = hudObj[i].HUDObjSpecs[GetPlayerID()].targetClientID;
             }
@@ -78,7 +91,7 @@ public class PlayerHUD : MonoBehaviour
     {
         DisplayBtns(false, null);
         selectedObject.ChangeIsSelectedValue_Rpc();
-        Effect(targetClientID,  damage);
+        Effect(targetClientID,  GetGunDamage());
     }
 
     private void Effect(int targetClientID, int damage)
