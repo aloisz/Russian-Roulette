@@ -18,7 +18,7 @@ public class Table : MonoBehaviour
     {
         int result = 0;
         
-        int randomValue = Random.Range(0, allObjs.Count);
+        int randomValue = Random.Range(0, allObjs.Count + 1);
         result = (int)allObjs[randomValue].ObjEnum;
         
         return result;
@@ -28,7 +28,7 @@ public class Table : MonoBehaviour
     {
         for (int i = 0; i < numberOfObjToSpawn; i++)
         {
-            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[2], Vector3.zero, Quaternion.identity);
+            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[3], Vector3.zero, Quaternion.identity);
             var objNetworkObject = obj.GetComponent<NetworkObject>();
             objNetworkObject.Spawn();
 

@@ -50,9 +50,11 @@ namespace Player
             switch (OwnerClientId)
             {
                 case 0:
-                    playerTurn.Value = true; 
+                    playerTurn.Value = true;
+                    CameraManager.clientID = 0;
                     break;
                 case 1:
+                    CameraManager.clientID = 1;
                     playerTurn.Value = false; 
                     transform.rotation *= Quaternion.Euler(0,180,0);
                     CameraManager.SetCameraYAngle(new Vector3(0,180,0));
