@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ObjectOnTable : MyObject, IInteractOnContinue
 {
@@ -18,7 +20,10 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     [SerializeField]protected float timer = 0;
     protected float maxTimer = .1f;
     private bool canReturnToBasePos;
-    [SerializeField]protected bool isObjectOnTableSelected;
+    [SerializeField] protected bool isObjectOnTableSelected;
+    protected Canvas _canvas;
+    protected CanvasGroup _canvasGroup;
+    protected TextMeshProUGUI[] _textActionName;
 
     [Rpc(SendTo.Server)]
     public void SetClientInfo_Rpc(int id, int index)
@@ -33,6 +38,13 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
         base.OnNetworkSpawn();
         isObjectOnTableSelected = false;
         timer = 0;
+        _canvas = GetComponentInChildren<Canvas>();
+        _canvasGroup = GetComponentInChildren<CanvasGroup>();
+        _textActionName = GetComponentsInChildren<TextMeshProUGUI>();
+        
+        _canvasGroup.DOFade(0, 0);
+        _textActionName[0].text = HUD_OBJ[0].actionName;
+        _textActionName[1].text = HUD_OBJ[0].actionDescription;
 
         clientListId.OnValueChanged += (value, newValue) => clientListId.Value = newValue;
         clientListIndex.OnValueChanged += (value, newValue) => clientListIndex.Value = newValue;
@@ -70,9 +82,20 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
         }
         else
         {
-            if(canReturnToBasePos) {transform.DOMove(basePos.Value, .5f);}
+            if (canReturnToBasePos)
+            {
+                transform.DOMove(basePos.Value, .5f);
+                _canvasGroup.DOFade(0, .5f);
+            }
             canReturnToBasePos = false;
         }
+
+        UpdateCanvasPosition();
+    }
+    
+    private void UpdateCanvasPosition()//Update the orientation of the canvas
+    {
+        _canvas.transform.LookAt(_canvas.transform.position + Camera.main.transform.forward);
     }
 
     [ContextMenu("Change")]
@@ -83,11 +106,18 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     }
 
 
+    public override void Interact(ulong OwnerClientId)
+    {
+        if(OwnerClientId != NetworkObject.OwnerClientId) return;
+        base.Interact(OwnerClientId);
+    }
+    
     public virtual void InteractInContinue()
     {
         if(!IsOwner) return;
         timer = maxTimer;
         isObjectOnTableSelected = true;
         transform.DOMove(offSet.Value, .5f);
+        _canvasGroup.DOFade(1, .1f);
     }
 }

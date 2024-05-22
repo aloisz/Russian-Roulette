@@ -11,12 +11,24 @@ public class Table : MonoBehaviour
     public List<Tiles> tilesClient1;
     private int tilesClient1Index;
 
+    [Space] public List<ObjAvailable> allObjs;
 
+
+    public int SelectAnObject()
+    {
+        int result = 0;
+        
+        int randomValue = Random.Range(0, allObjs.Count);
+        result = (int)allObjs[randomValue].ObjEnum;
+        
+        return result;
+    }
+    
     public void SpawnObjOnTable(int numberOfObjToSpawn, int cliendID)
     {
         for (int i = 0; i < numberOfObjToSpawn; i++)
         {
-            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[0], Vector3.zero, Quaternion.identity);
+            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[SelectAnObject()], Vector3.zero, Quaternion.identity);
             var objNetworkObject = obj.GetComponent<NetworkObject>();
             objNetworkObject.Spawn();
 
@@ -45,4 +57,23 @@ public class Tiles
 {
     public Transform transform;
     public ObjectOnTable obj;
+}
+
+[System.Serializable]
+public class ObjAvailable
+{
+    public ObjEnum ObjEnum;
+    public float weight;
+}
+
+[System.Serializable]
+public enum ObjEnum
+{
+    Saw,
+    Cigarette,
+    Liquor,
+    Wen,
+    Phone,
+    Adrenaline,
+    Scissors
 }

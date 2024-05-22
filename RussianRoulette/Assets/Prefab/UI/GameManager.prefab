@@ -70,12 +70,20 @@ MonoBehaviour:
   CameraManager: {fileID: 0}
   PlayerHUD: {fileID: 5911849507614101583, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
     type: 3}
+  playersPositions:
+  - {fileID: 0}
+  - {fileID: 0}
   gun: {fileID: 0}
   bullet: {fileID: 7493942498446937378, guid: 9674de6adc05df648ae8e2d5e5f52503, type: 3}
   bulletNumber:
     m_InternalValue: 0
   presentedBullets: []
   table: {fileID: 0}
-  playersPositions:
-  - {fileID: 0}
-  - {fileID: 0}
+  objectOnTables:
+  - {fileID: 1312433623762432943, guid: 17aa4d6b277f2434da5203811edf0b3a, type: 3}
+  - {fileID: 9077421360210618357, guid: aad88238c2ea9984cae9cd254508398f, type: 3}
+  - {fileID: 3789521734302236621, guid: 13052009bfc4617469bc215b0d2a4fd2, type: 3}
+  - {fileID: 6065831143023349888, guid: d71aba14a0f0d9841935c420b998ea3c, type: 3}
+  - {fileID: 2291694033034884769, guid: 956c6ac506765494f960bf00005e82f0, type: 3}
+  - {fileID: 7376826024659606881, guid: cdc199c71c800fe4eaf85e8a069e8f4a, type: 3}
+  - {fileID: 6390061556134756544, guid: c721b4c86fcde1242846232a2f681383, type: 3}

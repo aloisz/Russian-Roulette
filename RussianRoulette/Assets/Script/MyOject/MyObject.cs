@@ -68,7 +68,7 @@ public class MyObject : NetworkBehaviour, IInteractable
         NetworkObject.ChangeOwnership(OwnerClientId);
     }
     
-    public void Interact(ulong OwnerClientId)
+    public virtual void Interact(ulong OwnerClientId)
     {
         ClientId_Rpc(OwnerClientId);
         ChangeIsSelectedValue_Rpc();
@@ -81,6 +81,7 @@ public class HUD_OBJ
 {
     public MyObject MyObject;
     public string actionName;
+    public string actionDescription;
     public List<HUD_OBJ_Spec> HUDObjSpecs;
     public UnityEvent Event;
 }

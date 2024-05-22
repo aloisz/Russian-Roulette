@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2767727335450633625}
   - component: {fileID: 4212799027763499436}
-  - component: {fileID: 6266622796754629585}
   - component: {fileID: 4748423480595814750}
+  - component: {fileID: 1312433623762432943}
   - component: {fileID: 4518546079585621892}
   - component: {fileID: 8767046776347786133}
   - component: {fileID: 8619826851879120090}
   m_Layer: 0
-  m_Name: ObjOnTable
+  m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2214359445
+  GlobalObjectIdHash: 2678881848
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -59,39 +59,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &6266622796754629585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349413396167198592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d5ec5c03d37744d9d25adad69e7449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSelected:
-    m_InternalValue: 0
-  objAction: 0
-  HUD_OBJ:
-  - MyObject: {fileID: 0}
-    actionName: Test
-    actionDescription: Test
-    HUDObjSpecs: []
-    Event:
-      m_PersistentCalls:
-        m_Calls: []
-  clientListId:
-    m_InternalValue: 0
-  clientListIndex:
-    m_InternalValue: 0
-  basePos:
-    m_InternalValue: {x: 0, y: 0, z: 0}
-  offSet:
-    m_InternalValue: {x: 0, y: 0, z: 0}
-  timer: 0
-  isObjectOnTableSelected: 0
 --- !u!114 &4748423480595814750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +90,39 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &1312433623762432943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349413396167198592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0009ea05409efbb49b520ef72d3bb951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected:
+    m_InternalValue: 0
+  objAction: 0
+  HUD_OBJ:
+  - MyObject: {fileID: 0}
+    actionName: Saw
+    actionDescription: Give +1 Damage
+    HUDObjSpecs: []
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
+  clientListId:
+    m_InternalValue: 0
+  clientListIndex:
+    m_InternalValue: 0
+  basePos:
+    m_InternalValue: {x: 0, y: 0, z: 0}
+  offSet:
+    m_InternalValue: {x: 0, y: 0, z: 0}
+  timer: 0
+  isObjectOnTableSelected: 0
 --- !u!33 &4518546079585621892
 MeshFilter:
   m_ObjectHideFlags: 0

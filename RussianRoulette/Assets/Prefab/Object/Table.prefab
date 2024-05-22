@@ -2969,6 +2969,21 @@ MonoBehaviour:
     obj: {fileID: 0}
   - transform: {fileID: 805947476022512175}
     obj: {fileID: 0}
+  allObjs:
+  - ObjEnum: 0
+    weight: 0.8
+  - ObjEnum: 1
+    weight: 0.5
+  - ObjEnum: 2
+    weight: 0.4
+  - ObjEnum: 3
+    weight: 0.1
+  - ObjEnum: 4
+    weight: 0.1
+  - ObjEnum: 5
+    weight: 0.2
+  - ObjEnum: 6
+    weight: 0.2
 --- !u!65 &6693408931129892751
 BoxCollider:
   m_ObjectHideFlags: 0
