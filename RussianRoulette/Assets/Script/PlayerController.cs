@@ -40,7 +40,11 @@ namespace Player
             
             if(!IsOwner) return;
             playerTurn.OnValueChanged += OnPlayerTurnChanged;
-            playerHealth.OnValueChanged += (value, newValue) => playerHealth.Value = newValue;
+            playerHealth.OnValueChanged += (value, newValue) =>
+            {
+                playerHealth.Value = newValue;
+                //HealthScreen.Instance.SetClients(playerHealth.Value, (int)playerHealth.Value);
+            };
             
             CameraManager = GameManager.Instance.CameraManager;
             PlayerHUD = Instantiate(GameManager.Instance.PlayerHUD, Vector3.zero, Quaternion.identity);

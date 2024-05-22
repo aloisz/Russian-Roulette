@@ -78,7 +78,7 @@ public class GameManager : NetworkBehaviour
             Bullet bullet = Instantiate(this.bullet, Vector3.up * 2, Quaternion.identity);
             var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
             bulletNetworkObject.Spawn();
-            int value = Random.Range(1, 3);
+            int value = Random.Range(2, 3);
 
             bulletNumber.Value++;
             bullet.transform.name = bulletNumber.Value.ToString();
