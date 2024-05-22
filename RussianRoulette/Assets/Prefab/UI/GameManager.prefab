@@ -71,6 +71,11 @@ MonoBehaviour:
   PlayerHUD: {fileID: 5911849507614101583, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
     type: 3}
   gun: {fileID: 0}
+  bullet: {fileID: 7493942498446937378, guid: 9674de6adc05df648ae8e2d5e5f52503, type: 3}
+  bulletNumber:
+    m_InternalValue: 0
+  presentedBullets: []
+  table: {fileID: 0}
   playersPositions:
   - {fileID: 0}
   - {fileID: 0}

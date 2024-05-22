@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using Player;
 using Unity.Netcode;
 using UnityEngine;
@@ -11,15 +12,18 @@ public class GameManager : NetworkBehaviour
     public List<PlayerController> PlayerControllers;
     public CameraManager CameraManager;
     public PlayerHUD PlayerHUD;
-
-    [Header("Gun")]     
-    public Gun gun;
-    [SerializeField] private Bullet bullet;
-    [SerializeField] private NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-    public List<Bullet> presentedBullets = new List<Bullet>();
-    
     [Space]
     public List<Transform> playersPositions;
+
+    [BoxGroup("Gun")] [Header("Gun")] public Gun gun;
+    [BoxGroup("Gun")][SerializeField] private Bullet bullet;
+    [BoxGroup("Gun")][SerializeField] private NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    [BoxGroup("Gun")]public List<Bullet> presentedBullets = new List<Bullet>();
+
+    [Space] [BoxGroup("Table")] public Table table;
+    [Space] [BoxGroup("Objects")] public List<ObjectOnTable> objectOnTables;
+    
+    
     public static GameManager Instance;
 
     private void Awake()
@@ -34,6 +38,8 @@ public class GameManager : NetworkBehaviour
         
         if (!IsHost) return;
         StartCoroutine(ReloadGun());        
+        table.SpawnObjOnTable(1, 0);
+        table.SpawnObjOnTable(2, 1);
     }
 
     [Rpc(SendTo.Server)]
