@@ -87,6 +87,20 @@ public class GameManager : NetworkBehaviour
 
             yield return new WaitForSeconds(.1f);
         }
+
+        ShuffleBullet(presentedBullets);
+    }
+    
+    private void ShuffleBullet(List<Bullet> bullets)
+    {
+        System.Random rng = new System.Random();
+        int n = bullets.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            (bullets[k], bullets[n]) = (bullets[n], bullets[k]);
+        }
     }
 
     [Rpc(SendTo.Server)]
@@ -105,9 +119,9 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void ShootBullet_Rpc(int targetClientID, int damage)
     {
-        int randomBullet = Random.Range(0, bulletNumber.Value - 1);
-        int randomBulletID = presentedBullets[randomBullet].bulletID.Value;
-        BulletType randomBulletValue = presentedBullets[randomBullet].bulletType.Value;
+        int lastBulletInChamber = 0;
+        int randomBulletID = presentedBullets[lastBulletInChamber].bulletID.Value;
+        BulletType randomBulletValue = presentedBullets[lastBulletInChamber].bulletType.Value;
 
         if (randomBulletValue == BulletType.Live)
         {
@@ -126,7 +140,7 @@ public class GameManager : NetworkBehaviour
             else NextPlayerTurn_Rpc();
         }
 
-        presentedBullets[randomBullet].GetComponent<NetworkObject>().Despawn();
+        presentedBullets[lastBulletInChamber].GetComponent<NetworkObject>().Despawn();
         bulletNumber.Value--;
     }
 
