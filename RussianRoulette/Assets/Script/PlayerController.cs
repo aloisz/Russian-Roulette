@@ -62,6 +62,12 @@ namespace Player
             
             CameraManager.SetCameraTarget(CameraManager.cameraPlayerPosition);
         }
+
+        [Rpc(SendTo.Server)]
+        public void AddHealth_Rpc(int valueAdded)
+        {
+            playerHealth.Value += valueAdded;
+        }
         
         public override void OnNetworkDespawn()
         {
