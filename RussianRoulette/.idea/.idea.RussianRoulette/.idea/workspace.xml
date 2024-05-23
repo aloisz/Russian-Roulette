@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="" />
+    <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +134,7 @@
       <workItem from="1716303270711" duration="543000" />
       <workItem from="1716310391493" duration="3859000" />
       <workItem from="1716365272320" duration="21774000" />
-      <workItem from="1716453563049" duration="7012000" />
+      <workItem from="1716453563049" duration="7610000" />
     </task>
     <servers />
   </component>
