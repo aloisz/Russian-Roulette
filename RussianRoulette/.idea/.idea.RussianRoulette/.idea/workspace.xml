@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Adrenaline.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Adrenaline.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Cigarette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Cigarette.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Liquor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Liquor.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Phone.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Phone.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Saw.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Saw.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Scissors.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Scissors.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Wen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Wen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +142,7 @@
       <workItem from="1716303270711" duration="543000" />
       <workItem from="1716310391493" duration="3859000" />
       <workItem from="1716365272320" duration="21774000" />
-      <workItem from="1716453563049" duration="7610000" />
+      <workItem from="1716453563049" duration="8702000" />
     </task>
     <servers />
   </component>
