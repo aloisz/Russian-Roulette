@@ -21,6 +21,7 @@ namespace Player
         public MyObject objInHand;
         public CameraManager CameraManager;
         public PlayerHUD PlayerHUD;
+        public LayerMask rayLayer;
         [SerializeField] internal Transform cameraPos;
         
         public override void OnNetworkSpawn()
@@ -43,7 +44,7 @@ namespace Player
             playerHealth.OnValueChanged += (value, newValue) =>
             {
                 playerHealth.Value = newValue;
-                //HealthScreen.Instance.SetClients(playerHealth.Value, (int)playerHealth.Value);
+                HealthScreen.Instance.SetClients_Rpc(newValue, (int)OwnerClientId);
             };
             
             CameraManager = GameManager.Instance.CameraManager;
@@ -65,7 +66,6 @@ namespace Player
                     PlayerHUD.transform.rotation *= Quaternion.Euler(0,180,0);
                     break;
             }
-            
             CameraManager.SetCameraTarget(CameraManager.cameraPlayerPosition);
         }
 
@@ -95,7 +95,7 @@ namespace Player
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 1000))
+            if (Physics.Raycast(ray, out hit, 1000, rayLayer))
             {
                 Debug.DrawRay(ray.origin, ray.direction * 1000, OwnerClientId == 0 ? Color.green : Color.red, 1);
                 
@@ -110,7 +110,7 @@ namespace Player
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 1000))
+            if (Physics.Raycast(ray, out hit, 1000, rayLayer))
             {
                 Debug.DrawRay(ray.origin, ray.direction * 1000, OwnerClientId == 0 ? Color.green : Color.red, 1);
                 

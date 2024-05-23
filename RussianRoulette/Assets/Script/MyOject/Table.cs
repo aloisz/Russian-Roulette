@@ -18,7 +18,7 @@ public class Table : MonoBehaviour
     {
         int result = 0;
         
-        int randomValue = Random.Range(0, allObjs.Count + 1);
+        int randomValue = Random.Range(0, allObjs.Count);
         result = (int)allObjs[randomValue].ObjEnum;
         
         return result;

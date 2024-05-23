@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8188022981942155198}
   - component: {fileID: 9193280970270474253}
   - component: {fileID: 7308535077480888233}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 750309060
+  GlobalObjectIdHash: 1985769353
   InScenePlacedSourceGlobalObjectIdHash: 328123997
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -75,6 +75,7 @@ MonoBehaviour:
   HUD_OBJ:
   - MyObject: {fileID: 8188022981942155198}
     actionName: Him
+    actionDescription: 
     HUDObjSpecs:
     - Transforms: {fileID: 0}
       targetClientID: 1
@@ -85,6 +86,7 @@ MonoBehaviour:
         m_Calls: []
   - MyObject: {fileID: 8188022981942155198}
     actionName: You
+    actionDescription: 
     HUDObjSpecs:
     - Transforms: {fileID: 0}
       targetClientID: 0
@@ -94,6 +96,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   desiredPos: {fileID: 0}
+  damageApplied:
+    m_InternalValue: 1
 --- !u!114 &9193280970270474253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shotgun1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f62f7dc06bd890d4aab43b8fd635fe02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

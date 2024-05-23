@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class HealthScreen : MonoBehaviour
+public class HealthScreen : NetworkBehaviour
 {
     private TextMeshProUGUI[] healthClients;
 
@@ -16,10 +17,10 @@ public class HealthScreen : MonoBehaviour
         
         healthClients = GetComponentsInChildren<TextMeshProUGUI>();
     }
-
-    public void SetClients(int value, int cliendID)
+    
+    [Rpc(SendTo.Everyone)]
+    public void SetClients_Rpc(int value, int cliendID)
     {
-        Debug.Log("ICIC");
         healthClients[cliendID].text = value.ToString();
     }
 }

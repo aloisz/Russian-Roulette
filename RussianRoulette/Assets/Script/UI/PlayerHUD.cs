@@ -18,10 +18,16 @@ public class PlayerHUD : MonoBehaviour
     public List<ObjectBtn> ObjectBtns;
     public List<Button> Buttons;
     public List<CanvasGroup> btnCanvasGroup;
+    [SerializeField] private TextMeshProUGUI text;
 
     public MyObject selectedObject;
-    
-    
+
+
+    private void Start()
+    {
+        text.DOFade(0, 0);
+    }
+
     public MyObject GetTheSelectedObj(MyObject myObject)
     {
         return selectedObject = myObject;
@@ -53,6 +59,19 @@ public class PlayerHUD : MonoBehaviour
     private int GetGunDamage()
     {
         return gunDamage;
+    }
+
+    public void DisplayText(string message, Vector3 pos, float duration)
+    {
+        if(ownedByClientID == 1) text.transform.rotation *= Quaternion.Euler(0,180,0);
+        text.transform.position = pos;
+        text.text = message;
+        text.DOFade(1, duration).OnComplete((() =>
+        {
+            text.DOFade(0, duration);
+            text.transform.position = Vector3.zero;
+        }));
+        
     }
     
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)

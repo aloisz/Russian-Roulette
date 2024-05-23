@@ -42,6 +42,11 @@ public class GameManager : NetworkBehaviour
         table.SpawnObjOnTable(2, 1);
     }
 
+    
+    
+    // -----------------------
+    #region TURN LOGIC
+
     [Rpc(SendTo.Server)]
     private void NextPlayerTurn_Rpc()
     {
@@ -50,7 +55,28 @@ public class GameManager : NetworkBehaviour
             player.playerTurn.Value = !player.playerTurn.Value;
         }
     }
+    
+    /// <summary>
+    /// Bullet was blank so you can still play 
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    private void StillYourTurn()
+    {
+        
+    }
 
+    public void RoundEnded(int targetClientID, int damage)
+    {
+        GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
+        Debug.Log("Damage GameManager " + damage);
+    }
+
+    #endregion
+    
+    // -----------------------
+    #region GUN
+
+    
     [ContextMenu("Reload")]
     [Rpc(SendTo.Server)]
     public void ReloadGun_Rpc()
@@ -58,7 +84,6 @@ public class GameManager : NetworkBehaviour
         if (!IsHost) return;
         StartCoroutine(ReloadGunCoroutine());
     }
-
     
     private IEnumerator ReloadGunCoroutine()
     {
@@ -78,7 +103,7 @@ public class GameManager : NetworkBehaviour
             Bullet bullet = Instantiate(this.bullet, Vector3.up * 2, Quaternion.identity);
             var bulletNetworkObject = bullet.GetComponent<NetworkObject>();
             bulletNetworkObject.Spawn();
-            int value = Random.Range(2, 3);
+            int value = Random.Range(1, 3);
 
             bulletNumber.Value++;
             bullet.transform.name = bulletNumber.Value.ToString();
@@ -101,19 +126,6 @@ public class GameManager : NetworkBehaviour
             n--;
             int k = rng.Next(n + 1);
             (bullets[k], bullets[n]) = (bullets[n], bullets[k]);
-        }
-    }
-
-    [Rpc(SendTo.Server)]
-    private void RemoveLife_Rpc(int targetClientID, int damage)
-    {
-        foreach (var player in PlayerControllers)
-        {
-            if (targetClientID == (int)player.OwnerClientId)
-            {
-                player.playerHealth.Value -= damage;
-                Debug.Log($"___PlayerID {player.OwnerClientId} Health of value {player.playerHealth.Value}___");
-            }
         }
     }
     
@@ -145,19 +157,46 @@ public class GameManager : NetworkBehaviour
         presentedBullets[lastBulletInChamber].GetComponent<NetworkObject>().Despawn();
         bulletNumber.Value--;
     }
+    
 
-    /// <summary>
-    /// Bullet was blank so you can still play 
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    private void StillYourTurn()
+    #endregion
+
+    
+    // -----------------------
+    #region Health
+
+    [Rpc(SendTo.Server)]
+    private void RemoveLife_Rpc(int targetClientID, int damage)
     {
-        
+        foreach (var player in PlayerControllers)
+        {
+            if (targetClientID == (int)player.OwnerClientId)
+            {
+                player.playerHealth.Value -= damage;
+                Debug.Log($"___PlayerID {player.OwnerClientId} Health of value {player.playerHealth.Value}___");
+            }
+
+            RemoveLife_ClientRpc((int)player.OwnerClientId);
+        }
     }
 
-    public void RoundEnded(int targetClientID, int damage)
+    [Rpc(SendTo.Everyone)]
+    private void RemoveLife_ClientRpc(int clientID)
     {
-        GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
-        Debug.Log("Damage GameManager " + damage);
+        StartCoroutine(CameraHealthMonitor(PlayerControllers[clientID], 1.25f));
     }
+
+    private IEnumerator CameraHealthMonitor(PlayerController player , float elapsedTime)
+    {
+        yield return new WaitForSeconds(elapsedTime);
+        player.CameraManager.ChangeState(StateCamera.HealthMonitor);
+        yield return new WaitForSeconds(elapsedTime);
+        player.CameraManager.ChangeState(StateCamera.PlayerPos);
+    }
+
+    #endregion
+
+    
+
+    
 }
