@@ -63,13 +63,12 @@ public class PlayerHUD : MonoBehaviour
 
     public void DisplayText(string message, Vector3 pos, float duration)
     {
-        if(ownedByClientID == 1) text.transform.rotation *= Quaternion.Euler(0,180,0);
+        if(ownedByClientID == 1) text.transform.eulerAngles = new Vector3(0,180,0);
         text.transform.position = pos;
         text.text = message;
         text.DOFade(1, duration).OnComplete((() =>
         {
             text.DOFade(0, duration);
-            text.transform.position = Vector3.zero;
         }));
         
     }
