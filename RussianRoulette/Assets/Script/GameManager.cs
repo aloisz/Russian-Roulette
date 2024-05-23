@@ -23,7 +23,6 @@ public class GameManager : NetworkBehaviour
     [Space] [BoxGroup("Table")] public Table table;
     [Space] [BoxGroup("Objects")] public List<ObjectOnTable> objectOnTables;
     
-    
     public static GameManager Instance;
 
     private void Awake()
@@ -37,7 +36,7 @@ public class GameManager : NetworkBehaviour
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
         
         if (!IsHost) return;
-        StartCoroutine(ReloadGunCoroutine());        
+        StartCoroutine(ReloadGunCoroutine());   
         table.SpawnObjOnTable(3, 0);
         table.SpawnObjOnTable(2, 1);
     }
@@ -55,6 +54,7 @@ public class GameManager : NetworkBehaviour
             player.playerTurn.Value = !player.playerTurn.Value;
         }
     }
+    
     
     /// <summary>
     /// Bullet was blank so you can still play 
@@ -115,6 +115,14 @@ public class GameManager : NetworkBehaviour
         }
 
         ShuffleBullet(presentedBullets);
+        if (PlayerControllers[0].playerTurn.Value)
+        {
+            Light.Instance.RotateLightToPlayerTurn_Rpc((int)0);
+        }
+        else
+        {
+            Light.Instance.RotateLightToPlayerTurn_Rpc((int)1);
+        }
     }
     
     private void ShuffleBullet(List<Bullet> bullets)

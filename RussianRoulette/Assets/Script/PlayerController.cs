@@ -120,18 +120,24 @@ namespace Player
                 }
             }
         }
-        
-        public void OnPlayerTurnChanged(bool previous, bool current)
+
+        private void OnPlayerTurnChanged(bool previous, bool current)
         {
             Debug.Log($"<color=green>___Player turn {playerTurn.Value}___</color>");
             if (playerTurn.Value)
             {
-                
+                PlayerTurn_ClientRpc((int)OwnerClientId);
             }
             else
             {
                 
             }
+        }
+
+        [Rpc(SendTo.Everyone)]
+        private void PlayerTurn_ClientRpc(int id)
+        {
+            //Light.Instance.RotateLightToPlayerTurn_Rpc(id);
         }
     }
 }
