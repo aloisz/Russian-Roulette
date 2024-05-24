@@ -53,6 +53,9 @@ public class GameManager : NetworkBehaviour
         {
             player.playerTurn.Value = !player.playerTurn.Value;
         }
+        
+        if(!IsHost) return;
+        Light.Instance.RotateLightToPlayerTurn_Rpc(PlayerControllers[0].OwnerClientId == 0 ? 0 : 1);
     }
     
     
@@ -84,7 +87,8 @@ public class GameManager : NetworkBehaviour
         if (!IsHost) return;
         StartCoroutine(ReloadGunCoroutine());
     }
-    
+
+    private bool doOnce = false;
     private IEnumerator ReloadGunCoroutine()
     {
         if (bulletNumber.Value != 0)
@@ -115,14 +119,9 @@ public class GameManager : NetworkBehaviour
         }
 
         ShuffleBullet(presentedBullets);
-        if (PlayerControllers[0].playerTurn.Value)
-        {
-            Light.Instance.RotateLightToPlayerTurn_Rpc((int)0);
-        }
-        else
-        {
-            Light.Instance.RotateLightToPlayerTurn_Rpc((int)1);
-        }
+        if (doOnce) yield break;
+        doOnce = true;
+        Light.Instance.RotateLightToPlayerTurn_Rpc(0);
     }
     
     private void ShuffleBullet(List<Bullet> bullets)
