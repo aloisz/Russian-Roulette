@@ -7,6 +7,11 @@ public class Wen : ObjectOnTable
     protected override void Select(ulong OwnerClientId)
     {
         Debug.Log("Wen");
-        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayText("hehe", new Vector3(0,1.284f,0), 2f);
+
+        if(GameManager.Instance.presentedBullets.Count == 0) return;
+        Bullet bulletIndex = GameManager.Instance.presentedBullets[0];
+        string displayText = $"Bullet {bulletIndex.bulletType.Value}";
+        
+        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayText(displayText, new Vector3(0,1.284f,0), 2f);
     }
 }

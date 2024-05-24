@@ -140,7 +140,7 @@ public class GameManager : NetworkBehaviour
     private void ShootBullet_Rpc(int targetClientID, int damage)
     {
         int lastBulletInChamber = 0;
-        int randomBulletID = presentedBullets[lastBulletInChamber].bulletID.Value;
+        int randomBulletID = presentedBullets[0].bulletID.Value;
         BulletType randomBulletValue = presentedBullets[lastBulletInChamber].bulletType.Value;
         
         if (randomBulletValue == BulletType.Live)
