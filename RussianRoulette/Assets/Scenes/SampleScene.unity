@@ -1661,7 +1661,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.03
+  m_Intensity: 2.85
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6934,6 +6934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 1853797212
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904933097706057570, guid: 4f80d8c38e10e4149970e4885da882c0,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5432040919922432497, guid: 4f80d8c38e10e4149970e4885da882c0,
         type: 3}
