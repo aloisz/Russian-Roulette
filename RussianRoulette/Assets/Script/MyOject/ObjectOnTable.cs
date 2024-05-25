@@ -110,6 +110,7 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     {
         if(OwnerClientId != NetworkObject.OwnerClientId) return;
         base.Interact(OwnerClientId);
+        transform.GetComponent<NetworkObject>().Despawn();
     }
     
     public virtual void InteractInContinue()
