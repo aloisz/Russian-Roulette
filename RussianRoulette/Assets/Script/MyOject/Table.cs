@@ -6,10 +6,10 @@ using UnityEngine;
 public class Table : MonoBehaviour
 {
     public List<Tiles> tilesClient0;
-    private int tilesClient0Index;
+    public int tilesClient0Index;
     
     public List<Tiles> tilesClient1;
-    private int tilesClient1Index;
+    public int tilesClient1Index;
 
     [Space] public List<ObjAvailable> allObjs;
 
@@ -28,7 +28,7 @@ public class Table : MonoBehaviour
     {
         for (int i = 0; i < numberOfObjToSpawn; i++)
         {
-            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[3], Vector3.zero, Quaternion.identity);
+            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[5], Vector3.zero, Quaternion.identity);
             var objNetworkObject = obj.GetComponent<NetworkObject>();
             objNetworkObject.Spawn();
 

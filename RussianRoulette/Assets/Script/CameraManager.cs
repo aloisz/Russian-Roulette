@@ -16,6 +16,7 @@ public class CameraManager : MonoBehaviour
     public Transform cameraPlayerPosition;
     [SerializeField] private Transform tableVision;
     [SerializeField] private List<Transform> healthTransform;
+    [SerializeField] private Transform stealVision;
 
     [Header("Obj pos")] 
     public Transform objPosition; 
@@ -70,6 +71,9 @@ public class CameraManager : MonoBehaviour
             case StateCamera.HealthMonitor:
                 HealthMonitor();
                 break;
+            case StateCamera.StealVision:
+                StealVision();
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -111,6 +115,16 @@ public class CameraManager : MonoBehaviour
     
         camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, healthTransform[clientID].rotation, Time.deltaTime * rotInterpolation);
     }
+    
+    private void StealVision()
+    {
+        camera.transform.position = 
+            Vector3.SmoothDamp(camera.transform.position, 
+                new Vector3(stealVision.position.x, stealVision.position.y, stealVision.position.z) + offSet, 
+                ref currentVelocity, smoothTime);
+        
+        camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, stealVision.rotation, Time.deltaTime * rotInterpolation);
+    }
 }
 
 public enum StateCamera
@@ -118,5 +132,6 @@ public enum StateCamera
     OnBeginPlay,
     PlayerPos,
     TableVision,
-    HealthMonitor
+    HealthMonitor,
+    StealVision
 }
