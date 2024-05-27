@@ -176,42 +176,6 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
                 }
             }
         }
-        
-        
-        
-        /*if(!IsHost && !IsServer) return;
-        if (cliendID == 0)
-        {
-            if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
-            else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;
-            
-            transform.position = GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].transform.position;
-            SetBasePos(GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].transform.position);
-            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient0Index.Value);
-            GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].obj = this;
-            GameManager.Instance.table.tilesClient0Index.Value++;
-            
-            foreach (var tiles in GameManager.Instance.table.tilesClient1)
-            {
-                if(tiles.obj != null) tiles.obj.ChangeClient_Rpc(1, false);
-            }
-        }
-        else
-        {
-            if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
-            else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;
-            
-            transform.position = GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].transform.position;
-            SetBasePos(GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].transform.position);
-            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient1Index.Value);
-            GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].obj = this;
-            GameManager.Instance.table.tilesClient1Index.Value++;
-            
-            foreach (var tiles in GameManager.Instance.table.tilesClient0)
-            {
-                if(tiles.obj != null) tiles.obj.ChangeClient_Rpc(0, false);
-            }
-        }*/
     }
     
     public virtual void InteractInContinue()
