@@ -126,7 +126,13 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
         base.Interact(OwnerClientId);
 
         if (isStealing.Value) IsStealing_Rpc((int)NetworkObject.OwnerClientId);
-        //else DestroyObj_Rpc();
+        else StartCoroutine(DestroyCoroutine());
+    }
+
+    private IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(.1f);
+        DestroyObj_Rpc();
     }
 
     [Rpc(SendTo.Server)]
