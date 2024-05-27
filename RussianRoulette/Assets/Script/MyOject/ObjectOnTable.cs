@@ -125,7 +125,11 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
         if(OwnerClientId != NetworkObject.OwnerClientId) return;
         base.Interact(OwnerClientId);
 
-        if (isStealing.Value) IsStealing_Rpc((int)NetworkObject.OwnerClientId);
+        if (isStealing.Value)
+        {
+            IsStealing_Rpc((int)NetworkObject.OwnerClientId);
+            CameraStealVision_ClientRpc((int)NetworkObject.OwnerClientId);
+        }
         else StartCoroutine(DestroyCoroutine());
     }
 
@@ -141,14 +145,16 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
         transform.GetComponent<NetworkObject>().Despawn();
     }
     
+    [Rpc(SendTo.Everyone)]
+    private void CameraStealVision_ClientRpc(int clientID)
+    {
+        GameManager.Instance.PlayerControllers[clientID].CameraManager.ChangeState(StateCamera.PlayerPos);
+    }
+    
     
     [Rpc(SendTo.Server)]
     private void IsStealing_Rpc(int cliendID)
     {
-        /*foreach (var player in GameManager.Instance.PlayerControllers)
-        {
-            player.CameraManager.ChangeState(StateCamera.PlayerPos);
-        }*/
         if (cliendID == 0)
         {
             SetBasePos_Rpc(GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].transform.position);
