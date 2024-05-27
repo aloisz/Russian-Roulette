@@ -14,8 +14,12 @@ public class HealthScreen : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
-        
         healthClients = GetComponentsInChildren<TextMeshProUGUI>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
     }
     
     [Rpc(SendTo.Everyone)]

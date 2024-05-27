@@ -77,7 +77,7 @@ MonoBehaviour:
   HUD_OBJ:
   - MyObject: {fileID: 0}
     actionName: Scissors
-    actionDescription: Cut the electricty
+    actionDescription: Disable Health monitor
     HUDObjSpecs: []
     Event:
       m_PersistentCalls:
@@ -85,6 +85,8 @@ MonoBehaviour:
   clientListId:
     m_InternalValue: 0
   clientListIndex:
+    m_InternalValue: 0
+  isStealing:
     m_InternalValue: 0
   basePos:
     m_InternalValue: {x: 0, y: 0, z: 0}

@@ -38,7 +38,7 @@ public class Table : NetworkBehaviour
     {
         for (int i = 0; i < numberOfObjToSpawn; i++)
         {
-            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[5], Vector3.zero, Quaternion.identity);
+            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[6], Vector3.zero, Quaternion.identity);
             var objNetworkObject = obj.GetComponent<NetworkObject>();
             objNetworkObject.Spawn();
 
