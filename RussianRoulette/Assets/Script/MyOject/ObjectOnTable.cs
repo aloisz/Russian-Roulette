@@ -25,14 +25,6 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     protected Canvas _canvas;
     protected CanvasGroup _canvasGroup;
     protected TextMeshProUGUI[] _textActionName;
-
-    [Rpc(SendTo.Server)]
-    public void SetClientInfo_Rpc(int id, int index)
-    {
-        if (id == 1) ChangeClient_Rpc(1);
-        clientListId.Value = id;
-        clientListIndex.Value = index;
-    }
     
     public override void OnNetworkSpawn()
     {
@@ -53,17 +45,28 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
 
         basePos.OnValueChanged += (value, newValue) => basePos.Value = newValue; 
         offSet.OnValueChanged += (value, newValue) => offSet.Value = newValue;
+
+        GameManager.Instance.table.ObjectsOnTable.Add(this);
     }
 
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
-
-        if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
-        else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;
+        GameManager.Instance.table.ObjectsOnTable.Remove(this);
+        /*if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
+        else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;*/
+    }
+    
+    [Rpc(SendTo.Server)]
+    public void SetClientInfo_Rpc(int id, int index)
+    {
+        if (id == 1) ChangeClient_Rpc(1);
+        clientListId.Value = id;
+        clientListIndex.Value = index;
     }
 
-    public void SetBasePos(Vector3 basePos)
+    [Rpc(SendTo.Server)]
+    public void SetBasePos_Rpc(Vector3 basePos)
     {
         this.basePos.Value = basePos;
         offSet.Value = this.basePos.Value + new Vector3(0, .1f, 0);
@@ -121,32 +124,72 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     {
         if(OwnerClientId != NetworkObject.OwnerClientId) return;
         base.Interact(OwnerClientId);
-        
+
         if (isStealing.Value) IsStealing_Rpc((int)NetworkObject.OwnerClientId);
-        else transform.GetComponent<NetworkObject>().Despawn();
+        //else DestroyObj_Rpc();
+    }
+
+    [Rpc(SendTo.Server)]
+    private void DestroyObj_Rpc()
+    {
+        transform.GetComponent<NetworkObject>().Despawn();
     }
     
     
     [Rpc(SendTo.Server)]
     private void IsStealing_Rpc(int cliendID)
     {
-        foreach (var player in GameManager.Instance.PlayerControllers)
+        /*foreach (var player in GameManager.Instance.PlayerControllers)
         {
             player.CameraManager.ChangeState(StateCamera.PlayerPos);
+        }*/
+        if (cliendID == 0)
+        {
+            SetBasePos_Rpc(GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].transform.position);
+            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient0Index.Value);
+            isStealing.Value = false;
+            isSelected.Value = false;
+            GameManager.Instance.table.tilesClient0Index.Value++;
+            
+            foreach (var obj in GameManager.Instance.table.ObjectsOnTable)
+            {
+                if (obj.isStealing.Value)
+                {
+                    obj.ChangeClient_Rpc(1, false);
+                }
+            }
+        }
+        else
+        {
+            SetBasePos_Rpc(GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].transform.position);
+            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient1Index.Value);
+            isStealing.Value = false;
+            isSelected.Value = false;
+            GameManager.Instance.table.tilesClient1Index.Value++;
+            
+            foreach (var obj in GameManager.Instance.table.ObjectsOnTable)
+            {
+                if (obj.isStealing.Value)
+                {
+                    Debug.Log(obj, this);
+                    obj.ChangeClient_Rpc(0, false);
+                }
+            }
         }
         
-        Debug.Log(cliendID);
-        if(!IsHost && !IsServer) return;
+        
+        
+        /*if(!IsHost && !IsServer) return;
         if (cliendID == 0)
         {
             if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
             else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;
             
-            transform.position = GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index].transform.position;
-            SetBasePos(GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index].transform.position);
-            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient0Index);
-            GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index].obj = this;
-            GameManager.Instance.table.tilesClient0Index++;
+            transform.position = GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].transform.position;
+            SetBasePos(GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].transform.position);
+            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient0Index.Value);
+            GameManager.Instance.table.tilesClient0[GameManager.Instance.table.tilesClient0Index.Value].obj = this;
+            GameManager.Instance.table.tilesClient0Index.Value++;
             
             foreach (var tiles in GameManager.Instance.table.tilesClient1)
             {
@@ -158,17 +201,17 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
             if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
             else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;
             
-            transform.position = GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index].transform.position;
-            SetBasePos(GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index].transform.position);
-            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient1Index);
-            GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index].obj = this;
-            GameManager.Instance.table.tilesClient1Index++;
+            transform.position = GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].transform.position;
+            SetBasePos(GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].transform.position);
+            SetClientInfo_Rpc(cliendID, GameManager.Instance.table.tilesClient1Index.Value);
+            GameManager.Instance.table.tilesClient1[GameManager.Instance.table.tilesClient1Index.Value].obj = this;
+            GameManager.Instance.table.tilesClient1Index.Value++;
             
             foreach (var tiles in GameManager.Instance.table.tilesClient0)
             {
                 if(tiles.obj != null) tiles.obj.ChangeClient_Rpc(0, false);
             }
-        }
+        }*/
     }
     
     public virtual void InteractInContinue()

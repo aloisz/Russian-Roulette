@@ -38,7 +38,7 @@ public class GameManager : NetworkBehaviour
         if (!IsHost) return;
         StartCoroutine(ReloadGunCoroutine());   
         table.SpawnObjOnTable(3, 0);
-        table.SpawnObjOnTable(2, 1);
+        table.SpawnObjOnTable(3, 1);
     }
 
     

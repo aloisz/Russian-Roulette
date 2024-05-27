@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Table : MonoBehaviour
+public class Table : NetworkBehaviour
 {
+    public List<ObjectOnTable> ObjectsOnTable;
+    
+    
     public List<Tiles> tilesClient0;
-    public int tilesClient0Index;
+    public NetworkVariable<int> tilesClient0Index = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     
     public List<Tiles> tilesClient1;
-    public int tilesClient1Index;
+    public NetworkVariable<int> tilesClient1Index = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
     [Space] public List<ObjAvailable> allObjs;
 
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        tilesClient0Index.OnValueChanged += (value, newValue) => tilesClient0Index.Value = newValue;
+        tilesClient1Index.OnValueChanged += (value, newValue) => tilesClient1Index.Value = newValue;
+    }
 
     public int SelectAnObject()
     {
@@ -34,19 +44,19 @@ public class Table : MonoBehaviour
 
             if (cliendID == 0)
             {
-                obj.transform.position = tilesClient0[tilesClient0Index].transform.position;
-                obj.SetBasePos(tilesClient0[tilesClient0Index].transform.position);
-                obj.SetClientInfo_Rpc(cliendID, tilesClient0Index);
-                tilesClient0[tilesClient0Index].obj = obj;
-                tilesClient0Index++;
+                obj.transform.position = tilesClient0[tilesClient0Index.Value].transform.position;
+                obj.SetBasePos_Rpc(tilesClient0[tilesClient0Index.Value].transform.position);
+                obj.SetClientInfo_Rpc(cliendID, tilesClient0Index.Value);
+                tilesClient0[tilesClient0Index.Value].obj = obj;
+                tilesClient0Index.Value++;
             }
             else
             {
-                obj.transform.position = tilesClient1[tilesClient1Index].transform.position;
-                obj.SetBasePos(tilesClient1[tilesClient1Index].transform.position);
-                obj.SetClientInfo_Rpc(cliendID, tilesClient1Index);
-                tilesClient1[tilesClient1Index].obj = obj;
-                tilesClient1Index++;
+                obj.transform.position = tilesClient1[tilesClient1Index.Value].transform.position;
+                obj.SetBasePos_Rpc(tilesClient1[tilesClient1Index.Value].transform.position);
+                obj.SetClientInfo_Rpc(cliendID, tilesClient1Index.Value);
+                tilesClient1[tilesClient1Index.Value].obj = obj;
+                tilesClient1Index.Value++;
             }
         }
     }

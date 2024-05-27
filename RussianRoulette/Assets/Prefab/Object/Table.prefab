@@ -2843,6 +2843,7 @@ GameObject:
   - component: {fileID: 2515363166987977351}
   - component: {fileID: 5193893493792659662}
   - component: {fileID: 6510737718740784899}
+  - component: {fileID: 1625262190436958609}
   - component: {fileID: 2284568673288233520}
   - component: {fileID: 6693408931129892751}
   m_Layer: 0
@@ -2923,6 +2924,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1625262190436958609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755016228268559541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2545356749
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &2284568673288233520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,6 +2957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56f5d2449cd7894399a14d70ca2fd6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectsOnTable: []
   tilesClient0:
   - transform: {fileID: 8710045943223020049}
     obj: {fileID: 0}
@@ -2952,6 +2975,8 @@ MonoBehaviour:
     obj: {fileID: 0}
   - transform: {fileID: 540085224408124163}
     obj: {fileID: 0}
+  tilesClient0Index:
+    m_InternalValue: 0
   tilesClient1:
   - transform: {fileID: 1445066271485677454}
     obj: {fileID: 0}
@@ -2969,6 +2994,8 @@ MonoBehaviour:
     obj: {fileID: 0}
   - transform: {fileID: 805947476022512175}
     obj: {fileID: 0}
+  tilesClient1Index:
+    m_InternalValue: 0
   allObjs:
   - ObjEnum: 0
     weight: 0.8
