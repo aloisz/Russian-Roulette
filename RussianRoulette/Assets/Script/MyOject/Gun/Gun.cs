@@ -49,7 +49,7 @@ public class Gun : MyObject
     {
         base.DeSelect(OwnerClientId);
         transform.DOMove(basePosition, .3f);
-        transform.rotation = baseRotation;
+        transform.DORotate(baseRotation.eulerAngles, .3f);
     }
     
     #if UNITY_EDITOR
