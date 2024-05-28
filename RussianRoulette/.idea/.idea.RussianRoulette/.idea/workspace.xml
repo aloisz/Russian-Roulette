@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Liquor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Liquor.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Buck/Metal.001.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Buck/Metal.001.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Saw.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Saw.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Wen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Wen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
     </list>
@@ -142,7 +146,7 @@
       <workItem from="1716624333828" duration="5858000" />
       <workItem from="1716717577976" duration="4103000" />
       <workItem from="1716829982901" duration="5966000" />
-      <workItem from="1716898267653" duration="3276000" />
+      <workItem from="1716898267653" duration="4472000" />
     </task>
     <servers />
   </component>
