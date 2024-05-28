@@ -25,6 +25,7 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     protected Canvas _canvas;
     protected CanvasGroup _canvasGroup;
     protected TextMeshProUGUI[] _textActionName;
+    private bool doDestroy = false;
     
     public override void OnNetworkSpawn()
     {
@@ -74,6 +75,7 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
 
     protected virtual void Update()
     {
+        if(doDestroy) return;
         if(basePos == null) return;
         if(!ServerIsHost) return;
         if (isObjectOnTableSelected)
@@ -130,12 +132,17 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
             IsStealing_Rpc((int)NetworkObject.OwnerClientId);
             CameraStealVision_ClientRpc((int)NetworkObject.OwnerClientId);
         }
-        else StartCoroutine(DestroyCoroutine());
+        else
+        {
+            SetBasePos_Rpc(GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.objPosition.position);
+            StartCoroutine(DestroyCoroutine(OwnerClientId));
+        }
     }
-
-    private IEnumerator DestroyCoroutine()
+    
+    private IEnumerator DestroyCoroutine(ulong OwnerClientId)
     {
-        yield return new WaitForSeconds(.1f);
+        transform.GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(1.25f);
         DestroyObj_Rpc();
     }
 
@@ -192,6 +199,7 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     
     public virtual void InteractInContinue()
     {
+        if(doDestroy) return;
         if(!IsOwner) return;
         timer = maxTimer;
         isObjectOnTableSelected = true;
