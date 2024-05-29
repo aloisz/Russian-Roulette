@@ -11,7 +11,30 @@ public class Phone : ObjectOnTable
         if(isStealing.Value) return;
         Debug.Log("Phone");
         
-        if(GameManager.Instance.presentedBullets.Count == 0) return;
+        switch (GameManager.Instance.bulletNumber.Value)
+        {
+            case 0:
+                return;
+            case 1:
+                GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayText(lastBullet(), new Vector3(0,1.284f,0), 2f);
+                break;
+            default:
+                GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayText(BulletsLeft(), new Vector3(0,1.284f,0), 2f);
+                break;
+        }
+    }
+
+
+    private string lastBullet()
+    {
+        Bullet bulletIndex = GameManager.Instance.presentedBullets[0];
+        string displayText = String.Empty;
+        displayText = $"1 Bullet {bulletIndex.bulletType.Value}";
+        return displayText; 
+    }
+    
+    private string BulletsLeft()
+    {
         int randomBullet = Random.Range(0, GameManager.Instance.presentedBullets.Count);
         Bullet bulletIndex = GameManager.Instance.presentedBullets[randomBullet];
 
@@ -23,16 +46,11 @@ public class Phone : ObjectOnTable
         Bullet bulletIndex2 = GameManager.Instance.presentedBullets[randomBullet2];
 
         string displayText = String.Empty;
-        if (bulletIndex.bulletType.Value == bulletIndex2.bulletType.Value)
-        {
-            displayText = $"2 Bullet {bulletIndex.bulletType.Value}";
-        }
-        else
-        {
-            displayText = $"1 Bullet {bulletIndex.bulletType.Value}, 1 Bullet {bulletIndex2.bulletType.Value}";
-        }
-        
-        
-        GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.DisplayText(displayText, new Vector3(0,1.284f,0), 2f);
+        displayText = bulletIndex.bulletType.Value 
+                      == bulletIndex2.bulletType.Value 
+            ? $"2 Bullets {bulletIndex.bulletType.Value}" 
+            : $"1 Bullet {bulletIndex.bulletType.Value}, 1 Bullet {bulletIndex2.bulletType.Value}";
+
+        return displayText;
     }
 }

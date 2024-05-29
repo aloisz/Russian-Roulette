@@ -32,6 +32,18 @@ public class Gun : MyObject
 
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.ChangeState(StateCamera.PlayerPos);
         GameManager.Instance.PlayerControllers[(int)OwnerClientId].PlayerHUD.SetGunDamage(damageApplied.Value);
+
+        SetBulletsNotVisible_Rpc();
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void SetBulletsNotVisible_Rpc()
+    {
+        foreach (var bullet in GameManager.Instance.presentedBullets)
+        {
+            bullet.transform.GetChild(0).gameObject.SetActive(false);
+            bullet.transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
 
     [Rpc(SendTo.Server)]

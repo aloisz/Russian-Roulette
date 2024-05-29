@@ -17,7 +17,7 @@ public class GameManager : NetworkBehaviour
 
     [BoxGroup("Gun")] [Header("Gun")] public Gun gun;
     [BoxGroup("Gun")][SerializeField] private Bullet bullet;
-    [BoxGroup("Gun")][SerializeField] private NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    [BoxGroup("Gun")]public NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     [BoxGroup("Gun")]public List<Bullet> presentedBullets = new List<Bullet>();
 
     [Space] [BoxGroup("Table")] public Table table;
@@ -37,9 +37,6 @@ public class GameManager : NetworkBehaviour
         
         if (!IsHost) return;
         ClearTable_Rpc();
-        //StartCoroutine(ReloadGunCoroutine());   
-        /*table.SpawnObjOnTable(3, 0);
-        table.SpawnObjOnTable(3, 1);*/
     }
 
 
@@ -55,6 +52,7 @@ public class GameManager : NetworkBehaviour
         }
         
         if(!IsHost) return;
+        if(table.ObjectsOnTable.Count == 0) StartCoroutine(ClearTable());
         Light.Instance.RotateLightToPlayerTurn_Rpc(PlayerControllers[0].OwnerClientId == 0 ? 0 : 1);
     }
     
@@ -118,7 +116,7 @@ public class GameManager : NetworkBehaviour
             yield return new WaitForSeconds(.1f);
         }
 
-        ShuffleBullet(presentedBullets);
+        //ShuffleBullet(presentedBullets);
         if (doOnce) yield break;
         doOnce = true;
         Light.Instance.RotateLightToPlayerTurn_Rpc(0);
@@ -177,7 +175,6 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     public void ClearTable_Rpc()
     {
-        //if (!IsHost) return;
         StartCoroutine(ClearTable());
         StartCoroutine(ReloadGunCoroutine());   
     }
