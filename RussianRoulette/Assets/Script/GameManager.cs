@@ -36,7 +36,7 @@ public class GameManager : NetworkBehaviour
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
         
         if (!IsHost) return;
-        ClearTable_Rpc();
+        ClearTableAndReload_Rpc();
     }
 
 
@@ -52,7 +52,11 @@ public class GameManager : NetworkBehaviour
         }
         
         if(!IsHost) return;
+        
+        //if no more obj on the table refill it 
         if(table.ObjectsOnTable.Count == 0) StartCoroutine(ClearTable());
+        
+        // orientate light toward player turn
         Light.Instance.RotateLightToPlayerTurn_Rpc(PlayerControllers[0].OwnerClientId == 0 ? 0 : 1);
     }
     
@@ -173,7 +177,7 @@ public class GameManager : NetworkBehaviour
 
     [ContextMenu("Clear Table")]
     [Rpc(SendTo.Server)]
-    public void ClearTable_Rpc()
+    public void ClearTableAndReload_Rpc()
     {
         StartCoroutine(ClearTable());
         StartCoroutine(ReloadGunCoroutine());   
@@ -212,7 +216,7 @@ public class GameManager : NetworkBehaviour
 
             if (player.playerHealth.Value == 0)
             {
-                ClearTable_Rpc();
+                ClearTableAndReload_Rpc();
             }
         }
     }
