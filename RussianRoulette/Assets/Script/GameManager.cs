@@ -65,11 +65,11 @@ public class GameManager : NetworkBehaviour
     /// <exception cref="NotImplementedException"></exception>
     private void StillYourTurn()
     {
-        
+        if(bulletNumber.Value == 0) ReloadGun_Rpc();
     }
 
     public void RoundEnded(int targetClientID, int damage)
-    {
+    {   
         GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
         Debug.Log("Damage GameManager " + damage);
     }
@@ -139,6 +139,8 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void ShootBullet_Rpc(int targetClientID, int damage)
     {
+        bulletNumber.Value--;
+        
         int lastBulletInChamber = 0;
         int randomBulletID = presentedBullets[0].bulletID.Value;
         BulletType randomBulletValue = presentedBullets[lastBulletInChamber].bulletType.Value;
@@ -162,7 +164,6 @@ public class GameManager : NetworkBehaviour
 
         gun.ResetDamage();
         presentedBullets[lastBulletInChamber].GetComponent<NetworkObject>().Despawn();
-        bulletNumber.Value--;
     }
     
 
@@ -231,6 +232,9 @@ public class GameManager : NetworkBehaviour
         player.CameraManager.ChangeState(StateCamera.HealthMonitor);
         yield return new WaitForSeconds(elapsedTime);
         player.CameraManager.ChangeState(StateCamera.PlayerPos);
+
+        if (!IsHost) yield break;
+        if(bulletNumber.Value == 0) ReloadGun_Rpc();
     }
 
     #endregion
