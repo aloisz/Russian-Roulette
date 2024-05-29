@@ -36,13 +36,13 @@ public class GameManager : NetworkBehaviour
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
         
         if (!IsHost) return;
-        StartCoroutine(ReloadGunCoroutine());   
+        ClearTable_Rpc();
+        //StartCoroutine(ReloadGunCoroutine());   
         /*table.SpawnObjOnTable(3, 0);
         table.SpawnObjOnTable(3, 1);*/
     }
 
-    
-    
+
     // -----------------------
     #region TURN LOGIC
 
@@ -178,6 +178,7 @@ public class GameManager : NetworkBehaviour
     {
         //if (!IsHost) return;
         StartCoroutine(ClearTable());
+        StartCoroutine(ReloadGunCoroutine());   
     }
 
     private IEnumerator ClearTable()
@@ -210,6 +211,11 @@ public class GameManager : NetworkBehaviour
             }
 
             RemoveLife_ClientRpc((int)player.OwnerClientId);
+
+            if (player.playerHealth.Value == 0)
+            {
+                ClearTable_Rpc();
+            }
         }
     }
 
