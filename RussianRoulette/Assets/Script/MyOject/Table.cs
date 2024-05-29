@@ -38,13 +38,13 @@ public class Table : NetworkBehaviour
     {
         for (int i = 0; i < numberOfObjToSpawn; i++)
         {
-            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[0], Vector3.zero, Quaternion.identity);
+            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[SelectAnObject()], new Vector3(5, 5, 0), Quaternion.identity);
             var objNetworkObject = obj.GetComponent<NetworkObject>();
             objNetworkObject.Spawn();
 
             if (cliendID == 0)
             {
-                obj.transform.position = tilesClient0[tilesClient0Index.Value].transform.position;
+                //obj.transform.position = tilesClient0[tilesClient0Index.Value].transform.position;
                 obj.SetBasePos_Rpc(tilesClient0[tilesClient0Index.Value].transform.position);
                 obj.SetClientInfo_Rpc(cliendID, tilesClient0Index.Value);
                 tilesClient0[tilesClient0Index.Value].obj = obj;
@@ -52,7 +52,7 @@ public class Table : NetworkBehaviour
             }
             else
             {
-                obj.transform.position = tilesClient1[tilesClient1Index.Value].transform.position;
+                //obj.transform.position = tilesClient1[tilesClient1Index.Value].transform.position;
                 obj.SetBasePos_Rpc(tilesClient1[tilesClient1Index.Value].transform.position);
                 obj.SetClientInfo_Rpc(cliendID, tilesClient1Index.Value);
                 tilesClient1[tilesClient1Index.Value].obj = obj;

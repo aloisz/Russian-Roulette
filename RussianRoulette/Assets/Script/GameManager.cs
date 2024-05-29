@@ -37,8 +37,8 @@ public class GameManager : NetworkBehaviour
         
         if (!IsHost) return;
         StartCoroutine(ReloadGunCoroutine());   
-        table.SpawnObjOnTable(3, 0);
-        table.SpawnObjOnTable(3, 1);
+        /*table.SpawnObjOnTable(3, 0);
+        table.SpawnObjOnTable(3, 1);*/
     }
 
     
@@ -167,8 +167,34 @@ public class GameManager : NetworkBehaviour
     
 
     #endregion
-
     
+    // -----------------------
+
+    #region TABLE
+
+    [ContextMenu("Clear Table")]
+    [Rpc(SendTo.Server)]
+    public void ClearTable_Rpc()
+    {
+        //if (!IsHost) return;
+        StartCoroutine(ClearTable());
+    }
+
+    private IEnumerator ClearTable()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Object");
+        foreach (var objectOnTable in objects)
+        {
+            objectOnTable.GetComponent<NetworkObject>().Despawn();
+            table.tilesClient0Index.Value = 0;
+            table.tilesClient1Index.Value = 0;
+        }
+        yield return new WaitForSeconds(1);
+        table.SpawnObjOnTable(3, 0);
+        table.SpawnObjOnTable(3, 1);
+    }
+
+    #endregion
     // -----------------------
     #region Health
 

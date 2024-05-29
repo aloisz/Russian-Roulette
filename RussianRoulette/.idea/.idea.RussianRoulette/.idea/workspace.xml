@@ -6,12 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Buck/Metal.001.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Buck/Metal.001.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/BTN_TABLE.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/BTN_TABLE.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Adrenaline.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Adrenaline.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Cigarette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Cigarette.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Liquor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Liquor.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/ObjOnTable.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/ObjOnTable.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Phone.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Phone.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Saw.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Saw.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Scissors.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Scissors.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Wen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Wen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/Table.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +154,7 @@
       <workItem from="1716717577976" duration="4103000" />
       <workItem from="1716829982901" duration="5966000" />
       <workItem from="1716898267653" duration="4472000" />
+      <workItem from="1716985897853" duration="3697000" />
     </task>
     <servers />
   </component>

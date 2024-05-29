@@ -54,8 +54,6 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     {
         base.OnNetworkDespawn();
         GameManager.Instance.table.ObjectsOnTable.Remove(this);
-        /*if (clientListId.Value == 0) GameManager.Instance.table.tilesClient0[clientListIndex.Value].obj = null;
-        else GameManager.Instance.table.tilesClient1[clientListIndex.Value].obj = null;*/
     }
     
     [Rpc(SendTo.Server)]
@@ -71,6 +69,12 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
     {
         this.basePos.Value = basePos;
         offSet.Value = this.basePos.Value + new Vector3(0, .1f, 0);
+        SetBasePos_ClientRpc(basePos);
+    }
+    [Rpc(SendTo.Everyone)]
+    private void SetBasePos_ClientRpc(Vector3 basePos)
+    {
+        transform.position = basePos;
     }
 
     protected virtual void Update()
