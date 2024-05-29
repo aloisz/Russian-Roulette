@@ -55,6 +55,7 @@ public class GameManager : NetworkBehaviour
         
         //if no more obj on the table refill it 
         if(table.ObjectsOnTable.Count == 0) StartCoroutine(ClearTable());
+        if (bulletNumber.Value == 0) ReloadGun_Rpc();
         
         // orientate light toward player turn
         Light.Instance.RotateLightToPlayerTurn_Rpc(PlayerControllers[0].OwnerClientId == 0 ? 0 : 1);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -38,13 +39,14 @@ public class Table : NetworkBehaviour
     {
         for (int i = 0; i < numberOfObjToSpawn; i++)
         {
-            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[3], new Vector3(5, 5, 0), Quaternion.identity);
+            ObjectOnTable obj = Instantiate(GameManager.Instance.objectOnTables[SelectAnObject()], new Vector3(5, 5, 0), Quaternion.identity);
             var objNetworkObject = obj.GetComponent<NetworkObject>();
             objNetworkObject.Spawn();
 
             if (cliendID == 0)
             {
                 //obj.transform.position = tilesClient0[tilesClient0Index.Value].transform.position;
+                //obj.transform.DOMove(tilesClient0[tilesClient0Index.Value].transform.position, 2);
                 obj.SetBasePos_Rpc(tilesClient0[tilesClient0Index.Value].transform.position);
                 obj.SetClientInfo_Rpc(cliendID, tilesClient0Index.Value);
                 tilesClient0[tilesClient0Index.Value].obj = obj;
@@ -53,6 +55,7 @@ public class Table : NetworkBehaviour
             else
             {
                 //obj.transform.position = tilesClient1[tilesClient1Index.Value].transform.position;
+                //obj.transform.DOMove(tilesClient1[tilesClient1Index.Value].transform.position, 2);
                 obj.SetBasePos_Rpc(tilesClient1[tilesClient1Index.Value].transform.position);
                 obj.SetClientInfo_Rpc(cliendID, tilesClient1Index.Value);
                 tilesClient1[tilesClient1Index.Value].obj = obj;
