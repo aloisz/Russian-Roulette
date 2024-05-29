@@ -43,6 +43,8 @@ public class GameManager : NetworkBehaviour
     // -----------------------
     #region TURN LOGIC
 
+    private int countTillNewItems = 0;
+
     [Rpc(SendTo.Server)]
     private void NextPlayerTurn_Rpc()
     {
@@ -54,6 +56,13 @@ public class GameManager : NetworkBehaviour
         if(!IsHost) return;
         
         //if no more obj on the table refill it 
+        countTillNewItems++;
+        if (countTillNewItems % 2 == 0)
+        {
+            table.SpawnObjOnTable(1, 0);
+            table.SpawnObjOnTable(1, 1);
+        }
+        
         if(table.ObjectsOnTable.Count == 0) StartCoroutine(ClearTable());
         if (bulletNumber.Value == 0) ReloadGun_Rpc();
         
