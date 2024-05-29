@@ -8,6 +8,7 @@ public class Phone : ObjectOnTable
 {
     protected override void Select(ulong OwnerClientId)
     {
+        if(isStealing.Value) return;
         Debug.Log("Phone");
         
         if(GameManager.Instance.presentedBullets.Count == 0) return;
