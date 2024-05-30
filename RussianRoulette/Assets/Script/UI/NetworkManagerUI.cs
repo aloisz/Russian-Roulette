@@ -18,6 +18,10 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI partyJoinCode;
     [SerializeField] private TMP_InputField joinCodeInput;
 
+    [Space] 
+    //[SerializeField] private Button hostSection;
+    [SerializeField] private Button joinSection;
+
     /*private void Awake()
     {
         btn_Host.onClick.AddListener((() => NetworkManager.Singleton.StartHost()));
@@ -33,7 +37,6 @@ public class NetworkManagerUI : MonoBehaviour
             {
                 await RelayManager.Instance.JoinRelay(joinCodeInput.text);
             }
-
             NetworkManager.Singleton.StartClient();
         });
         btn_Host.onClick.AddListener(async () =>
@@ -44,8 +47,33 @@ public class NetworkManagerUI : MonoBehaviour
                 partyJoinCode.text = hostData.JoinCode;
             }
 
+            HostSection();
             NetworkManager.Singleton.StartHost();
         });
+        joinSection.onClick.AddListener(JoinSection);
+
+        btn_Host.gameObject.SetActive(false);
+        btn_Client.gameObject.SetActive(false);
+        partyJoinCode.gameObject.SetActive(false);
+        joinCodeInput.gameObject.SetActive(false);
+    }
+
+
+    private void JoinSection()
+    {
+        //hostSection.gameObject.SetActive(false);
+        joinSection.gameObject.SetActive(false);
+        
+        btn_Client.gameObject.SetActive(true);
+        joinCodeInput.gameObject.SetActive(true);
+    }
+
+    private void HostSection()
+    {
+        //hostSection.gameObject.SetActive(false);
+        joinSection.gameObject.SetActive(false);
+        
+        partyJoinCode.gameObject.SetActive(true);
     }
 
     /*private void Update()
