@@ -49,7 +49,7 @@ namespace Player
             
             CameraManager = GameManager.Instance.CameraManager;
             CameraManager.playerOwner = this;
-            PlayerHUD = Instantiate(GameManager.Instance.PlayerHUD, Vector3.zero, Quaternion.identity);
+            PlayerHUD = GameManager.Instance.PlayerHUD;
             PlayerHUD.ownedByClientID = (int)OwnerClientId;
             
             
@@ -127,11 +127,11 @@ namespace Player
             Debug.Log($"<color=green>___Player turn {playerTurn.Value}___</color>");
             if (playerTurn.Value)
             {
-                
+                GameManager.Instance.PlayerHUD.DisplayTextOnTV("Your Turn", 1);
             }
             else
             {
-                
+                GameManager.Instance.PlayerHUD.DisplayTextOnTV("Wait", 1);
             }
         }
     }

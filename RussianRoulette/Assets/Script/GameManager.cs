@@ -55,6 +55,10 @@ public class GameManager : NetworkBehaviour
         await Task.Delay(2000);
         
         ClearTableAndReload_Rpc();
+        foreach (var player in PlayerControllers)
+        {
+            player.PlayerHUD.DisplayTextOnTV(player.playerTurn.Value == true ? "Your Turn" : "Wait", 2);
+        }
     }
     
     async Task WaitForAllPlayerToBeginGame()
@@ -79,6 +83,7 @@ public class GameManager : NetworkBehaviour
             player.playerTurn.Value = !player.playerTurn.Value;
         }
         
+        
         if(!IsHost) return;
         
         //if no more obj on the table refill it 
@@ -95,6 +100,7 @@ public class GameManager : NetworkBehaviour
         // orientate light toward player turn
         Light.Instance.RotateLightToPlayerTurn_Rpc(PlayerControllers[0].OwnerClientId == 0 ? 0 : 1);
     }
+    
     
     
     /// <summary>

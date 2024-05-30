@@ -22,6 +22,8 @@ public class PlayerHUD : MonoBehaviour
 
     public MyObject selectedObject;
 
+    [Space] 
+    [Header("TV")] public List<TextMeshProUGUI> tvTexts;
 
     private void Start()
     {
@@ -71,6 +73,14 @@ public class PlayerHUD : MonoBehaviour
             text.DOFade(0, duration);
         }));
         
+    }
+
+    public void DisplayTextOnTV(string message, float duration)
+    {
+        foreach (var text in tvTexts)
+        {
+            text.text = message;
+        }
     }
     
     public void DisplayBtns(bool verif, List<HUD_OBJ> hudObj)
