@@ -22,12 +22,15 @@ public class NetworkManagerUI : MonoBehaviour
     //[SerializeField] private Button hostSection;
     public Button joinSection;
 
-    /*private void Awake()
+    public static NetworkManagerUI Instance;
+
+    private void Awake()
     {
-        btn_Host.onClick.AddListener((() => NetworkManager.Singleton.StartHost()));
+        Instance = this;
+        //btn_Host.onClick.AddListener((() => NetworkManager.Singleton.StartHost()));
         //btn_Server.onClick.AddListener((() => NetworkManager.Singleton.StartServer()));
-        btn_Client.onClick.AddListener((() => NetworkManager.Singleton.StartClient()));
-    }*/
+        //btn_Client.onClick.AddListener((() => NetworkManager.Singleton.StartClient()));
+    }
     
     private void Start()
     {

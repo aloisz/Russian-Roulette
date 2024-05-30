@@ -37,7 +37,7 @@ public class GameManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
+        bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;                               
 
         if (!IsHost) return;
         if(isRelay) WaitForClient();
@@ -50,6 +50,8 @@ public class GameManager : NetworkBehaviour
     private async void WaitForClient()
     {
         await WaitForAllPlayerToBeginGame();
+        NetworkManagerUI.Instance.partyJoinCode.gameObject.SetActive(false);
+        
         await Task.Delay(2000);
         
         ClearTableAndReload_Rpc();

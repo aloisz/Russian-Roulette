@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/chinese rocks rg SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/chinese rocks rg SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CameraManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +32,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/RelayManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/ObjectBtn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/PlayerHUD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/UI/UI_Interaction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/interface/IInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@2.3.1/Editor/PlasticSCM/Configuration/TeamEdition/TeamEditionConfigurationWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collections@1.2.4/Unity.Collections/NativeList.cs" root0="SKIP_HIGHLIGHTING" />
@@ -150,7 +148,7 @@
       <workItem from="1716898267653" duration="4472000" />
       <workItem from="1716985897853" duration="5495000" />
       <workItem from="1717005618189" duration="5172000" />
-      <workItem from="1717065083570" duration="4044000" />
+      <workItem from="1717065083570" duration="5457000" />
     </task>
     <servers />
   </component>
