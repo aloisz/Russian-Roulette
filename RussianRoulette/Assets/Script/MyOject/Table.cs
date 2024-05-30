@@ -25,7 +25,7 @@ public class Table : NetworkBehaviour
         tilesClient1Index.OnValueChanged += (value, newValue) => tilesClient1Index.Value = newValue;
     }
 
-    public int SelectAnObject()
+    private int SelectAnObject()
     {
         int result = 0;
         

@@ -71,9 +71,13 @@ public class ObjectOnTable : MyObject, IInteractOnContinue
         offSet.Value = this.basePos.Value + new Vector3(0, .1f, 0);
         SetBasePos_ClientRpc(basePos);
     }
+
+    private bool doItOnce = false;
     [Rpc(SendTo.Everyone)]
     private void SetBasePos_ClientRpc(Vector3 basePos)
     {
+        if(doItOnce) return;
+        doItOnce = true;
         transform.position = basePos;
     }
 

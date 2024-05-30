@@ -2368,6 +2368,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHUD
       objectReference: {fileID: 0}
+    - target: {fileID: 3464583927386215540, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_text
+      value: Your Turn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464583927386215540, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 56.70434
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464583927386215540, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 63.106346
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518635214285329466, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_text
+      value: Your Turn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518635214285329466, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 52.17633
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518635214285329466, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 67.15146
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888332401545704863, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 58.988117
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888332401545704863, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 73.81757
+      objectReference: {fileID: 0}
     - target: {fileID: 3920535355232120479, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2467,6 +2507,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595522096135184152, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 59.104717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595522096135184152, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 70.89949
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862068688904025451, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 60.421547
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862068688904025451, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 75.70557
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597161424387777259, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 60.82182
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597161424387777259, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 64.11045
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240510682354474595, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_text
+      value: Your Turn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240510682354474595, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 56.732018
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240510682354474595, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 72.338425
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4536,7 +4621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProtocolType: 0
+  m_ProtocolType: 1
   m_MaxPacketQueueSize: 128
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
@@ -7508,7 +7593,7 @@ PrefabInstance:
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
       propertyPath: isRelay
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
