@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/OBJ.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/OBJ.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/OBJ_Description.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/OBJ_Description.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/chinese rocks rg SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/chinese rocks rg SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" afterDir="false" />
     </list>
@@ -148,7 +145,7 @@
       <workItem from="1716898267653" duration="4472000" />
       <workItem from="1716985897853" duration="5495000" />
       <workItem from="1717005618189" duration="5172000" />
-      <workItem from="1717065083570" duration="381000" />
+      <workItem from="1717065083570" duration="1060000" />
     </task>
     <servers />
   </component>
