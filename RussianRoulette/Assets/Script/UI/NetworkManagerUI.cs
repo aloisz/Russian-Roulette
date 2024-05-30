@@ -78,8 +78,8 @@ public class NetworkManagerUI : MonoBehaviour
         partyJoinCode.gameObject.SetActive(true);
     }
 
-    /*private void Update()
+    private void Update()
     {
-        playerCountText.text = $"Player Count : {GameManager.Instance.playerCount.Value}";
-    }*/
+        if (GameManager.Instance.PlayerControllers.Count < 0)  partyJoinCode.gameObject.SetActive(false);
+    }
 }

@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 
 public class CameraManager : MonoBehaviour
 {
+    public PlayerController playerOwner;
     public int clientID;
     [SerializeField] private Camera camera;
     [SerializeField] private StateCamera StateCamera;
@@ -51,6 +52,7 @@ public class CameraManager : MonoBehaviour
     public void LateUpdate()
     {
         if(cameraPlayerPosition == null) return;
+        if(playerOwner == null) return;
         CheckInput();
         
         switch (StateCamera)

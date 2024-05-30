@@ -48,6 +48,7 @@ namespace Player
             };
             
             CameraManager = GameManager.Instance.CameraManager;
+            CameraManager.playerOwner = this;
             PlayerHUD = Instantiate(GameManager.Instance.PlayerHUD, Vector3.zero, Quaternion.identity);
             PlayerHUD.ownedByClientID = (int)OwnerClientId;
             

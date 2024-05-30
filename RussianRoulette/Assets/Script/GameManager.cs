@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NaughtyAttributes;
 using Player;
 using Unity.Netcode;
@@ -22,6 +23,9 @@ public class GameManager : NetworkBehaviour
 
     [Space] [BoxGroup("Table")] public Table table;
     [Space] [BoxGroup("Objects")] public List<ObjectOnTable> objectOnTables;
+
+    [Header("Transport")] 
+    [SerializeField] private bool isRelay;
     
     public static GameManager Instance;
 
@@ -29,14 +33,34 @@ public class GameManager : NetworkBehaviour
     {
         Instance = this;
     }
-
+    
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
-        
+
         if (!IsHost) return;
+        if(isRelay) WaitForClient();
+        else
+        {
+            ClearTableAndReload_Rpc();
+        }
+    }
+    
+    private async void WaitForClient()
+    {
+        await WaitForAllPlayerToBeginGame();
+        await Task.Delay(2000);
+        
         ClearTableAndReload_Rpc();
+    }
+    
+    async Task WaitForAllPlayerToBeginGame()
+    {
+        while (PlayerControllers.Count <= 1)
+        {
+            await Task.Yield();
+        }
     }
 
 

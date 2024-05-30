@@ -1114,6 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af86fe659c69ce4eb960eabe3b8546f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOwner: {fileID: 0}
   clientID: 0
   camera: {fileID: 330585545}
   StateCamera: 0
@@ -7329,6 +7330,11 @@ PrefabInstance:
       propertyPath: table
       value: 
       objectReference: {fileID: 2047411052}
+    - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
+        type: 3}
+      propertyPath: isRelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
       propertyPath: CameraManager
