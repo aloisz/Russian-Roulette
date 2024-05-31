@@ -128,6 +128,14 @@ public class GameManager : NetworkBehaviour
     private void GameFinished_Rpc()
     {
         OnGameEnd?.Invoke();
+        if(!IsHost) return;
+        StartCoroutine(ResetGame());
+    }
+
+    private IEnumerator ResetGame()
+    {
+        yield return new WaitForSeconds(2);
+        ClearTableAndReload_Rpc();
     }
 
     #endregion
@@ -276,7 +284,6 @@ public class GameManager : NetworkBehaviour
             if (player.playerHealth.Value <= 0)
             {
                 GameFinished_Rpc();
-                //ClearTableAndReload_Rpc();
             }
         }
     }

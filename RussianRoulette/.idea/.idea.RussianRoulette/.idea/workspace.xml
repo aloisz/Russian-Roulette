@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/chinese rocks rg SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/chinese rocks rg SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/Gun/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/Gun/Gun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/MyOject/ObjectOnTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +150,7 @@
       <workItem from="1717005618189" duration="5172000" />
       <workItem from="1717065083570" duration="6054000" />
       <workItem from="1717092866665" duration="2329000" />
-      <workItem from="1717141718718" duration="15517000" />
+      <workItem from="1717141718718" duration="15902000" />
     </task>
     <servers />
   </component>
