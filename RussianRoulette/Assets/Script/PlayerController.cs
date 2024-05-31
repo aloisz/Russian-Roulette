@@ -30,11 +30,11 @@ namespace Player
             switch (OwnerClientId)
             {
                 case 0:
-                    transform.GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                    transform.GetComponentInChildren<MeshRenderer>().material.color = Color.grey;
                     transform.position = GameManager.Instance.playersPositions[0].position;
                     break;
                 case 1:
-                    transform.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                    transform.GetComponentInChildren<MeshRenderer>().material.color = Color.grey;
                     transform.position = GameManager.Instance.playersPositions[1].position;
                     break;
             }
