@@ -69,7 +69,7 @@ MonoBehaviour:
   PlayerControllers: []
   CameraManager: {fileID: 0}
   PlayerHUD: {fileID: 0}
-  playersHealth: 1
+  playersHealth: 6
   playersPositions:
   - {fileID: 0}
   - {fileID: 0}

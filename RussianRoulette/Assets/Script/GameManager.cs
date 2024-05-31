@@ -238,7 +238,7 @@ public class GameManager : NetworkBehaviour
         StartCoroutine(ReloadGunCoroutine());
         foreach (var player in PlayerControllers)
         {
-            player.playerHealth.Value = 2;
+            player.playerHealth.Value = playersHealth;
         }
     }
 
