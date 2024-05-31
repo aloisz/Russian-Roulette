@@ -22,7 +22,8 @@ public class Gun : MyObject
     
     
     protected override void Select(ulong OwnerClientId)
-    {
+    { 
+        if(GameManager.Instance.bulletNumber.Value == 0) return;
         base.Select(OwnerClientId);
         transform.DOMove(GameManager.Instance.PlayerControllers[(int)OwnerClientId].CameraManager.objPosition
             .position, .3f);
