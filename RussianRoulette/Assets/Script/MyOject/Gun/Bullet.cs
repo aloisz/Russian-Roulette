@@ -41,6 +41,12 @@ public class Bullet : NetworkBehaviour
         }
     }
 
+    [Rpc(SendTo.Server)]
+    public void ChangeBulletValue_Rpc(BulletType type)
+    {
+        bulletType.Value = type;
+    }
+
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();

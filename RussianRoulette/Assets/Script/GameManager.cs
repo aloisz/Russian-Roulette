@@ -20,8 +20,9 @@ public class GameManager : NetworkBehaviour
     [BoxGroup("Gun")] [Header("Gun")] public Gun gun;
     [BoxGroup("Gun")][SerializeField] private Bullet bullet;
     [BoxGroup("Gun")]public NetworkVariable<int> bulletNumber = new NetworkVariable<int>(0 , NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    //public List<BulletSpawnLogic> BulletSpawnLogics = new List<BulletSpawnLogic>();
     [BoxGroup("Gun")]public List<Bullet> presentedBullets = new List<Bullet>();
-
+    
     [Space] [BoxGroup("Table")] public Table table;
     [Space] [BoxGroup("Objects")] public List<ObjectOnTable> objectOnTables;
 
@@ -313,3 +314,17 @@ public class GameManager : NetworkBehaviour
 
     
 }
+
+[System.Serializable]
+public class BulletSpawnLogic
+{
+    public List<BulletSpawnLogicValue> BulletSpawnLogicValues;
+}
+
+[System.Serializable]
+public class BulletSpawnLogicValue
+{
+    public BulletType type;
+}
+
+

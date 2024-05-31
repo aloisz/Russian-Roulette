@@ -1770,7 +1770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &331746852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14146,11 +14146,6 @@ PrefabInstance:
       objectReference: {fileID: 2047411052}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
-      propertyPath: isRelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
-        type: 3}
       propertyPath: PlayerHUD
       value: 
       objectReference: {fileID: 1684115378}
@@ -14159,11 +14154,6 @@ PrefabInstance:
       propertyPath: CameraManager
       value: 
       objectReference: {fileID: 235414428}
-    - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
-        type: 3}
-      propertyPath: playersHealth
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
       propertyPath: playersPositions.Array.data[0]

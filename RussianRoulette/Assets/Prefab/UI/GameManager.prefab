@@ -69,7 +69,7 @@ MonoBehaviour:
   PlayerControllers: []
   CameraManager: {fileID: 0}
   PlayerHUD: {fileID: 0}
-  playersHealth: 6
+  playersHealth: 5
   playersPositions:
   - {fileID: 0}
   - {fileID: 0}
@@ -77,6 +77,17 @@ MonoBehaviour:
   bullet: {fileID: 7493942498446937378, guid: 9674de6adc05df648ae8e2d5e5f52503, type: 3}
   bulletNumber:
     m_InternalValue: 0
+  BulletSpawnLogics:
+  - BulletSpawnLogicValues:
+    - type: 1
+    - type: 2
+  - BulletSpawnLogicValues:
+    - type: 1
+    - type: 2
+    - type: 1
+    - type: 2
+  - BulletSpawnLogicValues: []
+  - BulletSpawnLogicValues: []
   presentedBullets: []
   table: {fileID: 0}
   objectOnTables:

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2137587993
+  GlobalObjectIdHash: 1838703520
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
   HUD_OBJ:
   - MyObject: {fileID: 0}
     actionName: Scissors
-    actionDescription: Disable Health monitor
+    actionDescription: Inverse the current bullet value
     HUDObjSpecs: []
     Event:
       m_PersistentCalls:
