@@ -25,6 +25,7 @@ public class NetworkManagerUI : MonoBehaviour
     public Button ruleButton;
     public Button backToMenu;
     public RectTransform ruleTxt;
+    public TextMeshProUGUI credit;
 
     public static NetworkManagerUI Instance;
 
@@ -71,6 +72,11 @@ public class NetworkManagerUI : MonoBehaviour
         btn_Client.gameObject.SetActive(false);
         partyJoinCode.gameObject.SetActive(false);
         joinCodeInput.gameObject.SetActive(false);
+        
+        ruleButton.gameObject.SetActive(true);
+        btn_Host.gameObject.SetActive(true);
+        joinSection.gameObject.SetActive(true);
+        credit.gameObject.SetActive(true);
     }
 
 
@@ -82,6 +88,7 @@ public class NetworkManagerUI : MonoBehaviour
         
         btn_Client.gameObject.SetActive(true);
         joinCodeInput.gameObject.SetActive(true);
+        credit.gameObject.SetActive(false);
     }
 
     private void HostSection()
@@ -91,6 +98,7 @@ public class NetworkManagerUI : MonoBehaviour
         joinSection.gameObject.SetActive(false);
         
         partyJoinCode.gameObject.SetActive(true);
+        credit.gameObject.SetActive(false);
     }
 
     private void RuleSection()
