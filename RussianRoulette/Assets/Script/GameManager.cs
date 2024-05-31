@@ -29,7 +29,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private bool isRelay;
 
     public Action OnGameEnd;
-    private NetworkVariable<bool> isGameFinished = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+   
     
     public static GameManager Instance;
 
@@ -42,7 +42,7 @@ public class GameManager : NetworkBehaviour
     {
         base.OnNetworkSpawn();
         bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
-        isGameFinished.OnValueChanged += (value, newValue) => isGameFinished.Value = newValue; 
+    
 
         if (!IsHost) return;
         if(isRelay) WaitForClient();
@@ -124,11 +124,10 @@ public class GameManager : NetworkBehaviour
         Debug.Log("Damage GameManager " + damage);
     }
 
-    private void GameFinished()
+    [Rpc(SendTo.Everyone)]
+    private void GameFinished_Rpc()
     {
         OnGameEnd?.Invoke();
-        if(!IsHost) return;
-        isGameFinished.Value = false;
     }
 
     #endregion
@@ -271,13 +270,13 @@ public class GameManager : NetworkBehaviour
                 Debug.Log($"___PlayerID {player.OwnerClientId} Health of value {player.playerHealth.Value}___");
             }
             
-            if (player.playerHealth.Value <= 0)isGameFinished.Value = true;
 
             RemoveLife_ClientRpc((int)player.OwnerClientId);
 
             if (player.playerHealth.Value <= 0)
             {
-                ClearTableAndReload_Rpc();
+                GameFinished_Rpc();
+                //ClearTableAndReload_Rpc();
             }
         }
     }
@@ -285,10 +284,6 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Everyone)]
     private void RemoveLife_ClientRpc(int clientID)
     {
-        if (isGameFinished.Value)
-        {
-            GameFinished();
-        }
         
         StartCoroutine(CameraHealthMonitor(PlayerControllers[clientID], 1.25f));
     }
@@ -301,6 +296,7 @@ public class GameManager : NetworkBehaviour
         player.CameraManager.ChangeState(StateCamera.PlayerPos);
 
         if (!IsHost) yield break;
+        yield return new WaitForSeconds(elapsedTime);
         if(bulletNumber.Value == 0) ReloadGun_Rpc();
     }
 

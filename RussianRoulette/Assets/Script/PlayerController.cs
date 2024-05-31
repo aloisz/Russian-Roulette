@@ -133,14 +133,9 @@ namespace Player
         private void OnPlayerTurnChanged(bool previous, bool current)
         {
             Debug.Log($"<color=green>___Player turn {playerTurn.Value}___</color>");
-            if (playerTurn.Value)
-            {
-                GameManager.Instance.PlayerHUD.DisplayTextOnTV("Your Turn", 1);
-            }
-            else
-            {
-                GameManager.Instance.PlayerHUD.DisplayTextOnTV("Wait", 1);
-            }
+            
+            GameManager.Instance.PlayerHUD.DisplayTextOnTV(previous ? "Wait" : "Your Turn", 1);
+            //GameManager.Instance.PlayerHUD.DisplayTextOnTV(playerTurn.Value ? "Your Turn" : "Wait", 1);
         }
     }
 }
