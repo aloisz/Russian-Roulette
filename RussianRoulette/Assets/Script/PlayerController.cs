@@ -50,6 +50,7 @@ namespace Player
             
             CameraManager = GameManager.Instance.CameraManager;
             CameraManager.playerOwner = this;
+            CameraManager.SetAnimator(false);
             PlayerHUD = GameManager.Instance.PlayerHUD;
             PlayerHUD.ownedByClientID = (int)OwnerClientId;
 

@@ -27,10 +27,17 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private  float smoothTime = 2;
     [SerializeField] private  float rotInterpolation = 2;
     private Vector3 currentVelocity;
+
+    [Header("animator")] [SerializeField] private Animator _animator;
     
     private void Awake()
     {
         StateCamera = StateCamera.OnBeginPlay;
+    }
+
+    public void SetAnimator(bool value)
+    {
+        _animator.enabled = value;
     }
 
     public StateCamera ChangeState(StateCamera stateCamera)
