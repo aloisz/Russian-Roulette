@@ -19,17 +19,14 @@ public class NetworkManagerUI : MonoBehaviour
     public TMP_InputField joinCodeInput;
 
     [Space] 
-    //[SerializeField] private Button hostSection;
     public Button joinSection;
+    public Button quitButton;
 
     public static NetworkManagerUI Instance;
 
     private void Awake()
     {
         Instance = this;
-        //btn_Host.onClick.AddListener((() => NetworkManager.Singleton.StartHost()));
-        //btn_Server.onClick.AddListener((() => NetworkManager.Singleton.StartServer()));
-        //btn_Client.onClick.AddListener((() => NetworkManager.Singleton.StartClient()));
     }
     
     private void Start()
@@ -57,6 +54,10 @@ public class NetworkManagerUI : MonoBehaviour
             NetworkManager.Singleton.StartHost();
         });
         joinSection.onClick.AddListener(JoinSection);
+
+        quitButton.onClick.AddListener((() => Application.Quit()));
+        quitButton.gameObject.SetActive(false);
+        
         
         btn_Client.gameObject.SetActive(false);
         partyJoinCode.gameObject.SetActive(false);
@@ -81,8 +82,15 @@ public class NetworkManagerUI : MonoBehaviour
         partyJoinCode.gameObject.SetActive(true);
     }
 
+    private bool hasClickedEscape = false;
     private void Update()
     {
         if (GameManager.Instance.PlayerControllers.Count < 0)  partyJoinCode.gameObject.SetActive(false);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            hasClickedEscape = !hasClickedEscape;
+            quitButton.gameObject.SetActive(hasClickedEscape);
+        }
     }
 }

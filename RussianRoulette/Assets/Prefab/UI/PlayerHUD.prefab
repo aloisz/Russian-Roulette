@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 56.732018, y: -77.67125, z: 72.338425, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -168,8 +168,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3452757155252321178}
-  - {fileID: 3237186374440750011}
   - {fileID: 6423896170221546300}
+  - {fileID: 3237186374440750011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 58.988117, y: -77.67125, z: 73.81757, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 60.421547, y: -77.67125, z: 75.70557, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -781,7 +781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 52.17633, y: -77.67125, z: 67.15146, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -951,7 +951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 60.82182, y: -77.67125, z: 64.11045, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 59.104717, y: -77.67125, z: 70.89949, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Your \nTurn"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f7cb6566455bc254a80fc98e58ddb0c9, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: f7cb6566455bc254a80fc98e58ddb0c9,
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -158.76953, y: -77.67125, z: -143.27898, w: -73.70387}
+  m_margin: {x: 56.70434, y: -77.67125, z: 63.106346, w: -73.70387}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

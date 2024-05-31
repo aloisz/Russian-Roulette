@@ -55,6 +55,7 @@ public class GameManager : NetworkBehaviour
         await Task.Delay(2000);
         
         ClearTableAndReload_Rpc();
+        
         foreach (var player in PlayerControllers)
         {
             player.PlayerHUD.DisplayTextOnTV(player.playerTurn.Value == true ? "Your Turn" : "Wait", 2);
@@ -259,6 +260,11 @@ public class GameManager : NetworkBehaviour
             if (player.playerHealth.Value == 0)
             {
                 ClearTableAndReload_Rpc();
+                player.PlayerHUD.DisplayText("You Won", new Vector3(0,1.284f,0), 3);
+            }
+            else
+            {
+                player.PlayerHUD.DisplayText("You Lost", new Vector3(0,1.284f,0), 3);
             }
         }
     }

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1366012375
+  GlobalObjectIdHash: 2380761809
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -108,7 +108,7 @@ MonoBehaviour:
   HUD_OBJ:
   - MyObject: {fileID: 0}
     actionName: Cigarette
-    actionDescription: Give +2 Health
+    actionDescription: Give +1 Health
     HUDObjSpecs: []
     Event:
       m_PersistentCalls:
@@ -125,7 +125,7 @@ MonoBehaviour:
     m_InternalValue: {x: 0, y: 0, z: 0}
   timer: 0
   isObjectOnTableSelected: 0
-  healthAdded: 2
+  healthAdded: 1
 --- !u!33 &4518546079585621892
 MeshFilter:
   m_ObjectHideFlags: 0
