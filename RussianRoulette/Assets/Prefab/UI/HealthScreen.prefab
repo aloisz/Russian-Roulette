@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2891916327
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2569313430
+  InScenePlacedSourceGlobalObjectIdHash: 2449705166
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d0f62d7c1038234cbd718a330fb3ecd, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: 1d0f62d7c1038234cbd718a330fb3ecd,
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1d0f62d7c1038234cbd718a330fb3ecd, type: 2}
   m_sharedMaterial: {fileID: -8778871331271201188, guid: 1d0f62d7c1038234cbd718a330fb3ecd,

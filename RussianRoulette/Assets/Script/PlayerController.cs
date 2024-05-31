@@ -45,12 +45,19 @@ namespace Player
             {
                 playerHealth.Value = newValue;
                 HealthScreen.Instance.SetClients_Rpc(newValue, (int)OwnerClientId);
+                
             };
             
             CameraManager = GameManager.Instance.CameraManager;
             CameraManager.playerOwner = this;
             PlayerHUD = GameManager.Instance.PlayerHUD;
             PlayerHUD.ownedByClientID = (int)OwnerClientId;
+
+            GameManager.Instance.OnGameEnd += () =>
+            {
+                PlayerHUD.DisplayText(playerHealth.Value <= 0 ? "You Lost" : "You Won",
+                    new Vector3(0, 1.284f, 0), 3);
+            };
             
             
             switch (OwnerClientId)

@@ -68,8 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerControllers: []
   CameraManager: {fileID: 0}
-  PlayerHUD: {fileID: 5911849507614101583, guid: 90f6f4bc099c3094e8cf85bcba0ae948,
-    type: 3}
+  PlayerHUD: {fileID: 0}
+  playersHealth: 1
   playersPositions:
   - {fileID: 0}
   - {fileID: 0}
@@ -87,3 +87,4 @@ MonoBehaviour:
   - {fileID: 2291694033034884769, guid: 956c6ac506765494f960bf00005e82f0, type: 3}
   - {fileID: 7376826024659606881, guid: cdc199c71c800fe4eaf85e8a069e8f4a, type: 3}
   - {fileID: 6390061556134756544, guid: c721b4c86fcde1242846232a2f681383, type: 3}
+  isRelay: 1

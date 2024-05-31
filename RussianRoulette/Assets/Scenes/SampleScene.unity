@@ -12610,11 +12610,6 @@ PrefabInstance:
       objectReference: {fileID: 2047411052}
     - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
         type: 3}
-      propertyPath: isRelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8436705612144925176, guid: 7384e8b837a988d47b9bcbe744725404,
-        type: 3}
       propertyPath: PlayerHUD
       value: 
       objectReference: {fileID: 1684115378}
@@ -12705,16 +12700,6 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2569313430
-      objectReference: {fileID: 0}
-    - target: {fileID: 5380611962397864225, guid: b9e91c6a3e25bda4897b124a542cb980,
-        type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 2449705166
-      objectReference: {fileID: 0}
-    - target: {fileID: 8214482913028775245, guid: b9e91c6a3e25bda4897b124a542cb980,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

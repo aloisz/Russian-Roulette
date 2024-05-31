@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4d313f63-84b0-4e72-9dab-919e3a56fcd0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RussianRoulette/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Object/Cigarette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Object/Cigarette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/PlayerHUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UI/PlayerHUD.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/FONT/BTN_TABLE.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/FONT/BTN_TABLE.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/GameManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UI/GameManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/HealthScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UI/HealthScreen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/NetworkManagerUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,7 @@
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../BuildRussianRoulette\RussianRoulette.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../BuildRussianRoulette/RussianRoulette.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\Unity\BuildRussianRoulette" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -154,7 +155,7 @@
       <workItem from="1717005618189" duration="5172000" />
       <workItem from="1717065083570" duration="6054000" />
       <workItem from="1717092866665" duration="2329000" />
-      <workItem from="1717141718718" duration="2992000" />
+      <workItem from="1717141718718" duration="6432000" />
     </task>
     <servers />
   </component>

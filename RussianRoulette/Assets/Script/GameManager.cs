@@ -13,6 +13,7 @@ public class GameManager : NetworkBehaviour
     public List<PlayerController> PlayerControllers;
     public CameraManager CameraManager;
     public PlayerHUD PlayerHUD;
+    [Range(1, 10)] [SerializeField] private int playersHealth;
     [Space]
     public List<Transform> playersPositions;
 
@@ -26,6 +27,9 @@ public class GameManager : NetworkBehaviour
 
     [Header("Transport")] 
     [SerializeField] private bool isRelay;
+
+    public Action OnGameEnd;
+    private NetworkVariable<bool> isGameFinished = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     
     public static GameManager Instance;
 
@@ -37,7 +41,8 @@ public class GameManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;                               
+        bulletNumber.OnValueChanged += (value, newValue) => bulletNumber.Value = newValue;
+        isGameFinished.OnValueChanged += (value, newValue) => isGameFinished.Value = newValue; 
 
         if (!IsHost) return;
         if(isRelay) WaitForClient();
@@ -117,6 +122,13 @@ public class GameManager : NetworkBehaviour
     {   
         GameManager.Instance.ShootBullet_Rpc(targetClientID, damage);
         Debug.Log("Damage GameManager " + damage);
+    }
+
+    private void GameFinished()
+    {
+        OnGameEnd?.Invoke();
+        if(!IsHost) return;
+        isGameFinished.Value = false;
     }
 
     #endregion
@@ -223,7 +235,11 @@ public class GameManager : NetworkBehaviour
     public void ClearTableAndReload_Rpc()
     {
         StartCoroutine(ClearTable());
-        StartCoroutine(ReloadGunCoroutine());   
+        StartCoroutine(ReloadGunCoroutine());
+        foreach (var player in PlayerControllers)
+        {
+            player.playerHealth.Value = 2;
+        }
     }
 
     private IEnumerator ClearTable()
@@ -254,17 +270,14 @@ public class GameManager : NetworkBehaviour
                 player.playerHealth.Value -= damage;
                 Debug.Log($"___PlayerID {player.OwnerClientId} Health of value {player.playerHealth.Value}___");
             }
+            
+            if (player.playerHealth.Value <= 0)isGameFinished.Value = true;
 
             RemoveLife_ClientRpc((int)player.OwnerClientId);
 
-            if (player.playerHealth.Value == 0)
+            if (player.playerHealth.Value <= 0)
             {
                 ClearTableAndReload_Rpc();
-                player.PlayerHUD.DisplayText("You Won", new Vector3(0,1.284f,0), 3);
-            }
-            else
-            {
-                player.PlayerHUD.DisplayText("You Lost", new Vector3(0,1.284f,0), 3);
             }
         }
     }
@@ -272,6 +285,11 @@ public class GameManager : NetworkBehaviour
     [Rpc(SendTo.Everyone)]
     private void RemoveLife_ClientRpc(int clientID)
     {
+        if (isGameFinished.Value)
+        {
+            GameFinished();
+        }
+        
         StartCoroutine(CameraHealthMonitor(PlayerControllers[clientID], 1.25f));
     }
 
