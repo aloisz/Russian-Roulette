@@ -53,6 +53,11 @@ public class NetworkManagerUI : MonoBehaviour
             {
                 RelayHostData hostData = await RelayManager.Instance.SetupRelay();
                 partyJoinCode.text = hostData.JoinCode;
+                /*PlayerHUD hud = GameObject.FindObjectOfType<PlayerHUD>();
+                foreach (var txt in hud.tvTexts)
+                {
+                    txt.text = hostData.JoinCode;
+                }*/
             }
 
             HostSection();
