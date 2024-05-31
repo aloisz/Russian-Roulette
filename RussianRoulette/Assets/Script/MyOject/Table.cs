@@ -47,8 +47,8 @@ public class Table : NetworkBehaviour
             {
                 //obj.transform.position = tilesClient0[tilesClient0Index.Value].transform.position;
                 //obj.transform.DOMove(tilesClient0[tilesClient0Index.Value].transform.position, 2);
-                obj.SetBasePos_Rpc(tilesClient0[tilesClient0Index.Value].transform.position);
                 obj.SetClientInfo_Rpc(cliendID, tilesClient0Index.Value);
+                obj.SetBasePos_Rpc(tilesClient0[tilesClient0Index.Value].transform.position);
                 tilesClient0[tilesClient0Index.Value].obj = obj;
                 tilesClient0Index.Value++;
             }
@@ -56,8 +56,8 @@ public class Table : NetworkBehaviour
             {
                 //obj.transform.position = tilesClient1[tilesClient1Index.Value].transform.position;
                 //obj.transform.DOMove(tilesClient1[tilesClient1Index.Value].transform.position, 2);
-                obj.SetBasePos_Rpc(tilesClient1[tilesClient1Index.Value].transform.position);
                 obj.SetClientInfo_Rpc(cliendID, tilesClient1Index.Value);
+                obj.SetBasePos_Rpc(tilesClient1[tilesClient1Index.Value].transform.position);
                 tilesClient1[tilesClient1Index.Value].obj = obj;
                 tilesClient1Index.Value++;
             }
