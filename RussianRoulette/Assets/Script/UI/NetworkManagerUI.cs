@@ -22,6 +22,10 @@ public class NetworkManagerUI : MonoBehaviour
     public Button joinSection;
     public Button quitButton;
 
+    public Button ruleButton;
+    public Button backToMenu;
+    public RectTransform ruleTxt;
+
     public static NetworkManagerUI Instance;
 
     private void Awake()
@@ -55,6 +59,11 @@ public class NetworkManagerUI : MonoBehaviour
         });
         joinSection.onClick.AddListener(JoinSection);
 
+        ruleButton.onClick.AddListener(RuleSection);
+        ruleTxt.gameObject.SetActive(false);
+        backToMenu.onClick.AddListener(BackToMenu);
+        backToMenu.gameObject.SetActive(false);
+        
         quitButton.onClick.AddListener((() => Application.Quit()));
         quitButton.gameObject.SetActive(false);
         
@@ -67,6 +76,7 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void JoinSection()
     {
+        ruleButton.gameObject.SetActive(false);
         btn_Host.gameObject.SetActive(false);
         joinSection.gameObject.SetActive(false);
         
@@ -76,10 +86,38 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void HostSection()
     {
+        ruleButton.gameObject.SetActive(false);
         btn_Host.gameObject.SetActive(false);
         joinSection.gameObject.SetActive(false);
         
         partyJoinCode.gameObject.SetActive(true);
+    }
+
+    private void RuleSection()
+    {
+        ruleButton.gameObject.SetActive(false);
+        ruleTxt.gameObject.SetActive(true);
+        backToMenu.gameObject.SetActive(true);
+
+        joinSection.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
+        btn_Host.gameObject.SetActive(false);
+        btn_Client.gameObject.SetActive(false);
+        partyJoinCode.gameObject.SetActive(false);
+        joinCodeInput.gameObject.SetActive(false);
+    }
+
+    private void BackToMenu()
+    {
+        ruleButton.gameObject.SetActive(true);
+        ruleTxt.gameObject.SetActive(false);
+        backToMenu.gameObject.SetActive(false);
+        
+        btn_Host.gameObject.SetActive(true);
+        joinSection.gameObject.SetActive(true);
+        btn_Client.gameObject.SetActive(false);
+        partyJoinCode.gameObject.SetActive(false);
+        joinCodeInput.gameObject.SetActive(false);
     }
 
     private bool hasClickedEscape = false;
